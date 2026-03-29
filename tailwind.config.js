@@ -57,9 +57,9 @@ export default {
         "on-error-container":       "#ffdad6",
       },
       fontFamily: {
-        headline: ["Inter", "sans-serif"],
-        body:     ["Inter", "sans-serif"],
-        label:    ["Inter", "sans-serif"],
+        headline: ["Outfit", "sans-serif"],
+        body:     ["Outfit", "sans-serif"],
+        label:    ["Outfit", "sans-serif"],
         mono:     ["'JetBrains Mono'", "monospace"],
       },
       borderRadius: {

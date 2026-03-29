@@ -46,40 +46,44 @@ export default function Login() {
       <div className="relative z-10 w-full max-w-md animate-in fade-in zoom-in duration-500">
         <div className="bg-surface-container/30 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-tr from-primary to-primary-container rounded-2xl mx-auto flex items-center justify-center mb-4 shadow-lg shadow-primary/20">
-              <span className="material-symbols-rounded text-white text-3xl">terminal</span>
+            <div className="w-16 h-16 bg-gradient-to-tr from-primary to-primary-container rounded-3xl mx-auto flex items-center justify-center mb-6 shadow-2xl shadow-primary/30 rotate-3 hover:rotate-0 transition-transform duration-500">
+              <span className="material-symbols-outlined text-white text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>terminal</span>
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">Ndelok.me</h1>
-            <p className="text-slate-400 text-sm">Secure Infrastructure Management</p>
+            <h1 className="text-4xl font-black text-white mb-2 tracking-tighter">ndelok.me</h1>
+            <p className="text-slate-500 text-[10px] uppercase tracking-[0.3em] font-bold">Secure Infrastructure Node</p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div className="space-y-4">
+          <form onSubmit={handleLogin} className="space-y-8">
+            <div className="space-y-5">
               <div className="group">
-                <label className="block text-slate-300 text-xs font-semibold mb-2 ml-1 uppercase tracking-wider">Username</label>
+                <label className="block text-slate-500 text-[10px] font-black mb-2 ml-1 uppercase tracking-[0.2em]">Agent Identity</label>
                 <div className="relative">
-                   <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-rounded text-slate-500 group-focus-within:text-primary transition-colors">person</span>
+                   <div className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 group-focus-within:bg-primary/20 transition-all">
+                      <span className="material-symbols-outlined text-slate-500 group-focus-within:text-primary transition-colors text-[18px]">person</span>
+                   </div>
                    <input 
                     type="text" 
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="w-full bg-surface-container-highest/50 border border-white/5 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-highest/80 transition-all placeholder:text-slate-600"
-                    placeholder="Enter username"
+                    className="w-full bg-black/40 border border-white/[0.05] rounded-2xl py-4 pl-14 pr-4 text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary/50 focus:bg-black/60 transition-all placeholder:text-slate-800 font-medium"
+                    placeholder="Enter agent username"
                     required
                   />
                 </div>
               </div>
 
               <div className="group">
-                <label className="block text-slate-300 text-xs font-semibold mb-2 ml-1 uppercase tracking-wider">Password</label>
+                <label className="block text-slate-500 text-[10px] font-black mb-2 ml-1 uppercase tracking-[0.2em]">Cryptographic Key</label>
                 <div className="relative">
-                   <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-rounded text-slate-500 group-focus-within:text-primary transition-colors">lock</span>
+                   <div className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 group-focus-within:bg-primary/20 transition-all">
+                      <span className="material-symbols-outlined text-slate-500 group-focus-within:text-primary transition-colors text-[18px]">lock</span>
+                   </div>
                    <input 
                     type="password" 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full bg-surface-container-highest/50 border border-white/5 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-highest/80 transition-all placeholder:text-slate-600"
-                    placeholder="••••••••"
+                    className="w-full bg-black/40 border border-white/[0.05] rounded-2xl py-4 pl-14 pr-4 text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary/50 focus:bg-black/60 transition-all placeholder:text-slate-800 font-medium"
+                    placeholder="••••••••••••"
                     required
                   />
                 </div>
@@ -87,8 +91,8 @@ export default function Login() {
             </div>
 
             {error && (
-              <div className="bg-error/10 border border-error/20 text-error-container text-xs p-3 rounded-lg flex items-center animate-shake">
-                <span className="material-symbols-rounded text-sm mr-2">error</span>
+              <div className="bg-error/10 border border-error/20 text-error-container text-[10px] p-4 rounded-xl flex items-center animate-shake font-bold uppercase tracking-wider backdrop-blur-sm">
+                <span className="material-symbols-outlined text-sm mr-3">report</span>
                 {error}
               </div>
             )}
@@ -96,14 +100,14 @@ export default function Login() {
             <button 
               type="submit"
               disabled={isLoading}
-              className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed group active:scale-[0.98]"
+              className="w-full bg-primary hover:bg-primary/90 text-white font-black text-[11px] uppercase tracking-[0.3em] py-5 rounded-2xl transition-all shadow-2xl shadow-primary/20 flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed group active:scale-[0.97] border border-white/10"
             >
               {isLoading ? (
                 <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
               ) : (
                 <>
-                  <span>Sign In</span>
-                  <span className="material-symbols-rounded text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                  <span>Initialize Session</span>
+                  <span className="material-symbols-outlined text-lg group-hover:translate-x-1.5 transition-transform">arrow_forward</span>
                 </>
               )}
             </button>

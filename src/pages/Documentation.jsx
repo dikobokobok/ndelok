@@ -2,34 +2,34 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const quickStats = [
-  { label: 'Platform Version', value: 'v1.0.4', icon: 'verified' },
-  { label: 'Native Bridge', value: 'Vite 6', icon: 'settings_ethernet' },
-  { label: 'Real-time', value: 'Enabled', icon: 'speed' },
-  { label: 'Workspace', value: 'Isolated', icon: 'shield' },
+  { label: 'Versi Platform', value: 'v2.1.0', icon: 'verified' },
+  { label: 'Native Bridge', value: 'Vite 6 + Node.js', icon: 'settings_ethernet' },
+  { label: 'Real-time', value: 'Aktif', icon: 'speed' },
+  { label: 'Workspace', value: 'Terisolasi', icon: 'shield' },
 ]
 
 const sections = [
   {
-    title: 'Background Architecture',
-    content: 'Ndelok.me works as a local PaaS. Every project is cloned into a unique workspace directory. Native processes are spawned through the development server bridge.',
+    title: 'Arsitektur Backend',
+    content: 'Ndelok.me bekerja sebagai PaaS lokal. Setiap proyek dikloning ke direktori workspace yang unik. Proses native dijalankan melalui bridge server development.',
     icon: 'api',
     color: 'border-primary/20 text-primary bg-primary/5'
   },
   {
-    title: 'Telemetry & Monitoring',
-    content: 'Standard OS modules are used to poll system metrics every 2 seconds. These metrics are broadcast via Socket.io to the dashboard.',
+    title: 'Telemetri & Monitoring',
+    content: 'Modul OS standar digunakan untuk mengambil metrik sistem setiap 2 detik. Metrik ini disiarkan via Socket.io ke dasbor secara instan.',
     icon: 'insights',
     color: 'border-emerald-500/20 text-emerald-400 bg-emerald-500/5'
   },
   {
-    title: 'Process Lifecycle',
-    content: 'Full control over child processes: Spawn, Terminate (Safe Kill on Win/Unix), and Re-trigger with automatic logs aggregation.',
+    title: 'Siklus Hidup Proses',
+    content: 'Kontrol penuh atas child process: Jalankan, Hentikan (Safe Kill), dan Restart. Termasuk logika "Port Nuking" untuk membersihkan port yang tersandera.',
     icon: 'memory',
     color: 'border-tertiary/20 text-tertiary bg-tertiary/5'
   },
   {
-    title: 'Global Logging',
-    content: 'Consolidates all system debug info and project-specific stdout/stderr into a single, searchable real-time logging stream.',
+    title: 'Log Persisten',
+    content: 'Mengonsolidasikan semua info debug sistem dan stdout/stderr ke penyimpanan JSON persisten (kapasitas 5000 baris) dengan fitur ekspor ke TXT.',
     icon: 'contract_edit',
     color: 'border-indigo-400/20 text-indigo-300 bg-indigo-400/5'
   }
@@ -51,16 +51,16 @@ export default function Documentation() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
              </span>
-             Documentation Portal
+             Portal Dokumentasi
           </div>
           
           <h1 className="text-5xl lg:text-6xl font-black text-white leading-tight tracking-tighter">
-            Architecting Your <br />
-            <span className="bg-gradient-to-r from-primary via-primary-container to-tertiary text-transparent bg-clip-text">Infrastructure.</span>
+            Arsitektur Manajemen <br />
+            <span className="bg-gradient-to-r from-primary via-primary-container to-tertiary text-transparent bg-clip-text">Infrastruktur.</span>
           </h1>
 
           <p className="text-slate-400 text-lg leading-relaxed font-medium">
-            Discover how Ndelok.me bridge the gap between local development and native OS management with high-performance instrumentation.
+            Pelajari bagaimana Ndelok.me menjembatani pengembangan lokal dengan manajemen OS native melalui instrumentasi performa tinggi.
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
@@ -98,34 +98,53 @@ export default function Documentation() {
         <div className="lg:col-span-2 space-y-6">
           <div className="p-10 rounded-[2.5rem] bg-surface-container-low border border-white/5 shadow-xl space-y-10">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-black text-white">Full Lifecycle Workflow</h2>
-              <div className="px-3 py-1 rounded-full bg-slate-900/50 text-slate-500 text-[10px] uppercase font-bold tracking-tighter">Interactive Guide</div>
+              <h2 className="text-2xl font-black text-white">Alur Siklus Hidup Layanan</h2>
+              <div className="px-3 py-1 rounded-full bg-slate-900/50 text-slate-500 text-[10px] uppercase font-bold tracking-tighter">Panduan Interaktif</div>
             </div>
 
-            <div className="space-y-10">
-              <div className="flex gap-6 relative">
-                 <div className="absolute top-10 left-4 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 to-transparent" />
-                 <div className="z-10 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-black text-xs ring-4 ring-primary/20">1</div>
-                 <div className="space-y-2">
-                    <h4 className="text-white font-bold text-sm uppercase tracking-wide">Cloning & Setup</h4>
-                    <p className="text-slate-400 text-xs leading-relaxed">System performs an <code className="text-primary font-bold">ls-remote</code> to verify branch then clones strictly into <code className="bg-black/40 px-1 rounded text-primary">/workspaces/[name]</code>.</p>
-                 </div>
-              </div>
+            <div className="relative pt-12">
+              {/* Central Vertical Line */}
+              <div className="absolute left-[50%] -translate-x-1/2 top-4 bottom-4 w-0.5 bg-white/5" />
 
-              <div className="flex gap-6 relative">
-                 <div className="z-10 w-8 h-8 rounded-full bg-tertiary flex items-center justify-center text-on-primary font-black text-xs ring-4 ring-tertiary/20">2</div>
-                 <div className="space-y-2">
-                    <h4 className="text-white font-bold text-sm uppercase tracking-wide">Native Installation</h4>
-                    <p className="text-slate-400 text-xs leading-relaxed">Dependencies are resolved via the specified package manager.</p>
-                 </div>
-              </div>
+              <div className="space-y-24">
+                
+                {/* Step 1: Left */}
+                <div className="relative grid grid-cols-2 gap-0 group">
+                   <div className="pr-12 text-right pt-1">
+                      <h4 className="text-white font-bold text-[14px] uppercase tracking-wider mb-2">Kloning & Setup</h4>
+                      <p className="text-slate-400 text-[11px] leading-relaxed ml-auto max-w-[280px]">Sistem memverifikasi cabang Git lalu melakukan kloning secara eksklusif ke direktori <code className="bg-black/40 px-1.5 py-0.5 rounded text-primary font-telemetry">/workspaces/[nama]</code>.</p>
+                   </div>
+                   <div className="absolute left-[50%] -translate-x-1/2 z-10 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-black text-xs ring-4 ring-primary/20 shrink-0">1</div>
+                </div>
 
-              <div className="flex gap-6">
-                 <div className="z-10 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-on-primary font-black text-xs ring-4 ring-emerald-500/20">3</div>
-                 <div className="space-y-2">
-                    <h4 className="text-white font-bold text-sm uppercase tracking-wide">Live Instrumentation</h4>
-                    <p className="text-slate-400 text-xs leading-relaxed">Child process is spawned. Memory and CPU usage are mapped to the dashboard every <code className="text-emerald-400 font-bold">2000ms</code>.</p>
-                 </div>
+                {/* Step 2: Right */}
+                <div className="relative grid grid-cols-2 gap-0 group">
+                   <div />
+                   <div className="pl-12 text-left pt-1">
+                      <h4 className="text-white font-bold text-[14px] uppercase tracking-wider mb-2">Instalasi Native</h4>
+                      <p className="text-slate-400 text-[11px] leading-relaxed mr-auto max-w-[280px]">Dependensi proyek diselesaikan menggunakan perintah instalasi yang telah ditentukan (seperti <code className="text-tertiary font-telemetry underline">npm install</code> atau <code className="text-tertiary font-telemetry underline">pip</code>).</p>
+                   </div>
+                   <div className="absolute left-[50%] -translate-x-1/2 z-10 w-8 h-8 rounded-full bg-tertiary flex items-center justify-center text-on-primary font-black text-xs ring-4 ring-tertiary/20 shrink-0">2</div>
+                </div>
+
+                {/* Step 3: Left */}
+                <div className="relative grid grid-cols-2 gap-0 group">
+                   <div className="pr-12 text-right pt-1">
+                      <h4 className="text-white font-bold text-[14px] uppercase tracking-wider mb-2">Instrumentasi Live</h4>
+                      <p className="text-slate-400 text-[11px] leading-relaxed ml-auto max-w-[280px]">Child process dijalankan. Penggunaan <code className="text-emerald-400 font-bold">CPU</code>, <code className="text-emerald-400 font-bold">MEM</code>, dan <code className="text-emerald-400 font-bold">DISK</code> dipetakan ke dasbor setiap <code className="text-emerald-400">2000ms</code>.</p>
+                   </div>
+                   <div className="absolute left-[50%] -translate-x-1/2 z-10 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-on-primary font-black text-xs ring-4 ring-emerald-500/20 shrink-0">3</div>
+                </div>
+
+                {/* Step 4: Right */}
+                <div className="relative grid grid-cols-2 gap-0 group">
+                   <div />
+                   <div className="pl-12 text-left pt-1">
+                      <h4 className="text-white font-bold text-[14px] uppercase tracking-wider mb-2">Jaringan & Persistensi</h4>
+                      <p className="text-slate-400 text-[11px] leading-relaxed mr-auto max-w-[280px]">Port aplikasi dikelola via bridge. Semua log dan status proyek disimpan ke dalam file <code className="text-cyan-400 font-bold font-telemetry">system-logs.json</code> dan <code className="text-cyan-400 font-bold font-telemetry">projects.json</code>.</p>
+                   </div>
+                   <div className="absolute left-[50%] -translate-x-1/2 z-10 w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center text-on-primary font-black text-xs ring-4 ring-cyan-500/20 shrink-0">4</div>
+                </div>
               </div>
             </div>
 
@@ -139,15 +158,15 @@ export default function Documentation() {
               <span className="material-symbols-outlined text-3xl text-primary">hub</span>
               <h3 className="text-white font-black text-lg uppercase tracking-tight">API Bridge</h3>
               <p className="text-slate-400 text-[11px] leading-relaxed">
-                 Ndelok.me exposes a middleware-based API to interact with the host. This allows you to integrate third-party webhooks for automated restarts and monitoring.
+                 Ndelok.me menyediakan API berbasis middleware untuk berinteraksi dengan host. Ini memungkinkan integrasi webhook pihak ketiga untuk restart otomatis dan pemantauan.
               </p>
            </div>
 
            <div className="p-8 rounded-[2.5rem] bg-indigo-500/10 border border-indigo-500/20 shadow-xl space-y-4">
               <span className="material-symbols-outlined text-3xl text-indigo-400">shelves</span>
-              <h3 className="text-white font-black text-lg uppercase tracking-tight">Persistence</h3>
+              <h3 className="text-white font-black text-lg uppercase tracking-tight">Persistensi Data</h3>
               <p className="text-slate-400 text-[11px] leading-relaxed">
-                 All project configurations and execution history are stored locally in <code className="text-indigo-300 font-bold underline">projects.json</code>. No database setup required.
+                 Semua konfigurasi proyek dan riwayat eksekusi disimpan secara lokal dalam file <code className="text-indigo-300 font-bold underline">projects.json</code>. Tidak diperlukan setup database eksternal.
               </p>
            </div>
         </div>

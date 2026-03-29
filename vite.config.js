@@ -27,7 +27,7 @@ let saveLogsTimeout = null
 const saveLogs = () => {
   if (saveLogsTimeout) clearTimeout(saveLogsTimeout)
   saveLogsTimeout = setTimeout(() => {
-    fs.writeFile(LOGS_PATH, JSON.stringify(systemLogs), () => {})
+    fs.writeFile(LOGS_PATH, JSON.stringify(systemLogs, null, 2), () => {})
   }, 2000)
 }
 

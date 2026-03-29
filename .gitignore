@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+workspaces
+projects.json
+logs.txt
+# Test folders/scripts
+code/
+# images/ is too broad, removing it to allow documentation
+download_assets.ps1
+design_system.md

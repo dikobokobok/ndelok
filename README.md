@@ -1,101 +1,101 @@
-# Ndelok.me - Integrated Infrastructure Dashboard
+# Ndelok.me - Dashboard Infrastruktur Terintegrasi (v1.3)
 
-**Ndelok.me** is a high-performance, real-time infrastructure management dashboard designed for local development and minor production environments. It provides a unified interface for monitoring system health, managing project deployments, and analyzing real-time server logs with persistent storage.
+**Ndelok.me** adalah dashboard manajemen infrastruktur real-time dengan performa tinggi yang dirancang untuk pengembangan lokal dan lingkungan produksi skala kecil. Platform ini menyediakan antarmuka terpadu untuk memantau kesehatan sistem, mengelola penyebaran proyek (deployment), dan menganalisis log server secara real-time dengan penyimpanan persisten.
 
 ![Project Banner](docs/images/dashboard.png)
 
-## 🚀 Key Features
+## 🚀 Fitur Utama
 
-- **Real-time Monitoring**: Live OS statistics including CPU, RAM, and Disk usage (per project) powered by Socket.io.
-- **Audit Trail & Security**: Automatic logging of every state-changing API request (POST/PATCH/DELETE) with initiator tracking.
-- **Project Management**: Control your services (Start, Stop, Restart, Edit, Delete) with a single click.
-- **Smart Deployment**: Automated Git cloning and installation processes with branch/tag support.
-- **Centralized Activity Logs**: Persistent logging system with category-based filtering (Security, Deployment, System, etc.).
-- **Total Shutdown Logic**: Guarantees absolute process termination and port clearing when stopping/deleting.
-- **Modern UI**: Bento-style grid, glassmorphism-inspired design with real-time interactive charts.
+- **Pemantauan Real-time**: Statistik OS secara langsung termasuk penggunaan CPU, RAM, dan Disk (per proyek) didukung oleh Socket.io.
+- **Audit Trail & Keamanan**: Pencatatan otomatis setiap permintaan API yang mengubah status (POST/PATCH/DELETE) dengan pelacakan inisiator.
+- **Manajemen Proyek**: Kendalikan layanan Anda (Mulai, Berhentikan, Restart, Edit, Hapus) dengan sekali klik.
+- **Deployment Cerdas**: Proses kloning Git dan instalasi otomatis dengan dukungan branch/tag.
+- **Log Aktivitas Terpusat**: Sistem pencatatan persisten dengan pemfilteran berbasis kategori (Keamanan, Deployment, Sistem, dll.).
+- **Logika Shutdown Total**: Menjamin penghentian proses dan pembersihan port secara absolut saat menghentikan/menghapus proyek.
+- **UI Modern**: Grid bergaya Bento, desain terinspirasi glassmorphism dengan grafik interaktif real-time.
 
 ---
 
-## 📸 Screenshots
+## 📸 Tangkapan Layar
 
-| Dashboard | Projects |
+| Dashboard | Proyek |
 |-----------|----------|
 | ![Dashboard](docs/images/dashboard.png) | ![Projects](docs/images/projects.png) |
 
-| Servers | Audit Logs |
+| Server | Log Audit |
 |---------|------|
 | ![Servers](docs/images/servers.png) | ![Logs](docs/images/logs.png) |
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Teknologi yang Digunakan
 
-- **Frontend**: React + Vite (HMR enabled)
-- **Styling**: Tailwind CSS (Premium Dark Theme)
-- **Communication**: Socket.io (Real-time telemetry & log streaming)
-- **Backend Service**: Custom Vite Integration (Middleware Bridge to OS & Process Spawning)
-- **Database**: File-based persistence (`projects.json`, `system-logs.json`, `users.json`)
+- **Frontend**: React + Vite (HMR diaktifkan)
+- **Styling**: Tailwind CSS (Tema Gelap Premium)
+- **Komunikasi**: Socket.io (Telemetri real-time & streaming log)
+- **Layanan Backend**: Integrasi Vite Khusus (Middleware Bridge ke OS & Spawning Proses)
+- **Database**: Persistensi berbasis file (`projects.json`, `system-logs.json`, `users.json`)
 
 ---
 
-## ⚡ Getting Started
+## ⚡ Memulai
 
-### Prerequisites
+### Prasyarat
 - Node.js (v18+)
-- Git installed on host machine
+- Git terinstal di mesin host
 
-### Installation
+### Instalasi
 
-1. **Clone the repository**:
+1. **Kloning repositori**:
    ```bash
    git clone https://github.com/dikobokobok/ndelok.git
    cd ndelok
    ```
 
-2. **Install dependencies**:
+2. **Instal dependensi**:
    ```bash
    npm install
    ```
 
-3. **Run in development mode**:
+3. **Jalankan dalam mode pengembangan**:
    ```bash
    npm run dev
    ```
 
-4. **Access the dashboard**:
-   Open [http://localhost:5173](http://localhost:5173).
+4. **Akses dashboard**:
+   Buka [http://localhost:5173](http://localhost:5173).
 
 ---
 
-## 📖 Usage Guide
+## 📖 Panduan Penggunaan
 
-### 1. Monitoring System Health
-The **Dashboard** provides real-time telemetry and a **Recent Activity** widget that summarizes the latest system and administrative events.
+### 1. Memantau Kesehatan Sistem
+**Dashboard** menyediakan telemetri real-time dan widget **Aktivitas Terbaru** yang merangkum peristiwa sistem dan administratif terbaru.
 
-### 2. Deploying a New Project
-Go to the **Provision Workspace** page.
-- Select a unique Project Identifier.
-- Provide a valid GitHub URL (supports branch/tree links).
-- Define build and runtime commands (e.g., `npm install` and `npm run dev`).
+### 2. Menyebarkan Proyek Baru
+Buka halaman **Provision Workspace**.
+- Pilih Pengenal Proyek yang unik.
+- Berikan URL GitHub yang valid (mendukung tautan branch/tree).
+- Tentukan perintah build dan runtime (misalnya, `npm install` dan `npm run dev`).
 
-### 3. Managing Services
-The **Project Registry** allows for:
-- **Stop**: Forcibly kill process trees and clear ports.
-- **Edit**: Update configuration without full redeployment.
-- **Restart**: Graceful restart with clean process spawns.
+### 3. Mengelola Layanan
+**Project Registry** memungkinkan Anda untuk:
+- **Stop**: Mematikan pohon proses secara paksa dan membersihkan port.
+- **Edit**: Memperbarui konfigurasi tanpa penyebaran ulang secara penuh.
+- **Restart**: Mulai ulang dengan bersih melalui proses baru.
 
-### 4. Categorized Logging & Audit
-The **Logs** section provides a unified stream with advanced features:
-- **Level Filter**: Filter by INFO, WARN, SUCCESS, or ERROR.
-- **Category Filter**: Isolate Security, Deployment, Management, or Traffic logs.
-- **Initiator Tracking**: See exactly which user or system event triggered an action.
-- **Export Control**: Save the current filtered audit trail to a portable `.txt` file.
-
----
-
-## 🛡️ License
-MIT License.
+### 4. Pencatatan & Audit Terkategori
+Bagian **Logs** menyediakan aliran terpadu dengan fitur-fitur canggih:
+- **Filter Level**: Filter berdasarkan INFO, WARN, SUCCESS, atau ERROR.
+- **Filter Kategori**: Isolasi log Keamanan, Deployment, Manajemen, atau Traffic.
+- **Pelacakan Inisiator**: Lihat dengan tepat pengguna atau sistem mana yang memicu tindakan.
+- **Kontrol Ekspor**: Simpan audit trail yang difilter ke dalam file `.txt` portabel.
 
 ---
 
-*Developed with ❤️ by dikobokobok*
+## 🛡️ Lisensi
+Lisensi MIT.
+
+---
+
+*Dikembangkan dengan ❤️ oleh dikobokobok*

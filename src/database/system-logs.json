@@ -1,5 +1,2005 @@
 [
   {
+    "time": "00:31:01.668",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 39 connections in 12ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:30:57.662",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 40 connections in 2ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:30:48.655",
+    "level": "WARN",
+    "service": "Audit",
+    "msg": "Agent identity [a] de-provisioned by ibnu",
+    "initiator": "ibnu",
+    "category": "Management"
+  },
+  {
+    "time": "00:30:48.654",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "DELETE request to /users initiated",
+    "initiator": "ibnu",
+    "category": "User Management"
+  },
+  {
+    "time": "00:30:47.654",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 5 connections in 6ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:30:23.645",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 64.114.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:30:22.146",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "Agent identity [a] provisioned by ibnu",
+    "initiator": "ibnu",
+    "category": "Management"
+  },
+  {
+    "time": "00:30:22.031",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST request to /users initiated",
+    "initiator": "ibnu",
+    "category": "User Management"
+  },
+  {
+    "time": "00:30:21.644",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 35 connections in 12ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:30:17.627",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 50.175.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:30:13.598",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:30:13.596",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 16 connections in 6ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:30:09.588",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 16 connections in 12ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:53.580",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 24 connections in 3ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:53.579",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 77.17.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:51.567",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 36 connections in 13ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:47.559",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 41 connections in 8ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:43.552",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 23 connections in 3ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:43.551",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 211.232.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:41.527",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 151.223.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:39.518",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 128.207.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:37.504",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:29:35.490",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 7 connections in 1ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:35.489",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 28.228.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:27.468",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 44 connections in 15ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:23.463",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 27 connections in 8ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:23.462",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 215.15.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:21.445",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 28 connections in 1ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:19.437",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 222.221.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:17.433",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 5 connections in 1ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:17.433",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 230.142.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:07.425",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 17.1.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:03.421",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 17 connections in 2ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:29:01.411",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 42 connections in 5ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:57.402",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 1.80.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:53.397",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 16 connections in 7ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:53.396",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 13.48.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:49.391",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 26 connections in 8ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:47.381",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 34.127.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:45.373",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 33 connections in 7ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:45.373",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 63%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:28:41.352",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:28:41.349",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 104.112.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:32.487",
+    "level": "WARN",
+    "service": "Audit",
+    "msg": "Agent identity [view] de-provisioned by ibnu",
+    "initiator": "ibnu",
+    "category": "Management"
+  },
+  {
+    "time": "00:28:32.486",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "DELETE request to /users initiated",
+    "initiator": "ibnu",
+    "category": "User Management"
+  },
+  {
+    "time": "00:28:31.344",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 126.217.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:29.339",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 5.41.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:27.318",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 8 connections in 1ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:19.304",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 30 connections in 12ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:17.281",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 9 connections in 1ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:07.271",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:28:07.270",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 4.96.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:05.254",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 35.240.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:28:03.854",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "Agent identity [view] provisioned by ibnu",
+    "initiator": "ibnu",
+    "category": "Management"
+  },
+  {
+    "time": "00:28:03.751",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST request to /users initiated",
+    "initiator": "ibnu",
+    "category": "User Management"
+  },
+  {
+    "time": "00:27:59.250",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 126.228.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:27:57.245",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 120.151.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:27:41.240",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:27:37.236",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 20 connections in 8ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:27:35.027",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "Agent identity [admin] provisioned by ibnu",
+    "initiator": "ibnu",
+    "category": "Management"
+  },
+  {
+    "time": "00:27:34.904",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST request to /users initiated",
+    "initiator": "ibnu",
+    "category": "User Management"
+  },
+  {
+    "time": "00:27:29.230",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 123.118.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:27:23.221",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:27:21.197",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 244.236.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:27:19.192",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 179.71.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:27:17.169",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:27:17.168",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 11.181.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:27:11.480",
+    "level": "WARN",
+    "service": "Audit",
+    "msg": "Agent identity [admin] de-provisioned by ibnu",
+    "initiator": "ibnu",
+    "category": "Management"
+  },
+  {
+    "time": "00:27:11.479",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "DELETE request to /users initiated",
+    "initiator": "ibnu",
+    "category": "User Management"
+  },
+  {
+    "time": "00:27:11.166",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 15 connections in 3ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:27:07.141",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 9 connections in 5ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:27:01.135",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 29 connections in 8ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:26:59.129",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 14 connections in 11ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:26:55.124",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 21 connections in 15ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:26:55.122",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 130.135.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:26:53.117",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 78.155.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:26:51.112",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:26:43.842",
+    "level": "WARN",
+    "service": "Audit",
+    "msg": "Agent identity [viewer] de-provisioned by ibnu",
+    "initiator": "ibnu",
+    "category": "Management"
+  },
+  {
+    "time": "00:26:43.840",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "DELETE request to /users initiated",
+    "initiator": "ibnu",
+    "category": "User Management"
+  },
+  {
+    "time": "00:26:43.108",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:26:41.103",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:26:39.093",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 29.111.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:26:35.089",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 22 connections in 6ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:26:31.079",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 230.109.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:26:27.067",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 21.204.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:26:25.062",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 32 connections in 8ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:26:25.062",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 144.208.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:26:17.656",
+    "level": "WARN",
+    "service": "Audit",
+    "msg": "Agent identity [inu] de-provisioned by ibnu",
+    "initiator": "ibnu",
+    "category": "Management"
+  },
+  {
+    "time": "00:26:17.652",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "DELETE request to /users initiated",
+    "initiator": "ibnu",
+    "category": "User Management"
+  },
+  {
+    "time": "00:26:11.045",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 17 connections in 4ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:26:05.036",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 38 connections in 1ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:25:57.023",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 21 connections in 5ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:25:55.015",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:25:49.006",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 12 connections in 6ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:25:47.000",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 32.5.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:25:42.977",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:25:36.963",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 146.166.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:25:30.959",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 94.112.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:25:26.940",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 10 connections in 9ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:25:24.917",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 10 connections in 8ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:25:24.916",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 176.50.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:25:24.162",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "Agent identity [inu] provisioned by ibnu",
+    "initiator": "ibnu",
+    "category": "Management"
+  },
+  {
+    "time": "00:25:24.044",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST request to /users initiated",
+    "initiator": "ibnu",
+    "category": "User Management"
+  },
+  {
+    "time": "00:25:22.916",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:25:12.904",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 15.10.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:25:06.896",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 243.58.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:25:02.888",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 20 connections in 4ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:24:44.877",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 207.227.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:24:40.871",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 67.205.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:24:40.482",
+    "level": "INFO",
+    "service": "Auth",
+    "msg": "User ibnu session initialized",
+    "initiator": "ibnu",
+    "category": "Security"
+  },
+  {
+    "time": "00:24:40.340",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST request to /login initiated",
+    "initiator": "Anonymous",
+    "category": "Login"
+  },
+  {
+    "time": "00:24:38.869",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 33 connections in 7ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:24:36.847",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 40 connections in 14ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:24:26.830",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 237.94.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:24:24.820",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 38.152.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:24:18.808",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 16 connections in 7ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:24:14.800",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 122.49.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:24:07.638",
+    "level": "INFO",
+    "service": "Auth",
+    "msg": "User ibnu session initialized",
+    "initiator": "ibnu",
+    "category": "Security"
+  },
+  {
+    "time": "00:24:07.518",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST request to /login initiated",
+    "initiator": "Anonymous",
+    "category": "Login"
+  },
+  {
+    "time": "00:24:00.730",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 29.130.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:58.716",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 98.149.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:54.697",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 37 connections in 15ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:54.694",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 246.15.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:52.657",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 7 connections in 5ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:48.651",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 32 connections in 14ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:48.650",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 47.116.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:46.638",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 240.132.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:42.624",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 16 connections in 7ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:40.611",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 60.153.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:36.582",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 7 connections in 5ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:34.572",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 157.211.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:32.567",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 17 connections in 3ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:28.713",
+    "level": "INFO",
+    "service": "Auth",
+    "msg": "User admin session initialized",
+    "initiator": "admin",
+    "category": "Security"
+  },
+  {
+    "time": "00:23:28.600",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST request to /login initiated",
+    "initiator": "Anonymous",
+    "category": "Login"
+  },
+  {
+    "time": "00:23:28.565",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 22 connections in 8ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:18.556",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 234.147.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:16.547",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 19 connections in 2ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:16.547",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 188.93.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:14.532",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 89.158.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:10.525",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 50.186.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:06.501",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 216.131.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:23:00.498",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 193.168.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:22:50.484",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 26 connections in 12ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:22:48.476",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 208.135.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:22:44.471",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 3.41.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:22:40.452",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 22 connections in 6ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:22:40.450",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 68%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:22:38.445",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:22:36.440",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:22:36.439",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 32 connections in 6ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:22:36.438",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:22:34.429",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 98%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:22:30.076",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 84.31.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:22:30.075",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 73%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:22:20.066",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 219.140.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:22:20.064",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:22:16.044",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 13 connections in 14ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:22:14.025",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 20 connections in 11ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:22:14.024",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 67%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:22:12.019",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 64%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:22:05.878",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 98%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:22:03.871",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:22:01.866",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:59.848",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:57.837",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:55.595",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:53.573",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 42 connections in 7ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:21:53.572",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:51.550",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 18 connections in 5ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:21:51.550",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:49.521",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:49.521",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 35 connections in 1ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:21:49.520",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:47.509",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 33 connections in 6ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:21:47.508",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:45.485",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:43.460",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:41.105",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:39.095",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:36.826",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 43 connections in 3ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:21:36.826",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 69.92.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:21:36.825",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:34.812",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:32.797",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:30.790",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:28.780",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 39 connections in 11ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:21:28.780",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:26.611",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 99%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:24.595",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:22.581",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 86%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:17.502",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 28 connections in 10ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:21:13.494",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:09.485",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:07.480",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 156.45.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:21:07.479",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:05.471",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 49.165.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:21:05.470",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 77%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:03.422",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 78.212.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:21:03.420",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 89%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:21:01.394",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:20:59.287",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 192.52.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:20:59.272",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:20:56.976",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:20:54.846",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 9 connections in 14ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:20:54.845",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 71%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:20:49.672",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 224.161.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:20:47.667",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 161.13.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:20:45.643",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 84.236.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:20:43.640",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 42 connections in 13ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:20:43.639",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 63.184.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:20:23.625",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 10 connections in 3ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:20:13.617",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 144.127.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:20:11.612",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 30 connections in 11ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:19:49.599",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 16 connections in 9ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:19:41.656",
+    "level": "INFO",
+    "service": "api",
+    "msg": "\u001b[12D\u001b[12C",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:19:41.655",
+    "level": "INFO",
+    "service": "api",
+    "msg": "\u001b[32m?\u001b[39m \u001b[1mPilih menu:\u001b[22m\u001b[0m \u001b[0m\u001b[2m(Use arrow keys)\u001b[22m\n\u001b[36m❯ 1. Instagram Profile Scraper\u001b[39m \n  2. Instagram Video/Reel Downloader \n  3. TikTok Profile Scraper \n  4. TikTok Video Downloader \n  5. YouTube Profile Scraper \n  6. YouTube Video Downloader \n  7. YouTube Audio Downloader \n  \u001b[2m─────────────────────────────────────────\u001b[22m\n  8. Keluar \u001b[?25l",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:19:41.641",
+    "level": "INFO",
+    "service": "api",
+    "msg": "║          SOSMED SCRAPER  v1.0.0           ║\n║    TikTok · Instagram · YouTube           ║\n╚═══════════════════════════════════════════╝",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:19:41.641",
+    "level": "INFO",
+    "service": "api",
+    "msg": "╔═══════════════════════════════════════════╗",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:19:39.590",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 43 connections in 10ms",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:19:37.585",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 69%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:19:35.971",
+    "level": "INFO",
+    "service": "api",
+    "msg": "[Browser] Browser berhasil diluncurkan.",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:19:35.585",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 236.175.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:19:33.351",
+    "level": "INFO",
+    "service": "api",
+    "msg": "[Browser] Meluncurkan browser...",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:19:28.249",
+    "level": "INFO",
+    "service": "api",
+    "msg": "> sosmed-scraper@1.2.0 dev\n> node index.js",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:19:25.383",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "Action [restart] initiated for project [api]",
+    "initiator": "ibnu",
+    "category": "Project"
+  },
+  {
+    "time": "00:19:25.382",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST request to /project-action initiated",
+    "initiator": "ibnu",
+    "category": "Project Control"
+  },
+  {
+    "time": "00:19:13.538",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 94.4.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:19:11.526",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 28.203.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:19:09.506",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 164.187.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:19:07.498",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 39.203.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:18:59.489",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 234.14.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:18:57.481",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 31.21.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:18:55.472",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 53.43.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:18:52.134",
+    "level": "INFO",
+    "service": "Auth",
+    "msg": "User ibnu session initialized",
+    "initiator": "ibnu",
+    "category": "Security"
+  },
+  {
+    "time": "00:18:52.010",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST request to /login initiated",
+    "initiator": "Anonymous",
+    "category": "Login"
+  },
+  {
+    "time": "00:18:51.469",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 178.51.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:18:41.451",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 32.57.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:18:39.446",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 133.142.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:18:37.442",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 226.219.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:18:11.422",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 93.220.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:18:05.415",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 26.242.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:17:55.408",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 232.97.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:17:49.400",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 170.198.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:17:25.390",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 143.215.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:17:09.381",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 224.64.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:16:39.368",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 158.142.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:16:37.360",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 139.139.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:16:35.355",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 72%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:16:33.288",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 134.36.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
+    "time": "00:16:19.233",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 85.41.X.X",
+    "initiator": "System",
+    "category": "Traffic"
+  },
+  {
     "time": "00:08:29.888",
     "level": "INFO",
     "service": "Network",

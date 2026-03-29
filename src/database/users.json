@@ -9,21 +9,12 @@
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=ibnu"
   },
   {
-    "id": "2",
-    "name": "Project Manager",
+    "id": "1774805255027",
+    "name": "admin",
     "username": "admin",
-    "password": "$2b$10$zVVbHbU3DpwdOfb73KDIc.RX5AcYpBVxp4GW4yALcNaPVjgY3T7GK",
-    "email": "admin@ndelok.me",
+    "password": "$2b$10$ZHH/HM/sF4cXX2GTmn6h2OWPv4.7kd2aGXdHiUl43QdBp3L9ugQNm",
+    "email": "admin@m.m",
     "role": "admin",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=admin"
-  },
-  {
-    "id": "3",
-    "name": "Guest Viewer",
-    "username": "viewer",
-    "password": "$2b$10$1mhzZelonok31VB6.cSDreyCr1ZRa2Hb4pXuiyeHvLsP.9yomn072",
-    "email": "viewer@ndelok.me",
-    "role": "viewer",
-    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=viewer"
   }
 ]

@@ -20,8 +20,8 @@ export default function TopBar({ onMenuClick }) {
         const res = await authenticatedFetch('/api/logs')
         if (res.ok) {
           const allLogs = await res.json()
-          // Filter for Auth and Audit categories to keep notifications relevant
-          const filtered = allLogs.filter(log => log.level === 'Auth' || log.level === 'Audit').slice(0, 15)
+          // Filter for Auth and Audit services to keep security/admin notifications relevant
+          const filtered = allLogs.filter(log => log.service === 'Auth' || log.service === 'Audit').slice(0, 15)
           setNotifications(filtered)
         }
       } catch (err) {
@@ -36,7 +36,7 @@ export default function TopBar({ onMenuClick }) {
     socket.emit('join-room', 'system-logs')
 
     socket.on('new_log', (log) => {
-      if (log.level === 'Auth' || log.level === 'Audit') {
+      if (log.service === 'Auth' || log.service === 'Audit') {
         setNotifications(prev => [log, ...prev].slice(0, 15))
         if (!showNotifications) setUnreadCount(prev => prev + 1)
       }
@@ -117,19 +117,19 @@ export default function TopBar({ onMenuClick }) {
                 notifications.map((log, idx) => (
                   <div key={idx} className="px-4 py-3 border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors cursor-default group">
                     <div className="flex items-start gap-3">
-                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 border ${log.level === 'Auth' ? 'bg-tertiary/10 border-tertiary/20 text-tertiary' : 'bg-primary/10 border-primary/20 text-primary'}`}>
+                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 border ${log.service === 'Auth' ? 'bg-tertiary/10 border-tertiary/20 text-tertiary' : 'bg-primary/10 border-primary/20 text-primary'}`}>
                         <span className="material-symbols-outlined text-[16px]">
-                          {log.level === 'Auth' ? 'key_visualizer' : 'security'}
+                          {log.service === 'Auth' ? 'key_visualizer' : 'security'}
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-[11px] text-slate-300 font-medium leading-relaxed mb-1 capitalize">
-                          {log.message.replace(/\[.*?\]\s*/g, '')}
+                        <p className="text-[11px] text-slate-300 font-medium leading-relaxed mb-1">
+                          {log.msg}
                         </p>
                         <div className="flex items-center gap-2">
-                          <span className="text-[9px] font-black uppercase text-slate-600 tracking-wider font-telemetry">{log.service}</span>
+                          <span className="text-[9px] font-black uppercase text-slate-600 tracking-wider font-telemetry">{log.initiator}</span>
                           <span className="w-1 h-1 rounded-full bg-slate-800" />
-                          <span className="text-[9px] text-slate-500 font-telemetry">{new Date(log.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                          <span className="text-[9px] text-slate-500 font-telemetry">{new Date(log.timestamp || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                         </div>
                       </div>
                     </div>

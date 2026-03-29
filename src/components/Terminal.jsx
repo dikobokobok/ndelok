@@ -3,7 +3,7 @@ import socket from '../lib/socket'
 
 export default function Terminal() {
   const [lines, setLines] = useState([
-    { type: 'system', content: 'NDELOK.ME INFRASTRUCTURE SHELL v1.0.0' },
+    { type: 'system', content: 'NDELOK.ME INFRASTRUCTURE SHELL v1.3' },
     { type: 'system', content: 'CONNECTED TO LOCAL NODE: ' + window.location.hostname },
     { type: 'system', content: 'TYPE "help" FOR COMMANDS' },
     { type: 'empty', content: '' }

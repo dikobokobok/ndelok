@@ -7,11 +7,12 @@
 ## 🚀 Key Features
 
 - **Real-time Monitoring**: Live OS statistics including CPU, RAM, and Disk usage (per project) powered by Socket.io.
+- **Audit Trail & Security**: Automatic logging of every state-changing API request (POST/PATCH/DELETE) with initiator tracking.
 - **Project Management**: Control your services (Start, Stop, Restart, Edit, Delete) with a single click.
 - **Smart Deployment**: Automated Git cloning and installation processes with branch/tag support.
-- **Persistent Logging**: Centralized logging system with history retention and Export to TXT functionality.
+- **Centralized Activity Logs**: Persistent logging system with category-based filtering (Security, Deployment, System, etc.).
 - **Total Shutdown Logic**: Guarantees absolute process termination and port clearing when stopping/deleting.
-- **Compact UI**: Modern, glassmorphism-inspired design optimized for efficiency.
+- **Modern UI**: Bento-style grid, glassmorphism-inspired design with real-time interactive charts.
 
 ---
 
@@ -21,23 +22,19 @@
 |-----------|----------|
 | ![Dashboard](docs/images/dashboard.png) | ![Projects](docs/images/projects.png) |
 
-| Servers | Logs |
+| Servers | Audit Logs |
 |---------|------|
 | ![Servers](docs/images/servers.png) | ![Logs](docs/images/logs.png) |
-
-| Deployment |
-|------------|
-| ![Deploy](docs/images/deploy.png) |
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React + Vite
+- **Frontend**: React + Vite (HMR enabled)
 - **Styling**: Tailwind CSS (Premium Dark Theme)
-- **Communication**: Socket.io (Real-time telemetry)
-- **Backend Service**: Custom Vite Integration (Middleware Bridge to OS)
-- **Database**: File-based persistence (`projects.json`, `system-logs.json`)
+- **Communication**: Socket.io (Real-time telemetry & log streaming)
+- **Backend Service**: Custom Vite Integration (Middleware Bridge to OS & Process Spawning)
+- **Database**: File-based persistence (`projects.json`, `system-logs.json`, `users.json`)
 
 ---
 
@@ -45,7 +42,7 @@
 
 ### Prerequisites
 - Node.js (v18+)
-- Git
+- Git installed on host machine
 
 ### Installation
 
@@ -66,32 +63,33 @@
    ```
 
 4. **Access the dashboard**:
-   Open [http://localhost:5173](http://localhost:5173) (or the port specified in your terminal).
+   Open [http://localhost:5173](http://localhost:5173).
 
 ---
 
 ## 📖 Usage Guide
 
 ### 1. Monitoring System Health
-The **Dashboard** tab provides real-time telemetry. "Critical Events" are now persistent and won't disappear on page refresh.
+The **Dashboard** provides real-time telemetry and a **Recent Activity** widget that summarizes the latest system and administrative events.
 
 ### 2. Deploying a New Project
-Go to the **Deploy** page (Provision Workspace).
-- Name your project.
-- Provide a valid GitHub URL (supports branch/tree links like `.../tree/v2.1`).
-- Set an Exposed Port for networking.
-- Define Build and Start commands.
+Go to the **Provision Workspace** page.
+- Select a unique Project Identifier.
+- Provide a valid GitHub URL (supports branch/tree links).
+- Define build and runtime commands (e.g., `npm install` and `npm run dev`).
 
 ### 3. Managing Services
-The **Project Registry** allows you to:
+The **Project Registry** allows for:
 - **Stop**: Forcibly kill process trees and clear ports.
-- **Edit**: Update port or exec commands without redeploying.
-- **Delete**: Remove the project and its workspace from disk.
+- **Edit**: Update configuration without full redeployment.
+- **Restart**: Graceful restart with clean process spawns.
 
-### 4. Logging & Export
-The **Logs** section provides a unified stream. 
-- Use the **Service Filter** to see logs for a specific project.
-- Click **Export** to save the current filtered view to a `.txt` file.
+### 4. Categorized Logging & Audit
+The **Logs** section provides a unified stream with advanced features:
+- **Level Filter**: Filter by INFO, WARN, SUCCESS, or ERROR.
+- **Category Filter**: Isolate Security, Deployment, Management, or Traffic logs.
+- **Initiator Tracking**: See exactly which user or system event triggered an action.
+- **Export Control**: Save the current filtered audit trail to a portable `.txt` file.
 
 ---
 

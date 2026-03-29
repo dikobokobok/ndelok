@@ -1,543 +1,7515 @@
 [
   {
-    "time": "22:47:01.074",
+    "time": "00:08:29.888",
     "level": "INFO",
     "service": "Network",
-    "msg": "Handling inbound connection from 86.101.X.X"
+    "msg": "Handling inbound connection from 168.155.X.X",
+    "initiator": "System"
   },
   {
-    "time": "22:46:59.072",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 79.4.X.X"
-  },
-  {
-    "time": "22:46:53.041",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 204.168.X.X"
-  },
-  {
-    "time": "22:46:47.036",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 136.136.X.X"
-  },
-  {
-    "time": "22:46:35.028",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 194.109.X.X"
-  },
-  {
-    "time": "22:46:35.027",
+    "time": "00:08:27.882",
     "level": "WARN",
     "service": "CPU Monitor",
-    "msg": "Elevated CPU usage: 65%"
+    "msg": "Elevated CPU usage: 71%",
+    "initiator": "System"
   },
   {
-    "time": "22:46:20.732",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 15.187.X.X"
+    "time": "00:08:21.835",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
   },
   {
-    "time": "22:46:14.723",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 91.132.X.X"
-  },
-  {
-    "time": "22:46:08.721",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 106.109.X.X"
-  },
-  {
-    "time": "22:46:04.717",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 216.31.X.X"
-  },
-  {
-    "time": "22:45:58.711",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 33.233.X.X"
-  },
-  {
-    "time": "22:45:48.626",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 200.160.X.X"
-  },
-  {
-    "time": "22:45:24.613",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 110.112.X.X"
-  },
-  {
-    "time": "22:45:18.611",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 75.39.X.X"
-  },
-  {
-    "time": "22:45:12.606",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 157.170.X.X"
-  },
-  {
-    "time": "22:44:52.585",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 223.76.X.X"
-  },
-  {
-    "time": "22:44:34.568",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 162.163.X.X"
-  },
-  {
-    "time": "22:44:30.565",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 239.33.X.X"
-  },
-  {
-    "time": "22:44:28.564",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 208.111.X.X"
-  },
-  {
-    "time": "22:44:12.550",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 40.254.X.X"
-  },
-  {
-    "time": "22:44:06.525",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 120.21.X.X"
-  },
-  {
-    "time": "22:44:04.523",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 234.193.X.X"
-  },
-  {
-    "time": "22:43:58.520",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 224.203.X.X"
-  },
-  {
-    "time": "22:43:54.512",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 28.219.X.X"
-  },
-  {
-    "time": "22:43:50.506",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 215.50.X.X"
-  },
-  {
-    "time": "22:43:42.478",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 177.216.X.X"
-  },
-  {
-    "time": "22:43:26.474",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 101.201.X.X"
-  },
-  {
-    "time": "22:43:22.471",
+    "time": "00:08:19.825",
     "level": "WARN",
     "service": "CPU Monitor",
-    "msg": "Elevated CPU usage: 63%"
+    "msg": "Elevated CPU usage: 72%",
+    "initiator": "System"
   },
   {
-    "time": "22:43:14.268",
+    "time": "00:07:53.658",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 252.121.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:51.644",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 133.151.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:45.585",
     "level": "WARN",
     "service": "CPU Monitor",
-    "msg": "Elevated CPU usage: 63%"
+    "msg": "Elevated CPU usage: 78%",
+    "initiator": "System"
   },
   {
-    "time": "22:43:06.266",
+    "time": "00:07:43.556",
     "level": "INFO",
     "service": "Network",
-    "msg": "Handling inbound connection from 70.32.X.X"
+    "msg": "Handling inbound connection from 161.70.X.X",
+    "initiator": "System"
   },
   {
-    "time": "22:43:00.240",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 112.214.X.X"
+    "time": "00:07:43.556",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 98%",
+    "initiator": "System"
   },
   {
-    "time": "22:42:44.137",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 109.5.X.X"
-  },
-  {
-    "time": "22:42:24.095",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 30.1.X.X"
-  },
-  {
-    "time": "22:42:16.089",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 21.50.X.X"
-  },
-  {
-    "time": "22:42:10.081",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 210.35.X.X"
-  },
-  {
-    "time": "22:41:54.073",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 15.84.X.X"
-  },
-  {
-    "time": "22:41:50.064",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 106.206.X.X"
-  },
-  {
-    "time": "22:41:42.050",
+    "time": "00:07:40.890",
     "level": "WARN",
     "service": "CPU Monitor",
-    "msg": "Elevated CPU usage: 69%"
+    "msg": "Elevated CPU usage: 81%",
+    "initiator": "System"
   },
   {
-    "time": "22:41:37.075",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 34 connections in 4ms"
+    "time": "00:07:38.869",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 87%",
+    "initiator": "System"
   },
   {
-    "time": "22:41:37.075",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 156.230.X.X"
+    "time": "00:07:36.855",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 86%",
+    "initiator": "System"
   },
   {
-    "time": "22:41:33.042",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 94.181.X.X"
+    "time": "00:07:34.825",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 93%",
+    "initiator": "System"
   },
   {
-    "time": "22:41:19.036",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 168.128.X.X"
-  },
-  {
-    "time": "22:41:17.030",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 35 connections in 1ms"
-  },
-  {
-    "time": "22:41:17.029",
+    "time": "00:07:32.795",
     "level": "INFO",
     "service": "Network",
-    "msg": "Handling inbound connection from 157.253.X.X"
+    "msg": "Handling inbound connection from 85.196.X.X",
+    "initiator": "System"
   },
   {
-    "time": "22:41:09.016",
-    "level": "WARN",
-    "service": "api",
-    "msg": "Memory spike detected, performing GC collection"
+    "time": "00:07:32.795",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 99%",
+    "initiator": "System"
   },
   {
-    "time": "22:41:07.013",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 36 connections in 9ms"
-  },
-  {
-    "time": "22:41:03.010",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 124.82.X.X"
-  },
-  {
-    "time": "22:41:01.002",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 29 connections in 14ms"
-  },
-  {
-    "time": "22:40:56.998",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 14 connections in 11ms"
-  },
-  {
-    "time": "22:40:54.990",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 66.4.X.X"
-  },
-  {
-    "time": "22:40:42.980",
-    "level": "WARN",
-    "service": "api",
-    "msg": "Memory spike detected, performing GC collection"
-  },
-  {
-    "time": "22:40:34.977",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 136.25.X.X"
-  },
-  {
-    "time": "22:40:24.972",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 7 connections in 1ms"
-  },
-  {
-    "time": "22:40:22.968",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 64.251.X.X"
-  },
-  {
-    "time": "22:40:06.959",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 34 connections in 9ms"
-  },
-  {
-    "time": "22:40:04.958",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 105.12.X.X"
-  },
-  {
-    "time": "22:40:02.950",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 37 connections in 5ms"
-  },
-  {
-    "time": "22:39:54.945",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 29 connections in 3ms"
-  },
-  {
-    "time": "22:39:52.937",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 9.63.X.X"
-  },
-  {
-    "time": "22:39:50.927",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 208.143.X.X"
-  },
-  {
-    "time": "22:39:48.917",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 101.237.X.X"
-  },
-  {
-    "time": "22:39:44.897",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 18 connections in 13ms"
-  },
-  {
-    "time": "22:39:42.895",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 38 connections in 10ms"
-  },
-  {
-    "time": "22:39:40.892",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 34 connections in 13ms"
-  },
-  {
-    "time": "22:39:34.888",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 6.32.X.X"
-  },
-  {
-    "time": "22:39:28.885",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 22 connections in 5ms"
-  },
-  {
-    "time": "22:39:28.885",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 102.245.X.X"
-  },
-  {
-    "time": "22:39:26.882",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 232.253.X.X"
-  },
-  {
-    "time": "22:39:18.874",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 222.186.X.X"
-  },
-  {
-    "time": "22:39:14.772",
-    "level": "WARN",
-    "service": "api",
-    "msg": "Memory spike detected, performing GC collection"
-  },
-  {
-    "time": "22:39:14.771",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 12 connections in 9ms"
-  },
-  {
-    "time": "22:39:10.753",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 38 connections in 5ms"
-  },
-  {
-    "time": "22:39:08.742",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 9 connections in 7ms"
-  },
-  {
-    "time": "22:39:04.740",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 28 connections in 10ms"
-  },
-  {
-    "time": "22:38:54.735",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 26 connections in 13ms"
-  },
-  {
-    "time": "22:38:54.734",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 97.26.X.X"
-  },
-  {
-    "time": "22:38:46.720",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 13 connections in 6ms"
-  },
-  {
-    "time": "22:38:44.710",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 35 connections in 4ms"
-  },
-  {
-    "time": "22:38:42.702",
-    "level": "WARN",
-    "service": "api",
-    "msg": "Memory spike detected, performing GC collection"
-  },
-  {
-    "time": "22:38:42.702",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 26 connections in 8ms"
-  },
-  {
-    "time": "22:38:36.694",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 161.152.X.X"
-  },
-  {
-    "time": "22:38:34.693",
-    "level": "INFO",
-    "service": "Network",
-    "msg": "Handling inbound connection from 39.132.X.X"
-  },
-  {
-    "time": "22:38:32.686",
-    "level": "INFO",
-    "service": "api",
-    "msg": "Handled 40 connections in 15ms"
-  },
-  {
-    "time": "22:38:32.686",
+    "time": "00:07:30.774",
     "level": "WARN",
     "service": "CPU Monitor",
-    "msg": "Elevated CPU usage: 85%"
+    "msg": "Elevated CPU usage: 85%",
+    "initiator": "System"
   },
   {
-    "time": "22:38:30.682",
+    "time": "00:07:26.728",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 77%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:24.705",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 89%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:22.696",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 89%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:20.657",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 75%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:16.312",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 61%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:14.250",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 69%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:12.234",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 73%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:10.112",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 99%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:08.069",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 65%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:04.963",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 81%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:02.931",
     "level": "INFO",
     "service": "Network",
-    "msg": "Handling inbound connection from 15.246.X.X"
+    "msg": "Handling inbound connection from 152.126.X.X",
+    "initiator": "System"
   },
   {
-    "time": "22:38:30.682",
+    "time": "00:07:02.931",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:07:00.758",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:58.685",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 211.5.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:58.684",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 96%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:56.414",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 92%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:52.271",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 209.3.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:50.261",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 98.15.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:48.238",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 44.165.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:44.217",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 206.181.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:40.200",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 79.74.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:32.148",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 88%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:26.081",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 75%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:05.818",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:03.459",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:06:01.428",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:59.402",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:57.347",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 195.83.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:57.346",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:55.305",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 76%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:48.659",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 210.64.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:46.656",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 225.80.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:44.635",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 241.20.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:38.599",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 20.96.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:38.599",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 69%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:36.588",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 123.132.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:22.516",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 72.168.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:20.509",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 248.83.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:20.508",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:18.498",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 97%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:16.489",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 73%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:14.472",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 227.208.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:14.472",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:08.452",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 162.250.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:06.436",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 61%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:04.364",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 65%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:02.220",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 79%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:00.200",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 160.71.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:05:00.199",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 92%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:55.943",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 81%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:53.913",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 158.154.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:53.910",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 79%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:49.286",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 14.197.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:47.258",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 54.148.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:47.258",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 61%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:39.146",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 98%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:36.902",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 184.242.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:36.900",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:34.883",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 253.134.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:34.883",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:32.498",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:30.127",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 95%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:16.045",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 225.64.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:04:03.975",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 211.244.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:59.967",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 192.44.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:55.948",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 51.149.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:53.944",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 3.195.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:49.934",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 43.83.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:43.922",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 223.130.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:29.860",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 63%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:27.846",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 78%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:25.757",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 95%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:23.716",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 95.250.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:23.716",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 99%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:21.698",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 99.242.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:21.698",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 77%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:17.654",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 67%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:15.635",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 65%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:13.616",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 91%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:11.602",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:08.999",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 29.180.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:08.999",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 96%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:06.992",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 136.81.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:06.992",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 91%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:04.968",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 96.5.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:04.968",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:02.944",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:00.917",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 194.203.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:03:00.917",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:58.884",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:56.047",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 167.216.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:56.047",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:53.118",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:51.063",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:48.634",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:46.396",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:44.199",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:41.567",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:39.398",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:37.366",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:35.089",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:32.523",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:30.455",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 96.20.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:30.453",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:28.268",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:25.957",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:23.576",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 112.45.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:23.576",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:21.522",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:19.056",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:16.715",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:14.281",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:12.136",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:09.927",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:07.907",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:05.879",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:03.862",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:02:00.790",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:56.900",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:52.564",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:50.520",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:48.505",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 249.152.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:48.505",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:46.482",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:44.451",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:42.429",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:40.393",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:38.319",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 139.249.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:38.319",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:35.153",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 49.5.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:35.153",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:33.006",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:30.610",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:28.133",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:25.824",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:22.790",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:20.480",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 192.8.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:20.480",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:16.138",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:11.660",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:08.767",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:06.650",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:01:04.056",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:59.732",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:55.066",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:52.306",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:48.998",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:45.214",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 212.78.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:45.214",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:40.734",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:38.051",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:34.473",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:32.124",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 149.230.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:32.124",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:28.410",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:24.607",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 135.33.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:24.607",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:22.223",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:20.160",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 76.89.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:20.160",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:18.154",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:14.459",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:12.445",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:10.439",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:07.414",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "00:00:03.673",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:58.435",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:53.901",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:48.956",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 9.195.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:48.956",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:43.821",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:36.545",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:33.476",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:27.654",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:21.828",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:17.916",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:13.994",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:11.831",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:59:04.158",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:59.788",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:53.919",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 34.65.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:53.919",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:48.551",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:46.411",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:43.474",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:39.031",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:32.276",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:28.358",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:24.892",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:21.560",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:18.746",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:16.525",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:13.641",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 93%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:08.787",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 87%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:06.784",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 75%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:03.940",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 69%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:01.935",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 143.210.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:58:01.935",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 70%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:59.930",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 91%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:57.915",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 99%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:55.903",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 226.249.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:55.903",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:53.743",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 97%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:51.415",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 97%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:48.989",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:46.907",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 44.127.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:46.906",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:44.837",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:42.739",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:40.554",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 141.237.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:40.554",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:38.476",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:36.452",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:34.360",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:32.330",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:30.317",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 65%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:24.190",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 67%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:22.165",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:20.152",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 63%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:18.096",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:15.815",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 208.141.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:15.814",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 97%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:13.811",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 82%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:11.792",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:09.776",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:07.767",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:05.761",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:03.127",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:57:00.869",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 80%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:56:58.835",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 77%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:56:56.832",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 86%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:56:54.717",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 97%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:56:48.331",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 193.16.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:56:46.329",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 192.240.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:56:26.290",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:56:24.277",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 67.182.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:56:12.187",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 90%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:56:10.184",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 99%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:56:04.135",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 147.147.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:55:56.117",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 43.75.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:55:52.110",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 66%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:55:50.107",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 47.254.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:55:40.104",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 5.231.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:55:38.101",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 6.254.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:55:06.053",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 73.196.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:55:02.050",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 74%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:36.038",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 80%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:34.019",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 196.132.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:34.019",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 87%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:32.010",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 61%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:30.005",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 99%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:27.969",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:25.961",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:23.778",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 123.224.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:23.778",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:21.667",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:19.361",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:17.305",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:15.229",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 225.72.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:15.229",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:12.774",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 97%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:09.026",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 74%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:07.020",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:05.013",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:02.495",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:00.470",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 171.232.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:54:00.470",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:58.448",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:56.429",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:54.423",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 135.165.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:54.421",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:52.404",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:50.236",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:48.213",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:46.201",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 61%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:42.194",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 71%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:40.191",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 88%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:36.186",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 110.1.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:16.179",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 226.21.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:16.179",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 65%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:53:02.172",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 242.222.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:52:58.169",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 0.177.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:52:44.165",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 17.119.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:52:40.162",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 65.59.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:52:26.154",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 75%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:52:24.146",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 213.29.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:52:18.140",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 24.53.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:52:18.140",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:52:06.127",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 144.226.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:52:02.123",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 81.44.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:52:00.118",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 205.107.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:51:56.109",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 75.89.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:51:54.104",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 58.175.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:51:52.093",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:51:50.012",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 94%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:51:44.004",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 162.134.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:51:37.983",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 63%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:51:17.912",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 93.164.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:51:17.912",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:51:05.901",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 81%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:59.884",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 164.24.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:55.877",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:53.867",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 117.47.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:53.866",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 71%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:47.846",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 94%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:45.841",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 96%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:41.803",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 165.233.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:29.783",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 114.235.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:27.776",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 12.168.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:25.756",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 55.121.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:25.756",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 64%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:23.752",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 189.118.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:23.751",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 89%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:15.670",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 199.115.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:13.532",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 231.160.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:13.532",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 74%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:11.511",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 77%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:06.800",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 19.128.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:50:06.800",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 64%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:49:46.740",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 64%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:49:38.656",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 220.101.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:49:32.648",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 94.201.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:49:28.640",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 104.232.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:49:10.586",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 234.216.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:49:06.560",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 137.251.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:48:54.537",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 207.177.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:48:38.488",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 239.3.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:48:34.467",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 133.189.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:48:32.447",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 154.103.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:48:24.407",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 216.44.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:48:14.369",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 37.135.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:48:10.349",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 41.99.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:48:04.328",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 28.15.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:58.262",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 169.142.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:56.238",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 79%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:54.228",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 99%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:52.204",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 96%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:50.153",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 86%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:48.117",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 70%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:46.110",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 70%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:42.069",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 54.161.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:42.069",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 70%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:31.888",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 96.13.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:25.857",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 193.183.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:23.852",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 113.87.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:23.852",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 94%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:21.837",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:19.827",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 80%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:15.362",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 9.104.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:13.354",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 61.151.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:11.350",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 103.141.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:07.340",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 82%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:05.284",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 233.181.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:03.216",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 119.165.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:03.216",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:47:01.160",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:59.140",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 79%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:57.038",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 248.79.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:57.038",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 70%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:53.019",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 143.191.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:44.971",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 26.159.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:40.920",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 87%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:38.744",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 92%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:36.718",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:34.671",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:32.473",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:29.702",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:27.178",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 196.57.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:27.178",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:24.344",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 138.73.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:24.344",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:21.905",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 97%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:18.014",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 63%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:15.943",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 63%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:13.927",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 69%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:11.895",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 237.224.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:11.895",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 65%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:09.816",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 76%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:07.774",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 72%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:05.748",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 87%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:03.716",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 175.146.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:03.716",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 74%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:46:01.701",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 69%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:45:59.664",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 85%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:45:57.632",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:45:55.613",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 61%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:45:50.029",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 251.96.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:45:50.029",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 90%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:45:48.026",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 61%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:45:41.908",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 29.16.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:45:39.893",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 48.231.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:45:21.815",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 181.42.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:45:09.725",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 223.66.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:45:05.702",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 183.51.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:57.667",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 8.21.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:55.662",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 176.238.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:51.615",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 191.217.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:49.612",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 63%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:23.402",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 107.55.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:21.379",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 94%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:19.360",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 61%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:15.339",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 166.143.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:13.275",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 112.93.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:11.239",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 91%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:09.195",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 68%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:07.115",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 71%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:04.981",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 79%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:02.901",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 91%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:00.877",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 189.196.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:44:00.877",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:58.815",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 93%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:56.648",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 81%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:54.563",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 128.246.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:54.563",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 82%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:52.474",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 96%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:50.459",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 98%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:48.353",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:46.316",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:44.136",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:42.104",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:38.507",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:35.735",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:32.106",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 98%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:29.592",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:27.341",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:24.192",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:22.122",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 228.173.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:22.122",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 83%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:20.110",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 45.180.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:20.109",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 96%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:18.076",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 219.120.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:18.076",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 96%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:15.990",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 95%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:13.907",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:11.044",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 76%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:08.865",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:06.847",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:43:04.647",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 72%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:58.386",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 93%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:56.346",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 71%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:52.295",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 82.60.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:38.195",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 159.245.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:34.149",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 0.39.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:34.149",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 88%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:32.133",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 10.12.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:32.133",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 64%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:28.095",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 133.106.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:28.095",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 71%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:26.032",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 88%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:23.993",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:21.956",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:19.905",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:17.258",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:14.593",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:11.001",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:08.920",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 227.81.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:08.919",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:06.775",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 155.108.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:06.775",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:04.701",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:02.585",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:00.081",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 215.233.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:42:00.081",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:58.046",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:55.975",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:53.928",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:51.814",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:49.768",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 148.179.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:49.768",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:47.715",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 65.7.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:47.705",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:44.364",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:37.500",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:31.988",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:28.236",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:21.913",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:19.633",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:17.079",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:14.941",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 240.18.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:14.941",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:09.445",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:41:00.526",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:53.014",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:45.996",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:40.128",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:35.445",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:32.113",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:29.591",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:27.556",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:25.518",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:23.476",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:21.370",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:19.294",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 206.67.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:19.293",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:17.209",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:15.158",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:13.079",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 99%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:11.059",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 93%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:07.035",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 91.93.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:03.011",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 97%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:01.000",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 27.38.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:40:01.000",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:58.996",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:56.880",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:54.795",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 88%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:51.900",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 212.20.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:51.900",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:49.685",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:47.635",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:45.278",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 243.6.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:45.278",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 78%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:38.713",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 74%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:36.667",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 81%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:32.450",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 225.205.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:18.420",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 146.90.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:08.397",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 195.92.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:39:00.379",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 86.238.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:58.363",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 232.68.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:52.347",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 185.180.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:50.336",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 214.114.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:46.332",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 150.151.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:34.316",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 70.153.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:34.316",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 93%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:32.310",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 178.182.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:32.310",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 96%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:30.304",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:28.289",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:26.284",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:24.271",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:21.472",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:18.908",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:15.947",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:11.378",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:06.066",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:03.788",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:01.702",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 186.37.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:38:01.702",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:59.654",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 126.146.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:59.654",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:57.341",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:55.182",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:52.051",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:49.646",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:47.619",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:45.551",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:43.488",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:41.464",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 254.135.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:41.464",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:39.361",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:37.321",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:35.297",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 116.78.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:35.297",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:33.187",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:31.140",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:28.475",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:26.390",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:21.860",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:18.186",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 167.24.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:18.185",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:15.890",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:10.513",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:37:03.013",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:59.590",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:56.451",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:54.411",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:52.316",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 95.30.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:52.316",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:50.309",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 48.195.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:50.309",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:48.236",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:44.829",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:42.720",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:40.704",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 112.176.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:40.704",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:38.688",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 137.110.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:38.688",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:36.602",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:32.889",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:30.612",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:28.221",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:26.207",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 201.71.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:26.207",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:23.386",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:21.318",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:19.296",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 91.182.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:19.295",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:17.127",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 244.183.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:17.127",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:15.035",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:11.931",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 217.61.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:11.930",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:09.876",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:07.831",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:05.777",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:03.092",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:00.930",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 1.169.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:36:00.929",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:58.308",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:55.974",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:52.623",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:50.246",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:47.817",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:45.501",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:43.115",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:40.973",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 17.68.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:40.972",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:38.944",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:36.905",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:34.867",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:32.649",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:30.580",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:28.529",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 115.139.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:28.529",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:26.487",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:23.637",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:18.429",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:12.493",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:08.630",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:05.680",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:03.655",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:35:01.641",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:59.629",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:57.510",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:55.495",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 247.11.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:55.495",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:53.463",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:51.412",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:49.004",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:46.001",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:43.900",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:41.850",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:39.570",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 205.177.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:39.570",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:37.511",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:35.141",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:33.018",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:30.917",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:28.890",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 223.189.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:28.890",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:26.867",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:24.854",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:22.837",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:20.816",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:18.805",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 176.186.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:18.805",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:16.746",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:14.729",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:12.377",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:10.362",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:08.347",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:06.336",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:03.960",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:34:00.881",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:58.828",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:56.810",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 2.115.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:56.810",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:54.677",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 9.203.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:54.673",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:52.650",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 43.234.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:52.650",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:50.597",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:48.532",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:42.844",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:40.410",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:37.420",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:32.056",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:29.335",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:26.569",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:20.876",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:16.941",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 216.52.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:16.941",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:09.795",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:33:05.962",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:57.640",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:55.290",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:53.263",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:50.631",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 101.156.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:50.631",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:48.376",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 98.66.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:48.376",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:46.363",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:44.335",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:42.321",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:40.311",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:38.285",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:36.253",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:34.245",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:32.216",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:30.090",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 63.225.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:30.090",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:27.196",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 127.74.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:27.196",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:23.744",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 47.167.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:23.744",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:19.675",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:13.898",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:10.737",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:08.373",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 220.130.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:08.373",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:06.366",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:04.362",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:02.341",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 142.76.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:02.341",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:32:00.338",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:58.329",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 142.52.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:58.329",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:56.323",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:54.313",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 225.143.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:54.313",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:52.305",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:50.300",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 76.184.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:50.299",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:48.295",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:46.170",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:44.166",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:36.391",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 88%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:34.387",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 89%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:32.385",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 75%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:30.378",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:28.372",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:20.243",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:31:06.176",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 165.23.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:30:54.167",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 14.231.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:30:48.164",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 20.234.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:30:42.158",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 73.52.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:30:38.154",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 183.218.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:30:30.153",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 101.80.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:30:22.138",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 90.185.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:30:18.137",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 143.208.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:30:12.130",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 138.247.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:30:10.128",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 202.56.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:29:58.126",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 245.147.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:29:52.118",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 98.136.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:29:44.117",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 173.242.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:29:40.114",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 109.154.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:29:18.090",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 20.224.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:29:18.090",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 75%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:28:56.030",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 78%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:28:54.028",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:28:52.021",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 96%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:28:50.009",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 65%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:28:41.936",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 107.108.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:28:39.934",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 161.231.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:28:05.933",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 228.186.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:28:01.929",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 93.236.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:27:51.921",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 252.205.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:27:45.918",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 55.205.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:27:43.914",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 37.90.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:27:43.914",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 85%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:27:41.911",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 222.83.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:27:37.900",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 235.52.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:27:11.884",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 61.51.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:27:03.881",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 129.219.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:26:59.878",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 169.153.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:26:41.870",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 148.51.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:26:35.869",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 108.151.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:26:33.868",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 12.100.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:26:13.856",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 157.2.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:26:01.853",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 110.54.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:25:45.828",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 17.225.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:25:03.821",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 89%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:25:01.817",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 89%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:24:39.644",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 95%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:24:35.638",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 85.34.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:24:25.636",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 176.103.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:24:11.628",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 69%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:24:05.622",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 70%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:24:03.613",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 97%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:24:01.610",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 97%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:23:59.436",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:23:57.429",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 182.89.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:23:55.425",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 151.37.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:23:55.425",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 80%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:23:39.236",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 252.62.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:23:35.235",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 15.25.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:23:11.227",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 110.253.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:23:03.220",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 49.205.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:22:53.218",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 89.225.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:22:51.216",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 31.110.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:22:43.214",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 150.226.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:22:41.211",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 161.162.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:22:37.210",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 64.190.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:22:25.199",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 243.55.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:22:23.195",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 82.198.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:22:01.109",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 89%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:21:53.021",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 249.182.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:21:49.017",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 82.146.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:21:47.015",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 174.121.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:21:26.943",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 172.110.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:21:20.941",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 71%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:20:50.918",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 61%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:20:22.804",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 162.222.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:20:22.803",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 74%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:20:10.653",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 57.88.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:20:06.651",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 63.122.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:19:44.630",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 76%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:19:30.548",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 205.248.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:19:26.548",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 3.120.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:19:12.539",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:19:10.536",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 125.227.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:19:00.530",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 26.185.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:18:52.529",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 13.114.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:18:38.399",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 236.217.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:18:26.399",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 153.201.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:18:20.393",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 65.69.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:18:16.392",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 7.21.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:17:50.356",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 73.185.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:17:32.351",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 182.6.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:17:28.350",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 246.61.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:17:26.348",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 58.101.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:17:16.309",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 176.219.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:17:14.278",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 96%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:17:12.272",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 92.199.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:17:12.272",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 71%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:16:41.865",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 75.17.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:16:37.860",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 216.181.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:16:21.838",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 112.84.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:16:13.832",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 8.125.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:16:09.823",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 53.88.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:16:01.818",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 183.23.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:15:49.799",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 80%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:15:47.784",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:15:43.733",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 69%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:15:39.726",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 99%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:15:37.720",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 77%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:15:29.565",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 198.246.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:15:29.565",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 66%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:15:27.551",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 65%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:15:21.503",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 95.161.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:15:21.503",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:15:19.467",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 63%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:15:14.843",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 219.42.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:14:44.796",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 39.152.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:14:36.790",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 102.159.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:14:10.783",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 156.248.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:14:04.781",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 121.254.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:13:56.747",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 184.62.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:13:42.591",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 61%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:13:28.585",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 162.35.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:13:24.572",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 71.247.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:13:06.558",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 91.95.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:13:04.557",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 184.197.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:12:58.553",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 130.99.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:12:52.546",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 158.143.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:12:46.540",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 61.23.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:12:40.534",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 11.4.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:12:12.526",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 80.167.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:12:08.524",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 6.166.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:11:58.521",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 151.231.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:11:46.492",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 117.39.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:11:30.486",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 67%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:11:10.471",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 72%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:11:04.343",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 241.217.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:10:54.338",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 82%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:10:52.332",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 80%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:10:50.316",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 113.223.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:10:44.313",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 60.58.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:10:38.311",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 95.71.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:10:32.307",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 53.213.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:10:30.306",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 83%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:10:26.305",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 5.125.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:10:22.300",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 65%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:10:10.298",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 79%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:10:08.295",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 213.25.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:09:56.294",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 223.14.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:09:48.289",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 3.84.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:09:46.285",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 10.87.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:09:42.277",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 234.17.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:09:40.276",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 102.216.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:09:36.270",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 163.99.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:09:20.267",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 148.85.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:09:14.259",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 170.38.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:09:04.248",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 112.140.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:08:56.240",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 110.185.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:08:52.233",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 77.45.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:08:44.225",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:08:36.211",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 198.109.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:08:28.173",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 184.185.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:08:18.171",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 159.61.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:08:10.168",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 4.219.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:07:58.161",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 186.94.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:07:44.134",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 248.16.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:07:44.134",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 70%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:07:42.128",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 99%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:07:34.097",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 119.182.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:07:18.092",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 88.227.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:07:02.087",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 93.73.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:06:56.081",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 169.101.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:06:52.075",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 60.173.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:06:44.066",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 81%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:06:42.061",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 88%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:06:20.050",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 11.232.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:06:16.045",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 152.40.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:06:06.038",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 169.166.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:06:00.037",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 60.149.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:05:58.033",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 65%",
+    "initiator": "System"
+  },
+  {
+    "time": "23:05:30.010",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 133.30.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:05:24.003",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 73.219.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:05:07.991",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 19.144.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:04:45.952",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 127.238.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:04:39.949",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 157.220.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:04:33.945",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 143.223.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:04:29.942",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 15.127.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:03:57.927",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 230.225.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:03:51.842",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 43.247.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:03:45.793",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 133.222.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:03:27.786",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 131.176.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:03:23.778",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 107.243.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:03:15.770",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 250.151.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:03:09.767",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 33.205.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:02:55.759",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 134.131.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:02:47.757",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 63.243.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:02:45.752",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 108.93.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:02:39.745",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 227.202.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:02:31.742",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 244.115.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:02:29.735",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 52.249.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:02:17.731",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 161.11.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:02:15.728",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 44.236.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:01:59.725",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 154.157.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:01:35.718",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 208.10.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:01:31.715",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 97.53.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:01:23.711",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 4.203.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:01:11.704",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 21.77.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:01:07.702",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 165.208.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:00:43.694",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 78.96.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:00:41.686",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 150.65.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:00:37.683",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 210.207.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:00:27.679",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 182.81.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "23:00:11.647",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 147.176.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:59:57.641",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 196.137.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:59:55.636",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 108.150.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:59:39.626",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 71%",
+    "initiator": "System"
+  },
+  {
+    "time": "22:59:37.624",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 219.7.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:59:37.624",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 69%",
+    "initiator": "System"
+  },
+  {
+    "time": "22:59:27.586",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 64%",
+    "initiator": "System"
+  },
+  {
+    "time": "22:59:23.579",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 166.159.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:58:51.570",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 50.195.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:58:41.565",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 68%",
+    "initiator": "System"
+  },
+  {
+    "time": "22:58:37.562",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 70.92.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:58:35.561",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 26.199.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:58:33.559",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 30.234.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:58:25.555",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 116.100.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:58:21.548",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 41.57.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:58:07.540",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 195.196.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:58:05.539",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 100.101.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:57:49.533",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 4.75.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:57:23.510",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 6.146.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:57:19.502",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 224.154.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:56:59.494",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 5.212.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:56:53.490",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 116.125.X.X",
+    "initiator": "System"
+  },
+  {
+    "time": "22:56:42.189",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 136.135.X.X"
+  },
+  {
+    "time": "22:56:40.180",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 137.7.X.X"
+  },
+  {
+    "time": "22:56:24.176",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 140.250.X.X"
+  },
+  {
+    "time": "22:56:18.172",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 4.61.X.X"
+  },
+  {
+    "time": "22:56:08.169",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 144.187.X.X"
+  },
+  {
+    "time": "22:55:58.156",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 49.105.X.X"
+  },
+  {
+    "time": "22:55:50.151",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 125.3.X.X"
+  },
+  {
+    "time": "22:55:42.150",
     "level": "ERROR",
     "service": "CPU Monitor",
     "msg": "Critical CPU load detected: 93%"
   },
   {
-    "time": "22:38:26.635",
+    "time": "22:55:36.778",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 68%"
+  },
+  {
+    "time": "22:55:34.777",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 85%"
+  },
+  {
+    "time": "22:55:18.768",
     "level": "INFO",
     "service": "Network",
-    "msg": "Handling inbound connection from 218.211.X.X"
+    "msg": "Handling inbound connection from 37.65.X.X"
   },
   {
-    "time": "22:38:22.628",
+    "time": "22:55:06.759",
     "level": "INFO",
-    "service": "api",
-    "msg": "Handled 14 connections in 13ms"
+    "service": "Network",
+    "msg": "Handling inbound connection from 122.36.X.X"
   },
   {
-    "time": "22:38:18.622",
+    "time": "22:54:40.750",
     "level": "INFO",
-    "service": "api",
-    "msg": "Handled 32 connections in 5ms"
+    "service": "Network",
+    "msg": "Handling inbound connection from 166.139.X.X"
   },
   {
-    "time": "22:38:06.618",
+    "time": "22:54:34.748",
     "level": "INFO",
-    "service": "api",
-    "msg": "Handled 39 connections in 9ms"
+    "service": "Network",
+    "msg": "Handling inbound connection from 11.202.X.X"
+  },
+  {
+    "time": "22:54:24.739",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 199.242.X.X"
+  },
+  {
+    "time": "22:54:22.731",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 89.86.X.X"
+  },
+  {
+    "time": "22:54:18.725",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 189.44.X.X"
+  },
+  {
+    "time": "22:54:16.722",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 138.103.X.X"
+  },
+  {
+    "time": "22:54:06.715",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 29.210.X.X"
+  },
+  {
+    "time": "22:54:00.713",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 157.15.X.X"
+  },
+  {
+    "time": "22:53:58.711",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 181.192.X.X"
+  },
+  {
+    "time": "22:53:56.709",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 118.198.X.X"
+  },
+  {
+    "time": "22:53:54.684",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 85.203.X.X"
+  },
+  {
+    "time": "22:53:20.679",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 191.20.X.X"
+  },
+  {
+    "time": "22:53:18.677",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 216.170.X.X"
+  },
+  {
+    "time": "22:53:10.668",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 63.87.X.X"
+  },
+  {
+    "time": "22:53:08.667",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 214.31.X.X"
+  },
+  {
+    "time": "22:53:02.662",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 154.86.X.X"
+  },
+  {
+    "time": "22:52:58.660",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 27.78.X.X"
+  },
+  {
+    "time": "22:52:54.657",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 84.254.X.X"
+  },
+  {
+    "time": "22:52:48.651",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 112.197.X.X"
+  },
+  {
+    "time": "22:52:44.639",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 137.54.X.X"
+  },
+  {
+    "time": "22:52:24.636",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 57.80.X.X"
+  },
+  {
+    "time": "22:52:14.621",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 219.228.X.X"
+  },
+  {
+    "time": "22:52:10.610",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 192.38.X.X"
+  },
+  {
+    "time": "22:51:44.602",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 225.83.X.X"
+  },
+  {
+    "time": "22:51:36.594",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 106.15.X.X"
+  },
+  {
+    "time": "22:51:22.589",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 123.43.X.X"
+  },
+  {
+    "time": "22:51:18.586",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 146.207.X.X"
+  },
+  {
+    "time": "22:51:00.578",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 196.40.X.X"
+  },
+  {
+    "time": "22:50:50.573",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 38.237.X.X"
+  },
+  {
+    "time": "22:50:44.529",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 174.207.X.X"
+  },
+  {
+    "time": "22:50:42.521",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 16.57.X.X"
+  },
+  {
+    "time": "22:50:40.519",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 50.137.X.X"
+  },
+  {
+    "time": "22:50:36.515",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 85.115.X.X"
+  },
+  {
+    "time": "22:50:32.513",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 126.169.X.X"
+  },
+  {
+    "time": "22:50:30.510",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 126.205.X.X"
+  },
+  {
+    "time": "22:50:14.499",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 112.16.X.X"
+  },
+  {
+    "time": "22:50:10.495",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 49.101.X.X"
+  },
+  {
+    "time": "22:50:02.493",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 2.133.X.X"
+  },
+  {
+    "time": "22:49:42.487",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 25.225.X.X"
+  },
+  {
+    "time": "22:49:22.480",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 167.134.X.X"
+  },
+  {
+    "time": "22:49:18.474",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 190.145.X.X"
+  },
+  {
+    "time": "22:49:08.469",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 57.249.X.X"
+  },
+  {
+    "time": "22:49:06.467",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 228.251.X.X"
+  },
+  {
+    "time": "22:49:02.463",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 221.154.X.X"
+  },
+  {
+    "time": "22:48:56.460",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 215.157.X.X"
+  },
+  {
+    "time": "22:48:44.444",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 191.253.X.X"
+  },
+  {
+    "time": "22:48:42.440",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 82.21.X.X"
+  },
+  {
+    "time": "22:48:32.435",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 45.136.X.X"
+  },
+  {
+    "time": "22:48:14.413",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 49.156.X.X"
+  },
+  {
+    "time": "22:47:30.396",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 214.129.X.X"
+  },
+  {
+    "time": "22:47:24.392",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 119.8.X.X"
+  },
+  {
+    "time": "22:47:14.384",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 201.36.X.X"
+  },
+  {
+    "time": "22:47:12.378",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 77%"
+  },
+  {
+    "time": "22:46:42.288",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 109.113.X.X"
+  },
+  {
+    "time": "22:46:38.285",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 53.113.X.X"
+  },
+  {
+    "time": "22:46:34.283",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 74%"
+  },
+  {
+    "time": "22:46:32.194",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 244.173.X.X"
+  },
+  {
+    "time": "22:46:24.183",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 164.225.X.X"
+  },
+  {
+    "time": "22:46:10.176",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 41.99.X.X"
+  },
+  {
+    "time": "22:46:00.174",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 148.244.X.X"
+  },
+  {
+    "time": "22:45:44.165",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 166.195.X.X"
+  },
+  {
+    "time": "22:45:38.162",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 128.135.X.X"
+  },
+  {
+    "time": "22:45:30.160",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 39.102.X.X"
+  },
+  {
+    "time": "22:45:28.155",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 0.77.X.X"
+  },
+  {
+    "time": "22:45:16.145",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 110.95.X.X"
+  },
+  {
+    "time": "22:45:14.142",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 188.136.X.X"
+  },
+  {
+    "time": "22:44:52.123",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 125.93.X.X"
+  },
+  {
+    "time": "22:44:48.116",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 39.214.X.X"
+  },
+  {
+    "time": "22:44:18.107",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 63%"
+  },
+  {
+    "time": "22:44:12.103",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 99.93.X.X"
+  },
+  {
+    "time": "22:43:56.099",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 149.145.X.X"
+  },
+  {
+    "time": "22:43:23.892",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 222.139.X.X"
+  },
+  {
+    "time": "22:43:23.892",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 67%"
+  },
+  {
+    "time": "22:43:13.873",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%"
+  },
+  {
+    "time": "22:43:11.850",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 116.61.X.X"
+  },
+  {
+    "time": "22:43:01.823",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 70%"
+  },
+  {
+    "time": "22:42:55.816",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 192.225.X.X"
+  },
+  {
+    "time": "22:42:49.814",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 169.153.X.X"
+  },
+  {
+    "time": "22:42:45.811",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 237.61.X.X"
+  },
+  {
+    "time": "22:42:35.808",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 62%"
+  },
+  {
+    "time": "22:42:29.796",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 222.213.X.X"
+  },
+  {
+    "time": "22:42:25.792",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 156.48.X.X"
+  },
+  {
+    "time": "22:42:23.785",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 211.44.X.X"
+  },
+  {
+    "time": "22:42:19.771",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 71.17.X.X"
+  },
+  {
+    "time": "22:42:11.761",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 124.107.X.X"
+  },
+  {
+    "time": "22:41:57.755",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 250.75.X.X"
+  },
+  {
+    "time": "22:41:43.745",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 233.83.X.X"
+  },
+  {
+    "time": "22:41:41.739",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 68%"
+  },
+  {
+    "time": "22:41:25.730",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 33.247.X.X"
+  },
+  {
+    "time": "22:41:03.719",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 56.1.X.X"
+  },
+  {
+    "time": "22:40:51.711",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 51.162.X.X"
+  },
+  {
+    "time": "22:40:45.706",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 10.155.X.X"
+  },
+  {
+    "time": "22:40:43.702",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 119.44.X.X"
+  },
+  {
+    "time": "22:40:27.698",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 1.225.X.X"
+  },
+  {
+    "time": "22:40:17.695",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 34.41.X.X"
+  },
+  {
+    "time": "22:40:05.680",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 144.42.X.X"
+  },
+  {
+    "time": "22:40:01.666",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 221.95.X.X"
+  },
+  {
+    "time": "22:39:57.659",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 89.95.X.X"
+  },
+  {
+    "time": "22:39:55.652",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 187.22.X.X"
+  },
+  {
+    "time": "22:39:53.643",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 195.127.X.X"
+  },
+  {
+    "time": "22:39:45.640",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 193.164.X.X"
+  },
+  {
+    "time": "22:39:33.633",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 222.154.X.X"
+  },
+  {
+    "time": "22:39:23.625",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 254.223.X.X"
+  },
+  {
+    "time": "22:39:05.621",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 96.251.X.X"
+  },
+  {
+    "time": "22:39:01.618",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 174.235.X.X"
+  },
+  {
+    "time": "22:38:57.607",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 237.206.X.X"
+  },
+  {
+    "time": "22:38:41.578",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 161.224.X.X"
+  },
+  {
+    "time": "22:38:39.575",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 197.230.X.X"
+  },
+  {
+    "time": "22:38:33.573",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 65%"
+  },
+  {
+    "time": "22:38:31.549",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%"
+  },
+  {
+    "time": "22:38:15.386",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 48.156.X.X"
+  },
+  {
+    "time": "22:38:07.379",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 51.58.X.X"
+  },
+  {
+    "time": "22:38:07.378",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 89%"
   },
   {
     "time": "22:37:56.532",

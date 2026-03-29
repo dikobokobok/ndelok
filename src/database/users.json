@@ -3,7 +3,7 @@
     "id": "1",
     "name": "ibnu nur ramadani",
     "username": "ibnu",
-    "password": "Ibnu123",
+    "password": "$2b$10$k5.x3U.lwIw9pjtYFR2EAuKpBKJ9ehfn0GQdap5pGCD4Dmcj9vIwK",
     "email": "ibnunurramadani175@gmail.com",
     "role": "owner",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=ibnu"
@@ -12,7 +12,7 @@
     "id": "2",
     "name": "Project Manager",
     "username": "admin",
-    "password": "Admin123",
+    "password": "$2b$10$zVVbHbU3DpwdOfb73KDIc.RX5AcYpBVxp4GW4yALcNaPVjgY3T7GK",
     "email": "admin@ndelok.me",
     "role": "admin",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=admin"
@@ -21,7 +21,7 @@
     "id": "3",
     "name": "Guest Viewer",
     "username": "viewer",
-    "password": "Viewer123",
+    "password": "$2b$10$1mhzZelonok31VB6.cSDreyCr1ZRa2Hb4pXuiyeHvLsP.9yomn072",
     "email": "viewer@ndelok.me",
     "role": "viewer",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=viewer"

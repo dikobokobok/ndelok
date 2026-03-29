@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../App'
 
 export default function Login() {
   const [username, setUsername] = useState('')
@@ -7,6 +8,7 @@ export default function Login() {
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const { setUser, setToken } = useContext(AuthContext)
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -24,9 +26,11 @@ export default function Login() {
       if (data.success) {
         localStorage.setItem('ndelok_user', JSON.stringify(data.user))
         localStorage.setItem('ndelok_token', data.token)
+        setUser(data.user)
+        setToken(data.token)
         navigate('/dashboard')
       } else {
-        setError(data.error || 'Login failed')
+        setError(data.error || 'Identity verification failed')
       }
     } catch (err) {
       setError('Connection error')

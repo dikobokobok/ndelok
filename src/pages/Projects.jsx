@@ -5,7 +5,7 @@ import socket from '../lib/socket'
 import { AuthContext } from '../App'
 
 export default function Projects() {
-  const { user } = useContext(AuthContext)
+  const { user, authenticatedFetch } = useContext(AuthContext)
   const [view, setView] = useState('grid')
   const [projectList, setProjectList] = useState([])
   const [host, setHost] = useState('127.0.0.1')
@@ -48,7 +48,7 @@ export default function Projects() {
   const handleStop = async (name) => {
     setProjectList(prev => prev.map(p => p.name === name ? { ...p, status: 'Stopped', progress: 0, cpu: 0, mem: 0, statusColor: 'bg-surface-container-highest text-slate-400', dot: 'bg-slate-500' } : p))
     try {
-      await fetch('/api/project-action', {
+      await authenticatedFetch('/api/project-action', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, action: 'stop' })
@@ -62,7 +62,7 @@ export default function Projects() {
   const handleRestart = async (name) => {
     setProjectList(prev => prev.map(p => p.name === name ? { ...p, status: 'Starting...', progress: 45, cpu: 85, statusColor: 'bg-tertiary/10 text-tertiary', dot: 'bg-tertiary animate-pulse' } : p))
     try {
-      await fetch('/api/project-action', {
+      await authenticatedFetch('/api/project-action', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, action: 'restart' })
@@ -80,11 +80,16 @@ export default function Projects() {
     setProjectList(prev => prev.filter(p => p.name !== name))
     
     try {
-      await fetch('/api/project-action', {
+      const resp = await authenticatedFetch('/api/project-action', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, action: 'delete' })
       })
+      if (resp?.status === 403) {
+        showToast('error', `Unauthorized: Only OWNERS can delete projects.`)
+        // Re-fetch project list to undo optimistic delete
+        return
+      }
       showToast('success', `Service ${name} deleted successfully.`)
     } catch (e) {
       showToast('error', `Failed to delete service ${name}.`)
@@ -101,7 +106,7 @@ export default function Projects() {
     
     setProjectList(prev => prev.map(p => p.name === editProject.name ? { ...p, ...editData } : p))
     try {
-      await fetch('/api/project-action', {
+      await authenticatedFetch('/api/project-action', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: editProject.name, action: 'edit', payload: editData })

@@ -30,12 +30,20 @@ const ProtectedRoute = ({ children, roles = [] }) => {
 
 export default function App() {
   const [user, setUser] = useState(null)
+  const [token, setToken] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const savedUser = localStorage.getItem('ndelok_user')
-    if (savedUser) {
-      try { setUser(JSON.parse(savedUser)) } catch (e) {}
+    const savedToken = localStorage.getItem('ndelok_token')
+    if (savedUser && savedToken) {
+      try { 
+        setUser(JSON.parse(savedUser))
+        setToken(savedToken)
+      } catch (e) {
+        localStorage.removeItem('ndelok_user')
+        localStorage.removeItem('ndelok_token')
+      }
     }
     setLoading(false)
   }, [])
@@ -44,10 +52,30 @@ export default function App() {
     localStorage.removeItem('ndelok_user')
     localStorage.removeItem('ndelok_token')
     setUser(null)
+    setToken(null)
+  }
+
+  const authenticatedFetch = async (url, options = {}) => {
+    const headers = {
+      ...options.headers,
+      'Authorization': `Bearer ${token || localStorage.getItem('ndelok_token')}`,
+      'Content-Type': options.body instanceof FormData ? undefined : (options.headers?.['Content-Type'] || 'application/json')
+    }
+    
+    // Remove Content-Type if it's undefined (for FormData)
+    if (!headers['Content-Type']) delete headers['Content-Type']
+
+    const response = await fetch(url, { ...options, headers })
+    if (response.status === 401) {
+      logout()
+      window.location.href = '/login'
+      return null
+    }
+    return response
   }
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, logout }}>
+    <AuthContext.Provider value={{ user, setUser, token, setToken, loading, logout, authenticatedFetch }}>
       <BrowserRouter>
         <Suspense fallback={<PageLoader />}>
           <Routes>

@@ -1,8 +1,10 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Toast from '../components/Toast'
+import { AuthContext } from '../App'
 
 export default function DeployProject() {
+  const { authenticatedFetch } = useContext(AuthContext)
   const [formData, setFormData] = useState({ name: '', repo: '', installCmd: '', runCmd: '', port: '' })
   const [isDeploying, setIsDeploying] = useState(false)
   const [logs, setLogs] = useState([])
@@ -21,7 +23,7 @@ export default function DeployProject() {
     setLogs(['[SYSTEM] Initializing deployment subsystem...', '[SYSTEM] Allocating workspace container...'])
     
     try {
-      const res = await fetch('/api/project-deploy', {
+      const res = await authenticatedFetch('/api/project-deploy', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -31,8 +33,8 @@ export default function DeployProject() {
       
       const poll = setInterval(async () => {
         try {
-          const logRes = await fetch(`/api/deploy-logs?name=${encodeURIComponent(formData.name)}`)
-          if (logRes.ok) {
+          const logRes = await authenticatedFetch(`/api/deploy-logs?name=${encodeURIComponent(formData.name)}`)
+          if (logRes && logRes.ok) {
              const logData = await logRes.json()
              setLogs(logData)
              
@@ -150,6 +152,8 @@ export default function DeployProject() {
                  </label>
                  <input required type="text" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })}
                    placeholder="e.g. core-api-v2"
+                   pattern="^[a-zA-Z0-9\-_ ]+$"
+                   title="Only alphanumeric, dashes, underscores, and spaces are allowed."
                    disabled={isDeploying || (logs.length > 0 && !logs.some(l => l.includes('[ERROR]')))}
                    className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl text-on-surface p-3 focus:ring-1 focus:ring-tertiary focus:border-tertiary outline-none transition-all placeholder:text-slate-600 disabled:opacity-50" />
                </div>
@@ -162,6 +166,7 @@ export default function DeployProject() {
                   </label>
                   <input type="number" value={formData.port} onChange={e => setFormData({ ...formData, port: e.target.value })}
                     placeholder="e.g. 3000"
+                    min="1" max="65535"
                     disabled={isDeploying || (logs.length > 0 && !logs.some(l => l.includes('[ERROR]')))}
                     className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl text-on-surface p-3 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder:text-slate-600 disabled:opacity-50" />
                </div>

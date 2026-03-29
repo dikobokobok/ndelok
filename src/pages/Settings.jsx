@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { AuthContext } from '../App'
 
 function Toggle({ checked, onChange, disabled }) {
   return (
@@ -29,27 +30,108 @@ const anchors = [
 ]
 
 export default function Settings() {
+  const { authenticatedFetch, user } = useContext(AuthContext)
   const [activeSection, setActiveSection] = useState('team')
   const [teamMembers, setTeamMembers] = useState([])
   const [integrationEnabled, setIntegrationEnabled] = useState({ Telegram: true, Discord: false, Email: true })
   const [toast, setToast] = useState(false)
   const [emailChecks, setEmailChecks] = useState({ summary: true, downtime: true })
 
+  // Registration Modal State
+  const [showRegModal, setShowRegModal] = useState(false)
+  const [regData, setRegData] = useState({ name: '', username: '', password: '', email: '', role: 'viewer' })
+  const [regError, setRegError] = useState('')
+
+  // Edit Modal State
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [editData, setEditData] = useState({ name: '', username: '', password: '', email: '', role: '' })
+  const [editError, setEditError] = useState('')
+
+  const fetchUsers = () => {
+    authenticatedFetch('/api/users')
+      .then(res => res?.json())
+      .then(data => data && setTeamMembers(data))
+  }
+
   useEffect(() => {
-    fetch('/api/users')
-      .then(res => res.json())
-      .then(data => setTeamMembers(data))
+    fetchUsers()
   }, [])
 
   const handleSave = () => {
-    setToast(true)
+    setToast({ type: 'success', title: 'Synchronization Complete', msg: 'Configuration node updated successfully' })
     setTimeout(() => setToast(false), 3000)
+  }
+
+  const handleRegister = async (e) => {
+    e.preventDefault()
+    setRegError('')
+    try {
+      const res = await authenticatedFetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(regData)
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Identity fault')
+      
+      setToast({ type: 'success', title: 'Agent Provisioned', msg: `Identity for ${regData.username} has been verified and registered.` })
+      setShowRegModal(false)
+      setRegData({ name: '', username: '', password: '', email: '', role: 'viewer' })
+      fetchUsers()
+    } catch (err) {
+      setRegError(err.message)
+    }
+  }
+
+  const onOpenEdit = (m) => {
+    setEditData({ ...m, password: '' })
+    setShowEditModal(true)
+    setEditError('')
+  }
+
+  const handleUpdate = async (e) => {
+    e.preventDefault()
+    setEditError('')
+    try {
+      const res = await authenticatedFetch('/api/users', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editData)
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Modification failure')
+      
+      setToast({ type: 'success', title: 'Identity Updated', msg: `Metadata for ${editData.username} has been synchronized.` })
+      setShowEditModal(false)
+      fetchUsers()
+    } catch (err) {
+      setEditError(err.message)
+    }
+  }
+
+  const handleDelete = async () => {
+    if (!window.confirm(`Are you absolutely sure you want to de-provision ${editData.username}? This action is irreversible.`)) return
+    
+    setEditError('')
+    try {
+      const res = await authenticatedFetch(`/api/users?username=${encodeURIComponent(editData.username)}`, {
+        method: 'DELETE'
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'De-provisioning failed')
+      
+      setToast({ type: 'success', title: 'Agent Terminated', msg: `Identity [${editData.username}] has been purged from the system.` })
+      setShowEditModal(false)
+      fetchUsers()
+    } catch (err) {
+      setEditError(err.message)
+    }
   }
 
   return (
     <div className="p-10 min-h-screen bg-[#0f1115] text-slate-300">
       <div className="max-w-6xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
-        {/* Header */}
+        {/* Header omitted... */}
         <section>
           <nav className="flex items-center gap-2 text-[10px] text-slate-500 mb-2 uppercase tracking-[0.2em] font-black">
             <span>Control Center</span>
@@ -83,10 +165,14 @@ export default function Settings() {
                     <h3 className="text-xl font-black text-white tracking-tight">Access Control</h3>
                     <p className="text-xs text-slate-500 mt-1 uppercase tracking-widest">Managing authorized workspace agents</p>
                   </div>
-                  <button className="flex items-center gap-2 px-5 py-2.5 bg-primary/10 text-primary rounded-xl text-[10px] font-black uppercase tracking-widest border border-primary/20 hover:bg-primary hover:text-white transition-all shadow-lg shadow-primary/10 active:scale-95">
-                    <span className="material-symbols-outlined text-[16px]">person_add</span>
-                    Register Agent
-                  </button>
+                  {user?.role === 'owner' && (
+                    <button 
+                      onClick={() => setShowRegModal(true)}
+                      className="flex items-center gap-2 px-5 py-2.5 bg-primary/10 text-primary rounded-xl text-[10px] font-black uppercase tracking-widest border border-primary/20 hover:bg-primary hover:text-white transition-all shadow-lg shadow-primary/10 active:scale-95">
+                      <span className="material-symbols-outlined text-[16px]">person_add</span>
+                      Register Agent
+                    </button>
+                  )}
                 </div>
 
                 <div className="overflow-x-auto">
@@ -101,7 +187,7 @@ export default function Settings() {
                     </thead>
                     <tbody className="divide-y divide-white/[0.03]">
                       {teamMembers.map(m => (
-                        <tr key={m.email} className="group hover:bg-white/[0.02] transition-colors">
+                        <tr key={m.username} className="group hover:bg-white/[0.02] transition-colors">
                           <td className="py-5 px-4">
                             <div className="flex items-center gap-4">
                               <img src={m.avatar} alt="avatar" className="w-10 h-10 rounded-full bg-surface-container ring-2 ring-white/5 group-hover:ring-primary/40 transition-all" />
@@ -123,7 +209,9 @@ export default function Settings() {
                             </div>
                           </td>
                           <td className="py-5 px-4 text-right">
-                            <button className="w-8 h-8 rounded-lg text-slate-600 hover:text-white hover:bg-white/5 transition-all">
+                            <button 
+                              onClick={() => onOpenEdit(m)}
+                              className="w-8 h-8 rounded-lg text-slate-600 hover:text-white hover:bg-white/5 transition-all">
                               <span className="material-symbols-outlined text-[18px]">tune</span>
                             </button>
                           </td>
@@ -135,7 +223,9 @@ export default function Settings() {
               </div>
             </section>
 
-            {/* SSH & API Keys */}
+            {/* Other sections omitted for brevity in target content matching, but I will replace the whole file content to be safe and clean since I added significant logic */}
+            {/* SSH, Notifications, etc. */}
+            {/* [ ... Rest of sections from line 140 ... ] */}
             <section id="security" className="bg-surface-container/30 backdrop-blur-md border border-white/5 rounded-[32px] overflow-hidden shadow-2xl">
               <div className="p-8 space-y-10">
                 <div>
@@ -197,7 +287,6 @@ export default function Settings() {
               </div>
             </section>
 
-            {/* Notifications */}
             <section id="notifications" className="bg-surface-container/30 backdrop-blur-md border border-white/5 rounded-[32px] overflow-hidden shadow-2xl">
               <div className="p-8">
                 <h3 className="text-xl font-black text-white tracking-tight mb-10">External Relays</h3>
@@ -219,21 +308,12 @@ export default function Settings() {
                           onChange={() => setIntegrationEnabled(prev => ({ ...prev, [intg.name]: !prev[intg.name] }))}
                         />
                       </div>
-
                       {intg.name === 'Email' ? (
                         <div className={`space-y-3 transition-all duration-500 ${integrationEnabled.Email ? 'opacity-100' : 'opacity-20 grayscale pointer-events-none'}`}>
-                          {[
-                            { key: 'summary',  label: 'Chronological Daily Summary' },
-                            { key: 'downtime', label: 'Zero-Latency Critical Alerts' },
-                          ].map(c => (
+                          {[{ key: 'summary', label: 'Chronological Daily Summary' }, { key: 'downtime', label: 'Zero-Latency Critical Alerts' }].map(c => (
                             <label key={c.key} className="flex items-center gap-3 cursor-pointer group">
                               <div className="relative">
-                                <input type="checkbox"
-                                  checked={emailChecks[c.key]}
-                                  disabled={!integrationEnabled.Email}
-                                  onChange={() => setEmailChecks(prev => ({ ...prev, [c.key]: !prev[c.key] }))}
-                                  className="peer sr-only"
-                                />
+                                <input type="checkbox" checked={emailChecks[c.key]} disabled={!integrationEnabled.Email} onChange={() => setEmailChecks(prev => ({ ...prev, [c.key]: !prev[c.key] }))} className="peer sr-only" />
                                 <div className="w-5 h-5 bg-surface-container-highest rounded border border-white/10 peer-checked:bg-primary peer-checked:border-primary transition-all flex items-center justify-center">
                                    <span className="material-symbols-outlined text-[14px] text-white scale-0 peer-checked:scale-100 transition-transform">check</span>
                                 </div>
@@ -245,30 +325,15 @@ export default function Settings() {
                       ) : (
                         <div className={`transition-all duration-500 ${integrationEnabled[intg.name] ? 'opacity-100' : 'opacity-20 grayscale pointer-events-none'}`}>
                           <label className="text-[9px] font-black text-slate-600 uppercase tracking-widest block mb-2">{intg.type === 'token' ? 'Encryption Token' : 'Secure Webhook Target'}</label>
-                          <div className="relative group">
-                            <input
-                              type={intg.type === 'token' ? 'password' : 'text'}
-                              defaultValue={intg.value}
-                              disabled={!integrationEnabled[intg.name]}
-                              placeholder={intg.placeholder}
-                              className="w-full bg-[#0a0c10] border border-white/5 rounded-xl text-xs text-white focus:ring-1 focus:ring-primary focus:border-primary focus:bg-black/50 outline-none py-3 px-4 transition-all placeholder:text-slate-800 font-telemetry"
-                            />
-                            <div className="absolute inset-0 bg-primary/5 opacity-0 group-focus-within:opacity-100 rounded-xl transition-opacity pointer-events-none" />
-                          </div>
+                          <input type={intg.type === 'token' ? 'password' : 'text'} defaultValue={intg.value} disabled={!integrationEnabled[intg.name]} placeholder={intg.placeholder} className="w-full bg-[#0a0c10] border border-white/5 rounded-xl text-xs text-white focus:ring-1 focus:ring-primary focus:border-primary focus:bg-black/50 outline-none py-3 px-4 transition-all placeholder:text-slate-800 font-telemetry" />
                         </div>
                       )}
                     </div>
                   ))}
                 </div>
-
-                {/* Save */}
                 <div className="mt-16 pt-10 border-t border-white/5 flex justify-end items-center gap-8">
                   <button className="text-xs font-black text-slate-600 hover:text-white uppercase tracking-[0.2em] transition-all">Reset Config</button>
-                  <button 
-                    onClick={handleSave}
-                    className="px-10 py-4 bg-primary text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl shadow-2xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 active:translate-y-0 transition-all">
-                    Sync to Node
-                  </button>
+                  <button onClick={handleSave} className="px-10 py-4 bg-primary text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl shadow-2xl shadow-primary/20 hover:shadow-primary/40 transition-all active:scale-95">Sync to Node</button>
                 </div>
               </div>
             </section>
@@ -276,17 +341,160 @@ export default function Settings() {
         </div>
       </div>
 
+      {/* Registration Modal */}
+      {showRegModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 sm:p-0">
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300" onClick={() => setShowRegModal(false)} />
+          <div className="w-full max-w-md bg-[#161b2c] border border-white/10 rounded-[40px] shadow-2xl relative z-10 overflow-hidden animate-in zoom-in slide-in-from-bottom-8 duration-500">
+             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-tertiary to-primary" />
+             <div className="p-10">
+                <div className="flex justify-between items-center mb-10">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20">
+                      <span className="material-symbols-outlined text-primary text-2xl">person_add</span>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-black text-white tracking-tighter">Register Agent</h3>
+                      <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mt-0.5">Provision identity</p>
+                    </div>
+                  </div>
+                  <button onClick={() => setShowRegModal(false)} className="w-10 h-10 rounded-full hover:bg-white/5 transition-colors flex items-center justify-center text-slate-500 hover:text-white">
+                    <span className="material-symbols-outlined">close</span>
+                  </button>
+                </div>
+
+                <form onSubmit={handleRegister} className="space-y-6">
+                  {regError && (
+                    <div className="p-4 bg-error/10 border border-error/20 rounded-2xl flex items-center gap-3 text-error text-[10px] font-black uppercase tracking-widest">
+                       <span className="material-symbols-outlined text-[18px]">error</span>
+                       {regError}
+                    </div>
+                  )}
+
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-1">Full Name</label>
+                        <input required type="text" value={regData.name} onChange={e => setRegData({...regData, name: e.target.value})} pattern="^[a-zA-Z0-9\-_ ]+$" title="Only alphanumeric, dashes, underscores, and spaces are allowed." className="w-full bg-[#0a0c10] border border-white/5 rounded-xl text-xs text-white py-3 px-4 focus:ring-1 focus:ring-primary outline-none" placeholder="Ibnu R." />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-1">Username</label>
+                        <input required type="text" value={regData.username} onChange={e => setRegData({...regData, username: e.target.value})} pattern="^[a-zA-Z0-9\-_]+$" title="Only alphanumeric, dashes, and underscores are allowed (no spaces)." className="w-full bg-[#0a0c10] border border-white/5 rounded-xl text-xs text-white py-3 px-4 focus:ring-1 focus:ring-primary outline-none font-telemetry" placeholder="ibnu_agent" />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-1">Email Address</label>
+                      <input required type="email" value={regData.email} onChange={e => setRegData({...regData, email: e.target.value})} className="w-full bg-[#0a0c10] border border-white/5 rounded-xl text-xs text-white py-3 px-4 focus:ring-1 focus:ring-primary outline-none" placeholder="agent@ndelok.me" />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                       <div className="space-y-2">
+                        <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-1">Access Role</label>
+                        <select value={regData.role} onChange={e => setRegData({...regData, role: e.target.value})} className="w-full bg-[#0a0c10] border border-white/5 rounded-xl text-xs text-white py-3 px-4 focus:ring-1 focus:ring-primary outline-none appearance-none">
+                           <option value="viewer">Viewer</option>
+                           <option value="admin">Admin</option>
+                        </select>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-1">Secure Key</label>
+                        <input required type="password" value={regData.password} onChange={e => setRegData({...regData, password: e.target.value})} className="w-full bg-[#0a0c10] border border-white/5 rounded-xl text-xs text-white py-3 px-4 focus:ring-1 focus:ring-primary outline-none" placeholder="••••••••" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <button 
+                    type="submit"
+                    className="w-full py-4 bg-primary text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all active:translate-y-0">
+                    Finalize Identity
+                  </button>
+                </form>
+             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Modal */}
+      {showEditModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 sm:p-0">
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300" onClick={() => setShowEditModal(false)} />
+          <div className="w-full max-w-md bg-[#161b2c] border border-white/10 rounded-[40px] shadow-2xl relative z-10 overflow-hidden animate-in zoom-in slide-in-from-bottom-8 duration-500">
+             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-tertiary via-primary to-tertiary" />
+             <div className="p-10">
+                <div className="flex justify-between items-center mb-10">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-tertiary/10 flex items-center justify-center border border-tertiary/20">
+                      <span className="material-symbols-outlined text-tertiary text-2xl">manage_accounts</span>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-black text-white tracking-tighter">Edit Identity</h3>
+                      <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mt-0.5">Modify workspace access</p>
+                    </div>
+                  </div>
+                  <button onClick={() => setShowEditModal(false)} className="w-10 h-10 rounded-full hover:bg-white/5 transition-colors flex items-center justify-center text-slate-500 hover:text-white">
+                    <span className="material-symbols-outlined">close</span>
+                  </button>
+                </div>
+
+                <form onSubmit={handleUpdate} className="space-y-6">
+                  {editError && <div className="p-4 bg-error/10 border border-error/20 rounded-2xl flex items-center gap-3 text-error text-[10px] font-black uppercase tracking-widest"><span className="material-symbols-outlined text-[18px]">error</span>{editError}</div>}
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-1">Agent Name</label>
+                        <input required type="text" value={editData.name} onChange={e => setEditData({...editData, name: e.target.value})} pattern="^[a-zA-Z0-9\-_ ]+$" title="Only alphanumeric, dashes, underscores, and spaces are allowed." className="w-full bg-[#0a0c10] border border-white/10 rounded-xl text-xs text-white py-3 px-4 focus:ring-1 focus:ring-tertiary outline-none" />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-1">Username (Locked)</label>
+                        <input disabled type="text" value={editData.username} className="w-full bg-black/40 border border-white/5 rounded-xl text-xs text-slate-600 py-3 px-4 outline-none font-telemetry cursor-not-allowed" />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-1">Email Relay</label>
+                      <input required type="email" value={editData.email} onChange={e => setEditData({...editData, email: e.target.value})} className="w-full bg-[#0a0c10] border border-white/10 rounded-xl text-xs text-white py-3 px-4 focus:ring-1 focus:ring-tertiary outline-none" />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                       <div className="space-y-2">
+                        <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-1">Access Level</label>
+                        <select value={editData.role} onChange={e => setEditData({...editData, role: e.target.value})} className="w-full bg-[#0a0c10] border border-white/10 rounded-xl text-xs text-white py-3 px-4 focus:ring-1 focus:ring-tertiary outline-none appearance-none">
+                           <option value="viewer">Viewer</option>
+                           <option value="admin">Admin</option>
+                           {editData.role === 'owner' && <option value="owner">Owner</option>}
+                        </select>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-1">New Secure Key</label>
+                        <input type="password" value={editData.password} onChange={e => setEditData({...editData, password: e.target.value})} className="w-full bg-[#0a0c10] border border-white/10 rounded-xl text-xs text-white py-3 px-4 focus:ring-1 focus:ring-tertiary outline-none" placeholder="Leave blank to keep" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex gap-4 pt-4">
+                    {user?.role === 'owner' && user.username !== editData.username && (
+                      <button type="button" onClick={handleDelete} className="px-6 bg-error/10 hover:bg-error text-error hover:text-white border border-error/20 rounded-2xl transition-all active:scale-95 flex items-center justify-center">
+                        <span className="material-symbols-outlined text-md">delete_forever</span>
+                      </button>
+                    )}
+                    <button type="submit" className="flex-1 py-4 bg-tertiary text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl shadow-xl shadow-tertiary/20 hover:shadow-tertiary/40 transition-all active:scale-95">Update Identity</button>
+                  </div>
+                </form>
+             </div>
+          </div>
+        </div>
+      )}
+
       {/* Floating Toast Notification */}
       {toast && (
-        <div className="fixed bottom-12 right-12 bg-primary/90 backdrop-blur-xl border border-white/20 p-5 rounded-[24px] shadow-[0_20px_50px_rgba(var(--primary-rgb),0.3)] flex items-center gap-5 z-50 animate-in fade-in zoom-in slide-in-from-right-10 duration-500">
-          <div className="w-12 h-12 rounded-[18px] bg-white/10 flex items-center justify-center">
-            <span className="material-symbols-outlined text-white text-2xl animate-pulse">cloud_done</span>
+        <div className="fixed bottom-12 right-12 bg-[#161b2c] backdrop-blur-xl border border-white/10 p-5 rounded-[24px] shadow-2xl flex items-center gap-5 z-[200] animate-in fade-in zoom-in slide-in-from-right-10 duration-500">
+          <div className="w-12 h-12 rounded-[18px] bg-primary/10 flex items-center justify-center border border-primary/20">
+            <span className="material-symbols-outlined text-primary text-2xl animate-pulse">
+              {toast.type === 'success' ? 'verified_user' : 'error'}
+            </span>
           </div>
           <div>
-            <p className="text-sm font-black text-white uppercase tracking-widest">Synchronization Complete</p>
-            <p className="text-[10px] text-white/70 font-bold uppercase tracking-tight">Configuration node updated successfully</p>
+            <p className="text-sm font-black text-white uppercase tracking-widest">{toast.title}</p>
+            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-tight">{toast.msg}</p>
           </div>
-          <button onClick={() => setToast(false)} className="ml-4 w-8 h-8 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center text-white/50 hover:text-white">
+          <button onClick={() => setToast(false)} className="ml-4 w-8 h-8 rounded-full hover:bg-white/5 transition-colors flex items-center justify-center text-slate-600 hover:text-white">
             <span className="material-symbols-outlined text-sm">close</span>
           </button>
         </div>

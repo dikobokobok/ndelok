@@ -9,3 +9,8 @@ code/
 # images/ is too broad, removing it to allow documentation
 download_assets.ps1
 design_system.md
+src/database/system-logs.json
+src/database/users.json
+src/database/projects.json
+hashes.txt
+hash_passwords.js

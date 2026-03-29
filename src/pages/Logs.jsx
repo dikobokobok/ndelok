@@ -11,16 +11,29 @@ const levelConfig = {
   SUCCESS: { badge: 'bg-emerald-500/10 text-emerald-400', dot: 'bg-emerald-500' },
 }
 
-const levels   = ['All', 'ERROR', 'WARN', 'INFO', 'SUCCESS']
+const categoryConfig = {
+  Security:   { icon: 'shield_lock', color: 'text-error' },
+  Deployment: { icon: 'rocket_launch', color: 'text-primary' },
+  System:     { icon: 'settings_suggest', color: 'text-slate-400' },
+  Traffic:    { icon: 'router', color: 'text-emerald-400' },
+  Management: { icon: 'person_add', color: 'text-tertiary' },
+  Process:    { icon: 'memory', color: 'text-blue-400' },
+  Audit:      { icon: 'history_edu', color: 'text-amber-400' },
+  General:    { icon: 'notes', color: 'text-slate-500' },
+}
+
+const levels     = ['All', 'ERROR', 'WARN', 'INFO', 'SUCCESS']
+const categories = ['All', 'Security', 'Deployment', 'System', 'Traffic', 'Management', 'Process', 'Audit']
 
 export default function Logs() {
-  const { user } = useContext(AuthContext)
+  const { user, authenticatedFetch } = useContext(AuthContext)
   const [searchParams] = useSearchParams()
   const initProject = searchParams.get('project') || ''
 
   const [logs, setLogs] = useState([])
   const [search, setSearch] = useState('')
   const [selLevel, setSelLevel] = useState('All')
+  const [selCategory, setSelCategory] = useState('All')
   const [selService, setSelService] = useState(initProject || 'All')
   const [streaming, setStreaming] = useState(true)
 
@@ -30,8 +43,8 @@ export default function Logs() {
   }, [streaming])
 
   useEffect(() => {
-    fetch('/api/logs').then(r => r.json()).then(data => {
-      setLogs(data)
+    authenticatedFetch('/api/logs').then(r => r?.json()).then(data => {
+      if (data) setLogs(data)
     }).catch(e => console.error(e))
 
     socket.on('init_logs', (data) => {
@@ -51,24 +64,25 @@ export default function Logs() {
   }, [])
 
   const filtered = logs.filter(l => {
-    if (selLevel   !== 'All' && l.level   !== selLevel)   return false
-    if (selService !== 'All' && l.service !== selService) return false
+    if (selLevel    !== 'All' && l.level    !== selLevel)    return false
+    if (selCategory !== 'All' && l.category !== selCategory) return false
+    if (selService  !== 'All' && l.service  !== selService)  return false
     
     if (search) {
       const q = search.toLowerCase()
-      if (!l.msg.toLowerCase().includes(q) && !l.service.toLowerCase().includes(q)) return false
+      if (!l.msg.toLowerCase().includes(q) && !l.service.toLowerCase().includes(q) && !(l.initiator || '').toLowerCase().includes(q)) return false
     }
     return true
   })
 
   const handleExport = () => {
     if (filtered.length === 0) return
-    const textLines = filtered.map(l => `[${l.time}] [${l.level}] [${l.service}] ${l.msg}`).join('\n')
+    const textLines = filtered.map(l => `[${l.time}] [${l.level}] [${l.category || 'General'}] [${l.service}] (${l.initiator || 'System'}) ${l.msg}`).join('\n')
     const blob = new Blob([textLines], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `ndelok_logs_${selService === 'All' ? 'all_services' : selService.replace(/\s+/g, '_')}_${Date.now()}.txt`
+    a.download = `ndelok_logs_${Date.now()}.txt`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
@@ -86,7 +100,7 @@ export default function Logs() {
             <span className="text-primary/70">System Logs</span>
           </nav>
           <h2 className="text-4xl font-black tracking-tight text-on-surface">Log Stream</h2>
-          <p className="text-slate-500 mt-2 text-sm">Aggregated log output from all services and nodes.</p>
+          <p className="text-slate-500 mt-2 text-sm">Centralized activity and system event tracking.</p>
         </div>
         <div className="flex items-center gap-3">
           <div className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${streaming ? 'bg-primary/10 text-primary' : 'bg-surface-container text-slate-400'}`}>
@@ -112,41 +126,71 @@ export default function Logs() {
         <div className="relative flex-1 min-w-[200px]">
           <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-[16px]">search</span>
           <input value={search} onChange={e => setSearch(e.target.value)}
-            type="text" placeholder="Filter log messages..."
+            type="text" placeholder="Search message, service or initiator..."
             className="w-full bg-surface-container-highest border-none rounded-lg py-2 pl-9 pr-4 text-sm text-on-surface placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/30" />
         </div>
-        <select value={selLevel} onChange={e => setSelLevel(e.target.value)}
-          className="bg-surface-container-highest border-none text-xs font-bold text-on-surface rounded-lg py-2 px-3 focus:outline-none focus:ring-1 focus:ring-primary">
-          {levels.map(l => <option key={l}>{l}</option>)}
-        </select>
-        <select value={selService} onChange={e => setSelService(e.target.value)}
-          className="bg-surface-container-highest border-none text-xs font-bold text-on-surface rounded-lg py-2 px-3 focus:outline-none focus:ring-1 focus:ring-primary">
-          {['All', ...new Set([selService, ...logs.map(l => l.service)].filter(x => x !== 'All'))].map(s => <option key={s} value={s}>{s}</option>)}
-        </select>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] uppercase font-bold text-slate-500 ml-2">Level</span>
+          <select value={selLevel} onChange={e => setSelLevel(e.target.value)}
+            className="bg-surface-container-highest border-none text-xs font-bold text-on-surface rounded-lg py-2 px-3 focus:outline-none focus:ring-1 focus:ring-primary">
+            {levels.map(l => <option key={l}>{l}</option>)}
+          </select>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] uppercase font-bold text-slate-500 ml-2">Category</span>
+          <select value={selCategory} onChange={e => setSelCategory(e.target.value)}
+            className="bg-surface-container-highest border-none text-xs font-bold text-on-surface rounded-lg py-2 px-3 focus:outline-none focus:ring-1 focus:ring-primary">
+            {categories.map(c => <option key={c}>{c}</option>)}
+          </select>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] uppercase font-bold text-slate-500 ml-2">Service</span>
+          <select value={selService} onChange={e => setSelService(e.target.value)}
+            className="bg-surface-container-highest border-none text-xs font-bold text-on-surface rounded-lg py-2 px-3 focus:outline-none focus:ring-1 focus:ring-primary">
+            {['All', ...new Set([selService, ...logs.map(l => l.service)].filter(x => x !== 'All'))].map(s => <option key={s} value={s}>{s}</option>)}
+          </select>
+        </div>
       </div>
 
       {/* Log Entries */}
-      <div className="bg-surface-container-low rounded-xl overflow-hidden">
-        <div className="bg-surface-container-lowest px-5 py-2 flex items-center gap-4 border-b border-white/5">
-          <span className="text-[10px] uppercase tracking-widest text-slate-600 font-bold w-28">Timestamp</span>
-          <span className="text-[10px] uppercase tracking-widest text-slate-600 font-bold w-20">Level</span>
-          <span className="text-[10px] uppercase tracking-widest text-slate-600 font-bold w-32">Service</span>
-          <span className="text-[10px] uppercase tracking-widest text-slate-600 font-bold flex-1">Message</span>
+      <div className="bg-surface-container-low rounded-xl overflow-hidden border border-white/5">
+        <div className="bg-surface-container-lowest px-5 py-2.5 flex items-center gap-4 border-b border-white/5">
+          <span className="text-[10px] uppercase tracking-widest text-slate-600 font-bold w-24">Time</span>
+          <span className="text-[10px] uppercase tracking-widest text-slate-600 font-bold w-16">Level</span>
+          <span className="text-[10px] uppercase tracking-widest text-slate-600 font-bold w-32">Source</span>
+          <span className="text-[10px] uppercase tracking-widest text-slate-600 font-bold w-24">Initiator</span>
+          <span className="text-[10px] uppercase tracking-widest text-slate-600 font-bold flex-1">Activity Message</span>
         </div>
         <div className="divide-y divide-white/5 font-telemetry text-sm">
           {filtered.length === 0 ? (
-            <div className="p-12 text-center text-slate-500">No log entries match your filters.</div>
+            <div className="p-16 text-center">
+               <span className="material-symbols-outlined text-[48px] text-slate-700 block mb-4">search_off</span>
+               <div className="text-slate-500 font-bold">No activity logs found</div>
+               <div className="text-slate-600 text-xs mt-1">Try adjusting your search or filters</div>
+            </div>
           ) : filtered.map((l, i) => {
-            const cfg = levelConfig[l.level]
+            const cfg = levelConfig[l.level] || levelConfig.INFO
+            const cat = categoryConfig[l.category] || categoryConfig.General
             return (
-              <div key={i} className="px-5 py-3.5 flex items-start gap-4 hover:bg-surface-container transition-colors group">
-                <span className="text-slate-600 w-28 flex-shrink-0 text-[11px] pt-0.5">{l.time}</span>
-                <span className={`text-[9px] px-2 py-0.5 rounded font-black uppercase tracking-widest w-20 flex-shrink-0 flex items-center gap-1 ${cfg.badge}`}>
-                  <span className={`w-1 h-1 rounded-full ${cfg.dot}`} />{l.level}
+              <div key={i} className="px-5 py-3.5 flex items-center gap-4 hover:bg-surface-container transition-colors group">
+                <span className="text-slate-600 w-24 flex-shrink-0 text-[11px] tabular-nums">{l.time}</span>
+                <span className={`text-[9px] px-2 py-0.5 rounded font-black uppercase tracking-widest w-16 flex-shrink-0 flex items-center gap-1 ${cfg.badge}`}>
+                   {l.level}
                 </span>
-                <span className="text-slate-400 w-32 flex-shrink-0 text-[11px] pt-0.5">{l.service}</span>
-                <span className="text-on-surface-variant text-[12px] leading-relaxed">{l.msg}</span>
-                <button className="ml-auto opacity-0 group-hover:opacity-100 text-slate-600 hover:text-white transition-all">
+                <div className="w-32 flex-shrink-0 flex items-center gap-2 overflow-hidden">
+                  <span className={`material-symbols-outlined text-[16px] ${cat.color}`}>{cat.icon}</span>
+                  <span className="text-slate-400 text-[11px] truncate font-bold">{l.service}</span>
+                </div>
+                <div className="w-24 flex-shrink-0">
+                   <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${l.initiator === 'System' ? 'bg-slate-800 text-slate-500' : 'bg-primary/20 text-primary-fixed'}`}>
+                      {l.initiator || 'System'}
+                   </span>
+                </div>
+                <span className="text-on-surface-variant text-[12px] leading-relaxed flex-1 line-clamp-1 group-hover:line-clamp-none">
+                  {l.msg}
+                </span>
+                <button title="Copy message" onClick={() => navigator.clipboard.writeText(l.msg)}
+                  className="ml-auto opacity-0 group-hover:opacity-100 text-slate-600 hover:text-white transition-all p-1">
                   <span className="material-symbols-outlined text-[16px]">content_copy</span>
                 </button>
               </div>
@@ -154,10 +198,18 @@ export default function Logs() {
           })}
         </div>
         <div className="px-5 py-3 bg-surface-container-lowest border-t border-white/5 flex items-center justify-between text-[11px] text-slate-500">
-          <span>Showing {filtered.length} of {logs.length} entries</span>
-          <span>Auto-refreshes every 5s · {new Date().toLocaleTimeString()}</span>
+          <div className="flex items-center gap-3">
+             <span>Showing {filtered.length} of {logs.length} events</span>
+             <span className="w-1 h-1 rounded-full bg-slate-700" />
+             <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Live Feed Active
+             </span>
+          </div>
+          <span>{new Date().toLocaleTimeString()}</span>
         </div>
       </div>
     </div>
   )
 }
+

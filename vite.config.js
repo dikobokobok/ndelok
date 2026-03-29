@@ -16,7 +16,14 @@ let runningProcs = {}
 let deployLogs = {}
 
 const LOGS_PATH = path.join(process.cwd(), 'src', 'database', 'system-logs.json')
+const USERS_PATH = path.join(process.cwd(), 'src', 'database', 'users.json')
+
 let systemLogs = []
+let users = []
+
+if (fs.existsSync(USERS_PATH)) {
+  try { users = JSON.parse(fs.readFileSync(USERS_PATH, 'utf-8')) } catch (e) {}
+}
 if (fs.existsSync(LOGS_PATH)) {
   try {
     systemLogs = JSON.parse(fs.readFileSync(LOGS_PATH, 'utf-8'))
@@ -289,6 +296,33 @@ export default defineConfig({
               host: hostIp
             }))
           }
+        })
+
+        server.middlewares.use('/api/login', (req, res) => {
+          if (req.method !== 'POST') return res.end(JSON.stringify({ error: 'Method not allowed' }))
+          let body = ''
+          req.on('data', chunk => body += chunk.toString())
+          req.on('end', () => {
+            try {
+              const { username, password } = JSON.parse(body)
+              const user = users.find(u => u.username === username && u.password === password)
+              if (user) {
+                const { password: _, ...safeUser } = user
+                res.setHeader('Content-Type', 'application/json')
+                // Simple token for demonstration
+                const token = Buffer.from(`${user.username}:${Date.now()}`).toString('base64')
+                res.end(JSON.stringify({ success: true, user: safeUser, token }))
+                pushLog('INFO', 'Auth', `User ${username} logged in successfully`)
+              } else {
+                res.statusCode = 401
+                res.end(JSON.stringify({ success: false, error: 'Invalid credentials' }))
+                pushLog('WARN', 'Auth', `Failed login attempt for username: ${username}`)
+              }
+            } catch (e) {
+              res.statusCode = 400
+              res.end(JSON.stringify({ error: 'Invalid request' }))
+            }
+          })
         })
         server.middlewares.use('/api/deploy-logs', (req, res) => {
           const name = new URL(req.url, 'http://localhost').searchParams.get('name')

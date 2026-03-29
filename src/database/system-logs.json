@@ -1,5 +1,1067 @@
 [
   {
+    "time": "22:40:54.990",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 66.4.X.X"
+  },
+  {
+    "time": "22:40:42.980",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:40:34.977",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 136.25.X.X"
+  },
+  {
+    "time": "22:40:24.972",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 7 connections in 1ms"
+  },
+  {
+    "time": "22:40:22.968",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 64.251.X.X"
+  },
+  {
+    "time": "22:40:06.959",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 34 connections in 9ms"
+  },
+  {
+    "time": "22:40:04.958",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 105.12.X.X"
+  },
+  {
+    "time": "22:40:02.950",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 37 connections in 5ms"
+  },
+  {
+    "time": "22:39:54.945",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 29 connections in 3ms"
+  },
+  {
+    "time": "22:39:52.937",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 9.63.X.X"
+  },
+  {
+    "time": "22:39:50.927",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 208.143.X.X"
+  },
+  {
+    "time": "22:39:48.917",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 101.237.X.X"
+  },
+  {
+    "time": "22:39:44.897",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 18 connections in 13ms"
+  },
+  {
+    "time": "22:39:42.895",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 38 connections in 10ms"
+  },
+  {
+    "time": "22:39:40.892",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 34 connections in 13ms"
+  },
+  {
+    "time": "22:39:34.888",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 6.32.X.X"
+  },
+  {
+    "time": "22:39:28.885",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 22 connections in 5ms"
+  },
+  {
+    "time": "22:39:28.885",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 102.245.X.X"
+  },
+  {
+    "time": "22:39:26.882",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 232.253.X.X"
+  },
+  {
+    "time": "22:39:18.874",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 222.186.X.X"
+  },
+  {
+    "time": "22:39:14.772",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:39:14.771",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 12 connections in 9ms"
+  },
+  {
+    "time": "22:39:10.753",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 38 connections in 5ms"
+  },
+  {
+    "time": "22:39:08.742",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 9 connections in 7ms"
+  },
+  {
+    "time": "22:39:04.740",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 28 connections in 10ms"
+  },
+  {
+    "time": "22:38:54.735",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 26 connections in 13ms"
+  },
+  {
+    "time": "22:38:54.734",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 97.26.X.X"
+  },
+  {
+    "time": "22:38:46.720",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 13 connections in 6ms"
+  },
+  {
+    "time": "22:38:44.710",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 35 connections in 4ms"
+  },
+  {
+    "time": "22:38:42.702",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:38:42.702",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 26 connections in 8ms"
+  },
+  {
+    "time": "22:38:36.694",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 161.152.X.X"
+  },
+  {
+    "time": "22:38:34.693",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 39.132.X.X"
+  },
+  {
+    "time": "22:38:32.686",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 40 connections in 15ms"
+  },
+  {
+    "time": "22:38:32.686",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 85%"
+  },
+  {
+    "time": "22:38:30.682",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 15.246.X.X"
+  },
+  {
+    "time": "22:38:30.682",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 93%"
+  },
+  {
+    "time": "22:38:26.635",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 218.211.X.X"
+  },
+  {
+    "time": "22:38:22.628",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 14 connections in 13ms"
+  },
+  {
+    "time": "22:38:18.622",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 32 connections in 5ms"
+  },
+  {
+    "time": "22:38:06.618",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 39 connections in 9ms"
+  },
+  {
+    "time": "22:37:56.532",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 37 connections in 1ms"
+  },
+  {
+    "time": "22:37:54.527",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 15 connections in 10ms"
+  },
+  {
+    "time": "22:37:54.527",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 60.137.X.X"
+  },
+  {
+    "time": "22:37:50.524",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 73.120.X.X"
+  },
+  {
+    "time": "22:37:44.521",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 22 connections in 14ms"
+  },
+  {
+    "time": "22:37:42.515",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 7.129.X.X"
+  },
+  {
+    "time": "22:37:34.505",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 21 connections in 8ms"
+  },
+  {
+    "time": "22:37:32.498",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 203.2.X.X"
+  },
+  {
+    "time": "22:37:30.493",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 241.210.X.X"
+  },
+  {
+    "time": "22:37:26.490",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 22 connections in 8ms"
+  },
+  {
+    "time": "22:37:18.483",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 84.9.X.X"
+  },
+  {
+    "time": "22:37:10.472",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 116.66.X.X"
+  },
+  {
+    "time": "22:37:04.464",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 38 connections in 7ms"
+  },
+  {
+    "time": "22:37:02.457",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 199.169.X.X"
+  },
+  {
+    "time": "22:36:54.452",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 37 connections in 12ms"
+  },
+  {
+    "time": "22:36:52.449",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 36 connections in 11ms"
+  },
+  {
+    "time": "22:36:52.449",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 20.94.X.X"
+  },
+  {
+    "time": "22:36:48.445",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 18 connections in 8ms"
+  },
+  {
+    "time": "22:36:36.435",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 8 connections in 14ms"
+  },
+  {
+    "time": "22:36:32.429",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 25 connections in 9ms"
+  },
+  {
+    "time": "22:36:30.423",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 137.242.X.X"
+  },
+  {
+    "time": "22:36:22.412",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 36 connections in 5ms"
+  },
+  {
+    "time": "22:36:22.412",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 9.207.X.X"
+  },
+  {
+    "time": "22:36:10.397",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 9 connections in 8ms"
+  },
+  {
+    "time": "22:36:08.370",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 37 connections in 15ms"
+  },
+  {
+    "time": "22:35:54.346",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 234.114.X.X"
+  },
+  {
+    "time": "22:35:52.342",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 8 connections in 4ms"
+  },
+  {
+    "time": "22:35:50.337",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:35:48.319",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 44 connections in 10ms"
+  },
+  {
+    "time": "22:35:40.295",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 17 connections in 9ms"
+  },
+  {
+    "time": "22:35:38.284",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 197.19.X.X"
+  },
+  {
+    "time": "22:35:36.270",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:35:36.270",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 40 connections in 4ms"
+  },
+  {
+    "time": "22:35:32.256",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 11 connections in 13ms"
+  },
+  {
+    "time": "22:35:28.250",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 29.146.X.X"
+  },
+  {
+    "time": "22:35:26.249",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 22 connections in 3ms"
+  },
+  {
+    "time": "22:35:24.247",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 56.74.X.X"
+  },
+  {
+    "time": "22:35:22.235",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 40 connections in 8ms"
+  },
+  {
+    "time": "22:35:22.235",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 72.167.X.X"
+  },
+  {
+    "time": "22:35:20.230",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:35:18.218",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:35:14.215",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 10 connections in 13ms"
+  },
+  {
+    "time": "22:35:12.210",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 199.58.X.X"
+  },
+  {
+    "time": "22:35:10.205",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 40 connections in 1ms"
+  },
+  {
+    "time": "22:35:06.197",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 23 connections in 4ms"
+  },
+  {
+    "time": "22:34:58.193",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 11.60.X.X"
+  },
+  {
+    "time": "22:34:56.189",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 38 connections in 12ms"
+  },
+  {
+    "time": "22:34:42.180",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:34:42.179",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 41 connections in 14ms"
+  },
+  {
+    "time": "22:34:38.160",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 79.32.X.X"
+  },
+  {
+    "time": "22:34:36.154",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 159.158.X.X"
+  },
+  {
+    "time": "22:34:28.150",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 16 connections in 9ms"
+  },
+  {
+    "time": "22:34:28.150",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 201.50.X.X"
+  },
+  {
+    "time": "22:34:16.141",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:34:12.135",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 172.97.X.X"
+  },
+  {
+    "time": "22:34:10.128",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 36 connections in 5ms"
+  },
+  {
+    "time": "22:34:08.114",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 26 connections in 10ms"
+  },
+  {
+    "time": "22:34:06.107",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 13 connections in 5ms"
+  },
+  {
+    "time": "22:34:04.103",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 27 connections in 11ms"
+  },
+  {
+    "time": "22:33:56.096",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 44 connections in 3ms"
+  },
+  {
+    "time": "22:33:48.090",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 36.232.X.X"
+  },
+  {
+    "time": "22:33:46.086",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:33:44.082",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:33:38.077",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 10.80.X.X"
+  },
+  {
+    "time": "22:33:28.067",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 31 connections in 14ms"
+  },
+  {
+    "time": "22:33:28.066",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 148.161.X.X"
+  },
+  {
+    "time": "22:33:26.060",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 6 connections in 5ms"
+  },
+  {
+    "time": "22:33:26.060",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 170.215.X.X"
+  },
+  {
+    "time": "22:33:24.058",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 152.154.X.X"
+  },
+  {
+    "time": "22:33:18.047",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 29 connections in 13ms"
+  },
+  {
+    "time": "22:33:18.047",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 161.208.X.X"
+  },
+  {
+    "time": "22:33:14.040",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 14 connections in 12ms"
+  },
+  {
+    "time": "22:33:12.038",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 74.205.X.X"
+  },
+  {
+    "time": "22:33:08.036",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 222.6.X.X"
+  },
+  {
+    "time": "22:33:06.031",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 96.140.X.X"
+  },
+  {
+    "time": "22:33:00.028",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 199.80.X.X"
+  },
+  {
+    "time": "22:32:56.025",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 17.72.X.X"
+  },
+  {
+    "time": "22:32:52.021",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:32:38.011",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 16.53.X.X"
+  },
+  {
+    "time": "22:32:32.006",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 240.6.X.X"
+  },
+  {
+    "time": "22:32:26.000",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 27 connections in 7ms"
+  },
+  {
+    "time": "22:32:21.993",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%"
+  },
+  {
+    "time": "22:32:19.990",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 94%"
+  },
+  {
+    "time": "22:32:17.986",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 20 connections in 14ms"
+  },
+  {
+    "time": "22:32:15.983",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 21 connections in 5ms"
+  },
+  {
+    "time": "22:32:15.983",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 254.92.X.X"
+  },
+  {
+    "time": "22:32:09.976",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 98%"
+  },
+  {
+    "time": "22:32:05.935",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 36 connections in 10ms"
+  },
+  {
+    "time": "22:32:01.929",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 143.161.X.X"
+  },
+  {
+    "time": "22:31:59.927",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 18 connections in 14ms"
+  },
+  {
+    "time": "22:31:55.925",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 132.221.X.X"
+  },
+  {
+    "time": "22:31:49.913",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 35 connections in 6ms"
+  },
+  {
+    "time": "22:31:35.904",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 9 connections in 14ms"
+  },
+  {
+    "time": "22:31:35.904",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 251.221.X.X"
+  },
+  {
+    "time": "22:31:33.901",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 26.111.X.X"
+  },
+  {
+    "time": "22:31:31.895",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 6 connections in 9ms"
+  },
+  {
+    "time": "22:31:27.886",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 36 connections in 13ms"
+  },
+  {
+    "time": "22:31:23.883",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 185.137.X.X"
+  },
+  {
+    "time": "22:31:17.880",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 18 connections in 5ms"
+  },
+  {
+    "time": "22:31:13.878",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 43 connections in 15ms"
+  },
+  {
+    "time": "22:31:13.877",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 153.172.X.X"
+  },
+  {
+    "time": "22:31:09.875",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:31:03.868",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 110.70.X.X"
+  },
+  {
+    "time": "22:31:01.855",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:30:59.854",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 226.0.X.X"
+  },
+  {
+    "time": "22:30:55.849",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 44 connections in 8ms"
+  },
+  {
+    "time": "22:30:55.849",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 36.229.X.X"
+  },
+  {
+    "time": "22:30:53.845",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 120.248.X.X"
+  },
+  {
+    "time": "22:30:49.842",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 128.112.X.X"
+  },
+  {
+    "time": "22:30:41.835",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 223.160.X.X"
+  },
+  {
+    "time": "22:30:39.829",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:30:39.829",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 11 connections in 6ms"
+  },
+  {
+    "time": "22:30:39.829",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 250.53.X.X"
+  },
+  {
+    "time": "22:30:37.827",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 38 connections in 7ms"
+  },
+  {
+    "time": "22:30:33.820",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 39 connections in 4ms"
+  },
+  {
+    "time": "22:30:31.814",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 68%"
+  },
+  {
+    "time": "22:30:29.813",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 16 connections in 8ms"
+  },
+  {
+    "time": "22:30:27.812",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 21 connections in 13ms"
+  },
+  {
+    "time": "22:30:25.809",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 33 connections in 4ms"
+  },
+  {
+    "time": "22:30:25.809",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 56.168.X.X"
+  },
+  {
+    "time": "22:30:21.803",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 22 connections in 14ms"
+  },
+  {
+    "time": "22:30:17.798",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:30:17.798",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 98.120.X.X"
+  },
+  {
+    "time": "22:30:15.795",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 239.45.X.X"
+  },
+  {
+    "time": "22:30:09.790",
+    "level": "WARN",
+    "service": "api",
+    "msg": "Memory spike detected, performing GC collection"
+  },
+  {
+    "time": "22:30:09.790",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 20 connections in 7ms"
+  },
+  {
+    "time": "22:30:03.781",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 57.152.X.X"
+  },
+  {
+    "time": "22:30:01.774",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 33 connections in 10ms"
+  },
+  {
+    "time": "22:29:57.770",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 79.143.X.X"
+  },
+  {
+    "time": "22:29:55.757",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 213.41.X.X"
+  },
+  {
+    "time": "22:29:49.754",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 34 connections in 8ms"
+  },
+  {
+    "time": "22:29:49.754",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 156.166.X.X"
+  },
+  {
+    "time": "22:29:45.747",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 41.39.X.X"
+  },
+  {
+    "time": "22:29:43.745",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 195.148.X.X"
+  },
+  {
+    "time": "22:29:37.742",
+    "level": "INFO",
+    "service": "Network",
+    "msg": "Handling inbound connection from 71.175.X.X"
+  },
+  {
+    "time": "22:29:13.734",
+    "level": "INFO",
+    "service": "api",
+    "msg": "Handled 8 connections in 2ms"
+  },
+  {
     "time": "22:29:07.731",
     "level": "INFO",
     "service": "api",

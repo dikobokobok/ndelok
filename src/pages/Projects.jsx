@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import Toast from '../components/Toast'
 import socket from '../lib/socket'
+import { AuthContext } from '../App'
 
 export default function Projects() {
+  const { user } = useContext(AuthContext)
   const [view, setView] = useState('grid')
   const [projectList, setProjectList] = useState([])
   const [host, setHost] = useState('127.0.0.1')
@@ -133,11 +135,12 @@ export default function Projects() {
               <span className="material-symbols-outlined text-[18px]">list</span>
             </button>
           </div>
-          <button onClick={() => navigate('/deploy')} className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-xl text-sm hover:opacity-90 transition-opacity">
-            <span className="material-symbols-outlined text-[18px]">add</span>
-            New Project
-          </button>
-
+          {user?.role !== 'viewer' && (
+            <button onClick={() => navigate('/deploy')} className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-xl text-sm hover:opacity-90 transition-opacity">
+              <span className="material-symbols-outlined text-[18px]">add</span>
+              New Project
+            </button>
+          )}
         </div>
       </div>
 
@@ -183,25 +186,27 @@ export default function Projects() {
                 </div>
               </div>
               <div className="flex gap-1 shrink-0">
-                <div className="flex bg-surface-container-highest rounded-lg overflow-hidden border border-white/5 shrink-0">
-                  {p.status === 'Stopped' ? (
-                    <button onClick={(e) => { e.stopPropagation(); handleRestart(p.name) }} 
-                      className="w-12 h-7 hover:bg-emerald-500/20 hover:text-emerald-400 text-slate-400 transition-colors flex items-center justify-center">
-                      <span className="material-symbols-outlined text-[16px]">play_arrow</span>
-                    </button>
-                  ) : (
-                    <>
-                      <button onClick={(e) => { e.stopPropagation(); handleStop(p.name) }} 
-                        className="w-7 h-7 hover:bg-error/20 hover:text-error text-slate-400 transition-colors flex items-center justify-center">
-                        <span className="material-symbols-outlined text-[16px]">stop</span>
+                {user?.role !== 'viewer' && (
+                  <div className="flex bg-surface-container-highest rounded-lg overflow-hidden border border-white/5 shrink-0">
+                    {p.status === 'Stopped' ? (
+                      <button onClick={(e) => { e.stopPropagation(); handleRestart(p.name) }} 
+                        className="w-12 h-7 hover:bg-emerald-500/20 hover:text-emerald-400 text-slate-400 transition-colors flex items-center justify-center">
+                        <span className="material-symbols-outlined text-[16px]">play_arrow</span>
                       </button>
-                      <button onClick={(e) => { e.stopPropagation(); handleRestart(p.name) }}
-                        className="w-7 h-7 hover:bg-tertiary/20 hover:text-tertiary text-slate-400 transition-colors flex items-center justify-center border-l border-white/5">
-                        <span className="material-symbols-outlined text-[16px]">restart_alt</span>
-                      </button>
-                    </>
-                  )}
-                </div>
+                    ) : (
+                      <>
+                        <button onClick={(e) => { e.stopPropagation(); handleStop(p.name) }} 
+                          className="w-7 h-7 hover:bg-error/20 hover:text-error text-slate-400 transition-colors flex items-center justify-center">
+                          <span className="material-symbols-outlined text-[16px]">stop</span>
+                        </button>
+                        <button onClick={(e) => { e.stopPropagation(); handleRestart(p.name) }}
+                          className="w-7 h-7 hover:bg-tertiary/20 hover:text-tertiary text-slate-400 transition-colors flex items-center justify-center border-l border-white/5">
+                          <span className="material-symbols-outlined text-[16px]">restart_alt</span>
+                        </button>
+                      </>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -238,16 +243,24 @@ export default function Projects() {
 
             <div className="mt-3 flex justify-between items-center text-[9px] text-slate-600 pt-3 border-t border-white/5">
               <div className="flex items-center gap-3">
-                <button onClick={(e) => { e.stopPropagation(); handleDelete(p.name) }} 
-                  className="hover:text-error transition-all font-bold uppercase tracking-widest flex items-center gap-1">
-                  <span className="material-symbols-outlined text-[13px]">delete</span> Delete
-                </button>
-                <div className="w-[1px] h-3 bg-white/10" />
-                <button onClick={(e) => { e.stopPropagation(); openEdit(p) }} 
-                  className="hover:text-amber-500 transition-all font-bold uppercase tracking-widest flex items-center gap-1">
-                  <span className="material-symbols-outlined text-[13px]">edit_square</span> Edit
-                </button>
-                <div className="w-[1px] h-3 bg-white/10" />
+                {user?.role === 'owner' && (
+                  <>
+                    <button onClick={(e) => { e.stopPropagation(); handleDelete(p.name) }} 
+                      className="hover:text-error transition-all font-bold uppercase tracking-widest flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[13px]">delete</span> Delete
+                    </button>
+                    <div className="w-[1px] h-3 bg-white/10" />
+                  </>
+                )}
+                {user?.role !== 'viewer' && (
+                  <>
+                    <button onClick={(e) => { e.stopPropagation(); openEdit(p) }} 
+                      className="hover:text-amber-500 transition-all font-bold uppercase tracking-widest flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[13px]">edit_square</span> Edit
+                    </button>
+                    <div className="w-[1px] h-3 bg-white/10" />
+                  </>
+                )}
                 <Link to={`/logs?project=${encodeURIComponent(p.name)}`} className="text-primary hover:text-primary-container transition-colors font-bold uppercase tracking-widest flex items-center gap-1">
                   Logs <span className="material-symbols-outlined text-[13px]">arrow_forward</span>
                 </Link>

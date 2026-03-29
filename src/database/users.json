@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "name": "ibnu nur ramadani",
+    "username": "ibnu",
+    "password": "Ibnu123",
+    "email": "ibnunurramadani175@gmail.com",
+    "role": "owner",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=ibnu"
+  },
+  {
+    "id": "2",
+    "name": "Project Manager",
+    "username": "admin",
+    "password": "Admin123",
+    "email": "admin@ndelok.me",
+    "role": "admin",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=admin"
+  },
+  {
+    "id": "3",
+    "name": "Guest Viewer",
+    "username": "viewer",
+    "password": "Viewer123",
+    "email": "viewer@ndelok.me",
+    "role": "viewer",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=viewer"
+  }
+]

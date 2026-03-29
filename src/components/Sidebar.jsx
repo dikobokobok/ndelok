@@ -1,19 +1,24 @@
+import { useContext } from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import { AuthContext } from '../App'
 
 const navItems = [
   { to: '/dashboard',     icon: 'dashboard',      label: 'Dashboard' },
   { to: '/servers',       icon: 'dns',            label: 'Servers' },
   { to: '/projects',      icon: 'rocket_launch',  label: 'Projects' },
   { to: '/logs',          icon: 'terminal',       label: 'Logs' },
-  { to: '/settings',      icon: 'settings',       label: 'Settings' },
+  { to: '/settings',      icon: 'settings',       label: 'Settings', roles: ['owner'] },
 ]
 
 const footerNavItems = [
   { to: '/documentation', icon: 'menu_book',      label: 'Documentation' },
-  { to: '/support',       icon: 'support_agent',  label: 'Support' },
 ]
 
 export default function Sidebar({ onClose }) {
+  const { user, logout } = useContext(AuthContext)
+
+  const filteredNav = navItems.filter(item => !item.roles || item.roles.includes(user?.role))
+
   return (
     <aside className="h-screen w-64 flex flex-col bg-[#0f1425] shadow-2xl sidebar-gradient border-r border-white/5 relative z-50">
       {/* Mobile Close Button */}
@@ -44,7 +49,7 @@ export default function Sidebar({ onClose }) {
 
       {/* Navigation */}
       <nav className="flex-1 px-3 space-y-0.5 pb-4 mt-2">
-        {navItems.map(({ to, icon, label }) => (
+        {filteredNav.map(({ to, icon, label }) => (
           <NavLink
             key={to}
             to={to}
@@ -70,13 +75,32 @@ export default function Sidebar({ onClose }) {
         ))}
       </nav>
 
-      {/* Bottom Section */}
-      <div className="px-3 pb-6 space-y-1">
-        <Link to="/deploy" className="w-full mb-4 py-3 px-4 bg-gradient-to-r from-primary to-primary-border text-on-primary font-bold rounded-xl text-xs tracking-widest uppercase transition-all hover:brightness-110 active:scale-95 flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
-          <span className="material-symbols-outlined text-[18px]">add</span>
-          Deploy New
-        </Link>
+      {/* User Profile & Actions */}
+      <div className="px-3 pb-6 space-y-3">
+        {user?.role !== 'viewer' && (
+          <Link to="/deploy" className="w-full py-3 px-4 bg-gradient-to-r from-primary to-primary-border text-white font-bold rounded-xl text-xs tracking-widest uppercase transition-all hover:brightness-110 active:scale-95 flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+            <span className="material-symbols-outlined text-[18px]">add</span>
+            Deploy New
+          </Link>
+        )}
 
+        {/* User Card */}
+        <div className="p-4 bg-white/5 rounded-2xl border border-white/5 mb-2">
+          <div className="flex items-center gap-3 mb-3">
+            <img src={user?.avatar} alt="avatar" className="w-10 h-10 rounded-full bg-surface-container" />
+            <div className="overflow-hidden">
+              <p className="text-sm font-bold text-white truncate">{user?.name}</p>
+              <p className="text-[10px] text-slate-500 uppercase tracking-tighter">{user?.role}</p>
+            </div>
+          </div>
+          <button 
+            onClick={logout}
+            className="w-full py-2 flex items-center justify-center gap-2 text-slate-400 hover:text-error transition-colors text-xs font-semibold uppercase tracking-widest bg-white/5 rounded-lg border border-transparent hover:border-error/20"
+          >
+            <span className="material-symbols-outlined text-sm">logout</span>
+            Sign Out
+          </button>
+        </div>
 
         {footerNavItems.map(({ to, icon, label }) => (
           <NavLink

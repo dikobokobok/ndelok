@@ -8,14 +8,14 @@ import { Server } from 'socket.io'
 
 let ioInstance = null;
 
-const DB_PATH = path.join(process.cwd(), 'projects.json')
+const DB_PATH = path.join(process.cwd(), 'src', 'database', 'projects.json')
 let lastCpuInfo = os.cpus()
 let currentCpuUsage = 0
 let activeProjects = []
 let runningProcs = {}
 let deployLogs = {}
 
-const LOGS_PATH = path.join(process.cwd(), 'system-logs.json')
+const LOGS_PATH = path.join(process.cwd(), 'src', 'database', 'system-logs.json')
 let systemLogs = []
 if (fs.existsSync(LOGS_PATH)) {
   try {

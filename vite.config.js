@@ -324,6 +324,14 @@ export default defineConfig({
             }
           })
         })
+        server.middlewares.use('/api/users', (req, res) => {
+          if (req.method === 'GET') {
+            res.setHeader('Content-Type', 'application/json')
+            const safeUsers = users.map(({ password, ...u }) => u)
+            res.end(JSON.stringify(safeUsers))
+          }
+        })
+
         server.middlewares.use('/api/deploy-logs', (req, res) => {
           const name = new URL(req.url, 'http://localhost').searchParams.get('name')
           res.setHeader('Content-Type', 'application/json')

@@ -1,30 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-function Toggle({ checked, onChange }) {
+function Toggle({ checked, onChange, disabled }) {
   return (
-    <label className="relative inline-flex items-center cursor-pointer">
-      <input type="checkbox" className="sr-only" checked={checked} onChange={onChange} />
-      <div className={`w-11 h-6 rounded-full transition-colors duration-200 ${checked ? 'bg-primary' : 'bg-surface-container'}`}>
-        <div className={`absolute top-[2px] left-[2px] w-5 h-5 rounded-full transition-all duration-200 ${checked ? 'translate-x-5 bg-on-primary' : 'bg-slate-400'}`} />
+    <label className={`relative inline-flex items-center ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
+      <input type="checkbox" className="sr-only" checked={checked} onChange={onChange} disabled={disabled} />
+      <div className={`w-11 h-6 rounded-full transition-colors duration-200 ${checked ? 'bg-primary' : 'bg-surface-container-highest'}`}>
+        <div className={`absolute top-[2px] left-[2px] w-5 h-5 rounded-full transition-all duration-200 ${checked ? 'translate-x-5 bg-white' : 'bg-slate-500'}`} />
       </div>
     </label>
   )
 }
 
-const teamMembers = [
-  { initials: 'JD', name: 'John Doe',   email: 'john@ndelok.me',   role: 'Owner',  status: 'Active',  fixed: true  },
-  { initials: 'AM', name: 'Alex Miller', email: 'alex.m@infra.co', role: 'Viewer', status: 'Active',  fixed: false },
-  { initials: 'SP', name: 'Sara Park',   email: 'sara@ndelok.me',  role: 'Admin',  status: 'Pending', fixed: false },
-]
-
 const sshKeys = [
-  { name: 'MacBook-Pro-M3',    hash: 'SHA256:7uK...89xX', added: '2 months ago' },
-  { name: 'Production-Relay-1',hash: 'SHA256:9qA...22pZ', added: '5 days ago'  },
+  { name: 'MacBook-Pro-Ibnu',    hash: 'SHA256:7uK...89xX', added: '2 months ago' },
+  { name: 'Production-Server',   hash: 'SHA256:9qA...22pZ', added: '5 days ago'  },
 ]
 
 const integrations = [
   { icon: 'send',   iconColor: 'text-sky-500',    iconBg: 'bg-sky-500/10',    name: 'Telegram', desc: 'Real-time bot alerts',      enabled: true,  type: 'token',   placeholder: '', value: '••••••••••••••••' },
-  { icon: 'groups', iconColor: 'text-indigo-500', iconBg: 'bg-indigo-500/10', name: 'Discord',  desc: 'Webhook channel posting',   enabled: false, type: 'webhook', placeholder: 'https://discord.com/api/webhooks/...', value: '' },
+  { icon: 'groups', iconColor: 'text-indigo-400', iconBg: 'bg-indigo-500/10', name: 'Discord',  desc: 'Webhook channel posting',   enabled: false, type: 'webhook', placeholder: 'https://discord.com/api/webhooks/...', value: '' },
   { icon: 'mail',   iconColor: 'text-primary',    iconBg: 'bg-primary/10',    name: 'Email',    desc: 'Digest and critical alerts', enabled: true,  type: 'email',   placeholder: '', value: '' },
 ]
 
@@ -36,126 +30,140 @@ const anchors = [
 
 export default function Settings() {
   const [activeSection, setActiveSection] = useState('team')
+  const [teamMembers, setTeamMembers] = useState([])
   const [integrationEnabled, setIntegrationEnabled] = useState({ Telegram: true, Discord: false, Email: true })
-  const [toast, setToast] = useState(true)
+  const [toast, setToast] = useState(false)
   const [emailChecks, setEmailChecks] = useState({ summary: true, downtime: true })
 
+  useEffect(() => {
+    fetch('/api/users')
+      .then(res => res.json())
+      .then(data => setTeamMembers(data))
+  }, [])
+
+  const handleSave = () => {
+    setToast(true)
+    setTimeout(() => setToast(false), 3000)
+  }
+
   return (
-    <div className="p-10 min-h-screen bg-surface">
-      <div className="max-w-5xl mx-auto space-y-10">
+    <div className="p-10 min-h-screen bg-[#0f1115] text-slate-300">
+      <div className="max-w-6xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
         {/* Header */}
         <section>
-          <nav className="flex items-center gap-2 text-xs text-slate-500 mb-2 uppercase tracking-widest font-bold">
-            <span>Observatory</span>
+          <nav className="flex items-center gap-2 text-[10px] text-slate-500 mb-2 uppercase tracking-[0.2em] font-black">
+            <span>Control Center</span>
             <span className="material-symbols-outlined text-[14px]">chevron_right</span>
-            <span className="text-primary/70">Settings</span>
+            <span className="text-primary">System Settings</span>
           </nav>
-          <h2 className="text-3xl font-black tracking-tight text-on-surface mb-1">Settings</h2>
-          <p className="text-on-surface-variant text-sm">Manage your observatory's security, team access, and notification channels.</p>
+          <h2 className="text-4xl font-black tracking-tight text-white mb-2">Workspace Identity</h2>
+          <p className="text-slate-500 text-sm max-w-2xl">Configuration node for identity management, notification relays, and secure cryptographic access keys.</p>
         </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Left: Anchor Nav */}
-          <div className="lg:col-span-3 space-y-1 hidden lg:block">
+          <div className="lg:col-span-3 space-y-2 hidden lg:block sticky top-10 h-fit">
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-600 mb-4 ml-4">Registry Sections</p>
             {anchors.map(a => (
               <button key={a.id} onClick={() => setActiveSection(a.id)}
-                className={`w-full flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-medium text-left transition-colors ${activeSection === a.id ? 'bg-surface-container text-primary' : 'text-on-surface-variant hover:bg-surface-container-low'}`}>
-                <span className="material-symbols-outlined text-[18px]">{a.icon}</span>
-                {a.label}
+                className={`w-full flex items-center gap-4 px-5 py-3 rounded-2xl text-xs font-bold text-left transition-all duration-300 transform group ${activeSection === a.id ? 'bg-primary/10 text-primary border border-primary/20 shadow-[0_0_20px_rgba(var(--primary-rgb),0.1)]' : 'text-slate-500 hover:text-slate-300 hover:bg-white/5 border border-transparent'}`}>
+                <span className={`material-symbols-outlined text-[18px] transition-transform ${activeSection === a.id ? 'scale-110' : 'group-hover:translate-x-1'}`}>{a.icon}</span>
+                <span className="uppercase tracking-widest">{a.label}</span>
               </button>
             ))}
           </div>
 
           {/* Right: Panels */}
-          <div className="lg:col-span-9 space-y-8">
+          <div className="lg:col-span-9 space-y-12">
             {/* Team Management */}
-            <section id="team" className="bg-surface-container-low rounded-xl overflow-hidden shadow-xl">
+            <section id="team" className="bg-surface-container/30 backdrop-blur-md border border-white/5 rounded-[32px] overflow-hidden shadow-2xl">
               <div className="p-8">
-                <div className="flex justify-between items-center mb-6">
+                <div className="flex justify-between items-center mb-8">
                   <div>
-                    <h3 className="text-xl font-bold text-on-surface">Team Management</h3>
-                    <p className="text-sm text-on-surface-variant mt-1">Control access levels for your infrastructure</p>
+                    <h3 className="text-xl font-black text-white tracking-tight">Access Control</h3>
+                    <p className="text-xs text-slate-500 mt-1 uppercase tracking-widest">Managing authorized workspace agents</p>
                   </div>
-                  <button className="flex items-center gap-2 px-4 py-2 bg-surface-container-highest text-primary rounded-lg text-sm font-bold hover:bg-surface-container-high transition-colors">
+                  <button className="flex items-center gap-2 px-5 py-2.5 bg-primary/10 text-primary rounded-xl text-[10px] font-black uppercase tracking-widest border border-primary/20 hover:bg-primary hover:text-white transition-all shadow-lg shadow-primary/10 active:scale-95">
                     <span className="material-symbols-outlined text-[16px]">person_add</span>
-                    Invite Member
+                    Register Agent
                   </button>
                 </div>
-                <table className="w-full text-left">
-                  <thead>
-                    <tr className="text-[11px] font-label uppercase tracking-[0.1em] text-slate-500 bg-surface-container/50">
-                      <th className="py-3 px-4 font-bold">User</th>
-                      <th className="py-3 px-4 font-bold">Role</th>
-                      <th className="py-3 px-4 font-bold">Status</th>
-                      <th className="py-3 px-4 font-bold text-right">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-outline-variant/10">
-                    {teamMembers.map(m => (
-                      <tr key={m.email} className="hover:bg-surface-container-high transition-colors">
-                        <td className="py-4 px-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-xs font-black text-primary">{m.initials}</div>
-                            <div>
-                              <p className="text-sm font-bold text-on-surface">{m.name}</p>
-                              <p className="text-xs text-on-surface-variant">{m.email}</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4">
-                          {m.fixed
-                            ? <span className="px-2 py-1 text-[10px] font-bold rounded bg-primary/10 text-primary uppercase">{m.role}</span>
-                            : <select className="bg-surface-container border-none text-xs rounded-lg py-1 px-2 text-on-surface-variant focus:ring-1 focus:ring-primary focus:outline-none">
-                                <option>Admin</option>
-                                <option selected={m.role === 'Viewer'}>Viewer</option>
-                              </select>
-                          }
-                        </td>
-                        <td className="py-4 px-4">
-                          <div className="flex items-center gap-2">
-                            <span className={`w-1.5 h-1.5 rounded-full ${m.status === 'Active' ? 'bg-emerald-500' : 'bg-tertiary'}`} />
-                            <span className="text-xs text-on-surface-variant">{m.status}</span>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4 text-right">
-                          <button className="text-slate-500 hover:text-white transition-colors">
-                            <span className="material-symbols-outlined text-sm">more_vert</span>
-                          </button>
-                        </td>
+
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left">
+                    <thead>
+                      <tr className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+                        <th className="pb-6 px-4">Workspace Identity</th>
+                        <th className="pb-6 px-4">Assigned Role</th>
+                        <th className="pb-6 px-4">Activity Status</th>
+                        <th className="pb-6 px-4 text-right">Settings</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="divide-y divide-white/[0.03]">
+                      {teamMembers.map(m => (
+                        <tr key={m.email} className="group hover:bg-white/[0.02] transition-colors">
+                          <td className="py-5 px-4">
+                            <div className="flex items-center gap-4">
+                              <img src={m.avatar} alt="avatar" className="w-10 h-10 rounded-full bg-surface-container ring-2 ring-white/5 group-hover:ring-primary/40 transition-all" />
+                              <div>
+                                <p className="text-sm font-bold text-white group-hover:text-primary transition-colors">{m.name}</p>
+                                <p className="text-[10px] text-slate-500 font-telemetry">{m.email}</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="py-5 px-4">
+                            <span className={`px-3 py-1 text-[9px] font-black rounded-lg uppercase tracking-widest border ${m.role === 'owner' ? 'bg-primary/10 text-primary border-primary/20' : m.role === 'admin' ? 'bg-tertiary/10 text-tertiary border-tertiary/20' : 'bg-slate-500/10 text-slate-400 border-white/5'}`}>
+                              {m.role}
+                            </span>
+                          </td>
+                          <td className="py-5 px-4">
+                            <div className="flex items-center gap-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
+                              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Synchronized</span>
+                            </div>
+                          </td>
+                          <td className="py-5 px-4 text-right">
+                            <button className="w-8 h-8 rounded-lg text-slate-600 hover:text-white hover:bg-white/5 transition-all">
+                              <span className="material-symbols-outlined text-[18px]">tune</span>
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </section>
 
             {/* SSH & API Keys */}
-            <section id="security" className="bg-surface-container-low rounded-xl overflow-hidden shadow-xl">
-              <div className="p-8 space-y-8">
+            <section id="security" className="bg-surface-container/30 backdrop-blur-md border border-white/5 rounded-[32px] overflow-hidden shadow-2xl">
+              <div className="p-8 space-y-10">
                 <div>
-                  <h3 className="text-xl font-bold text-on-surface">SSH & API Keys</h3>
-                  <p className="text-sm text-on-surface-variant mt-1">Authenticate via terminal or external applications</p>
+                  <h3 className="text-xl font-black text-white tracking-tight">Security Tokens</h3>
+                  <p className="text-xs text-slate-500 mt-1 uppercase tracking-widest">Root-level cryptographic authentication</p>
                 </div>
 
                 {/* SSH Keys */}
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between border-b border-outline-variant/10 pb-2">
-                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest">SSH Keys</h4>
-                    <button className="text-primary text-xs font-bold hover:underline">Add New Key</button>
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">Authorized SSH Keys</h4>
+                    <button className="text-primary text-[10px] font-black uppercase tracking-widest hover:brightness-125 transition-all">Add RSA/ED25519</button>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {sshKeys.map(k => (
-                      <div key={k.name} className="p-4 rounded-xl bg-surface-container flex items-start justify-between group hover:bg-surface-container-high transition-all">
-                        <div className="flex items-start gap-3">
-                          <span className="material-symbols-outlined text-primary mt-1">terminal</span>
-                          <div>
-                            <p className="text-sm font-bold text-on-surface">{k.name}</p>
-                            <p className="text-xs font-telemetry text-slate-500 mt-1">{k.hash}</p>
-                            <p className="text-[10px] text-slate-600 mt-2">Added {k.added}</p>
+                      <div key={k.name} className="p-5 rounded-2xl bg-surface-container-highest/20 border border-white/5 flex items-start justify-between group hover:border-primary/30 transition-all hover:shadow-lg hover:shadow-primary/5">
+                        <div className="flex items-start gap-4">
+                          <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                            <span className="material-symbols-outlined text-primary text-[20px]">terminal</span>
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-xs font-black text-white truncate">{k.name}</p>
+                            <p className="text-[10px] font-telemetry text-slate-600 mt-1 truncate">{k.hash}</p>
+                            <p className="text-[9px] text-slate-700 mt-3 uppercase tracking-widest font-bold">Added {k.added}</p>
                           </div>
                         </div>
-                        <button className="text-error opacity-0 group-hover:opacity-100 transition-opacity">
-                          <span className="material-symbols-outlined text-sm">delete</span>
+                        <button className="text-error/40 hover:text-error transition-colors p-1">
+                          <span className="material-symbols-outlined text-[18px]">delete_forever</span>
                         </button>
                       </div>
                     ))}
@@ -163,23 +171,25 @@ export default function Settings() {
                 </div>
 
                 {/* API Token */}
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between border-b border-outline-variant/10 pb-2">
-                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest">API Tokens</h4>
-                    <button className="text-primary text-xs font-bold hover:underline">Generate Token</button>
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">Global API Integration</h4>
+                    <button className="text-tertiary text-[10px] font-black uppercase tracking-widest hover:brightness-125 transition-all">Refresh Node</button>
                   </div>
-                  <div className="p-5 rounded-xl bg-surface-container border-l-4 border-primary/40">
-                    <div className="flex justify-between items-center mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="px-2 py-0.5 text-[9px] font-black bg-primary-container text-on-primary-container rounded">ACTIVE</span>
-                        <span className="text-sm font-bold text-on-surface">Agent-Token-Prod</span>
+                  <div className="p-6 rounded-[24px] bg-gradient-to-br from-surface-container-highest/30 to-transparent border border-white/5 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full" />
+                    <div className="flex justify-between items-center mb-5 relative z-10">
+                      <div className="flex items-center gap-3">
+                        <span className="px-2 py-1 text-[8px] font-black bg-emerald-500/10 text-emerald-400 rounded-md border border-emerald-500/20 tracking-widest">NODE_ACTIVE</span>
+                        <span className="text-xs font-black text-white tracking-widest uppercase">System-Access-Key</span>
                       </div>
-                      <span className="text-xs text-slate-500">Last used 4 hours ago</span>
+                      <span className="text-[10px] font-bold text-slate-600">L_OBS_SYNC: 4h ago</span>
                     </div>
-                    <div className="flex items-center bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
-                      <code className="text-xs text-primary-fixed overflow-hidden whitespace-nowrap flex-1 font-telemetry">nd_live_51Mv9K4S4vD9W...</code>
-                      <button className="ml-2 p-1.5 hover:bg-surface-container-high rounded transition-colors text-slate-400 hover:text-white">
-                        <span className="material-symbols-outlined text-sm">content_copy</span>
+                    <div className="flex items-center bg-black/40 backdrop-blur-sm p-3 rounded-xl border border-white/5 group relative z-10">
+                      <code className="text-xs text-primary-fixed overflow-hidden whitespace-nowrap flex-1 font-telemetry tracking-tighter opacity-70">nd_node_relay_51Mv9K4S4vD9W...</code>
+                      <button className="ml-3 px-3 py-1.5 bg-white/5 hover:bg-primary/20 hover:text-primary rounded-lg transition-all text-slate-400 flex items-center gap-2">
+                        <span className="text-[9px] font-black uppercase tracking-widest">Copy</span>
+                        <span className="material-symbols-outlined text-[16px]">content_copy</span>
                       </button>
                     </div>
                   </div>
@@ -188,20 +198,20 @@ export default function Settings() {
             </section>
 
             {/* Notifications */}
-            <section id="notifications" className="bg-surface-container-low rounded-xl overflow-hidden shadow-xl">
+            <section id="notifications" className="bg-surface-container/30 backdrop-blur-md border border-white/5 rounded-[32px] overflow-hidden shadow-2xl">
               <div className="p-8">
-                <h3 className="text-xl font-bold text-on-surface mb-8">Notification Integrations</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <h3 className="text-xl font-black text-white tracking-tight mb-10">External Relays</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   {integrations.map(intg => (
-                    <div key={intg.name} className="space-y-4">
+                    <div key={intg.name} className="space-y-5">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-10 h-10 rounded-full ${intg.iconBg} flex items-center justify-center`}>
-                            <span className={`material-symbols-outlined ${intg.iconColor}`}>{intg.icon}</span>
+                        <div className="flex items-center gap-4">
+                          <div className={`w-12 h-12 rounded-2xl ${intg.iconBg} flex items-center justify-center border border-white/5`}>
+                            <span className={`material-symbols-outlined text-[24px] ${intg.iconColor}`}>{intg.icon}</span>
                           </div>
                           <div>
-                            <h4 className="text-sm font-bold text-on-surface">{intg.name}</h4>
-                            <p className="text-[10px] text-on-surface-variant">{intg.desc}</p>
+                            <h4 className="text-sm font-black text-white uppercase tracking-widest">{intg.name}</h4>
+                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-tight">{intg.desc}</p>
                           </div>
                         </div>
                         <Toggle
@@ -211,32 +221,40 @@ export default function Settings() {
                       </div>
 
                       {intg.name === 'Email' ? (
-                        <div className={`space-y-2 transition-opacity ${integrationEnabled.Email ? 'opacity-100' : 'opacity-40'}`}>
+                        <div className={`space-y-3 transition-all duration-500 ${integrationEnabled.Email ? 'opacity-100' : 'opacity-20 grayscale pointer-events-none'}`}>
                           {[
-                            { key: 'summary',  label: 'Daily infrastructure summary' },
-                            { key: 'downtime', label: 'Immediate downtime critical alerts' },
+                            { key: 'summary',  label: 'Chronological Daily Summary' },
+                            { key: 'downtime', label: 'Zero-Latency Critical Alerts' },
                           ].map(c => (
-                            <label key={c.key} className="flex items-center gap-2 cursor-pointer">
-                              <input type="checkbox"
-                                checked={emailChecks[c.key]}
-                                disabled={!integrationEnabled.Email}
-                                onChange={() => setEmailChecks(prev => ({ ...prev, [c.key]: !prev[c.key] }))}
-                                className="rounded bg-surface-container border-none text-primary focus:ring-0 w-4 h-4"
-                              />
-                              <span className="text-xs text-on-surface-variant">{c.label}</span>
+                            <label key={c.key} className="flex items-center gap-3 cursor-pointer group">
+                              <div className="relative">
+                                <input type="checkbox"
+                                  checked={emailChecks[c.key]}
+                                  disabled={!integrationEnabled.Email}
+                                  onChange={() => setEmailChecks(prev => ({ ...prev, [c.key]: !prev[c.key] }))}
+                                  className="peer sr-only"
+                                />
+                                <div className="w-5 h-5 bg-surface-container-highest rounded border border-white/10 peer-checked:bg-primary peer-checked:border-primary transition-all flex items-center justify-center">
+                                   <span className="material-symbols-outlined text-[14px] text-white scale-0 peer-checked:scale-100 transition-transform">check</span>
+                                </div>
+                              </div>
+                              <span className="text-xs text-slate-400 group-hover:text-slate-200 transition-colors uppercase tracking-widest font-bold">{c.label}</span>
                             </label>
                           ))}
                         </div>
                       ) : (
-                        <div className={`transition-opacity ${integrationEnabled[intg.name] ? 'opacity-100' : 'opacity-40'}`}>
-                          <label className="text-[11px] font-label text-slate-500 uppercase block mb-1">{intg.type === 'token' ? 'Bot Token' : 'Webhook URL'}</label>
-                          <input
-                            type={intg.type === 'token' ? 'password' : 'text'}
-                            defaultValue={intg.value}
-                            disabled={!integrationEnabled[intg.name]}
-                            placeholder={intg.placeholder}
-                            className="w-full bg-surface-container border-none rounded-lg text-sm text-on-surface focus:ring-1 focus:ring-primary focus:outline-none py-2 px-3 placeholder:text-slate-600 disabled:cursor-not-allowed"
-                          />
+                        <div className={`transition-all duration-500 ${integrationEnabled[intg.name] ? 'opacity-100' : 'opacity-20 grayscale pointer-events-none'}`}>
+                          <label className="text-[9px] font-black text-slate-600 uppercase tracking-widest block mb-2">{intg.type === 'token' ? 'Encryption Token' : 'Secure Webhook Target'}</label>
+                          <div className="relative group">
+                            <input
+                              type={intg.type === 'token' ? 'password' : 'text'}
+                              defaultValue={intg.value}
+                              disabled={!integrationEnabled[intg.name]}
+                              placeholder={intg.placeholder}
+                              className="w-full bg-[#0a0c10] border border-white/5 rounded-xl text-xs text-white focus:ring-1 focus:ring-primary focus:border-primary focus:bg-black/50 outline-none py-3 px-4 transition-all placeholder:text-slate-800 font-telemetry"
+                            />
+                            <div className="absolute inset-0 bg-primary/5 opacity-0 group-focus-within:opacity-100 rounded-xl transition-opacity pointer-events-none" />
+                          </div>
                         </div>
                       )}
                     </div>
@@ -244,10 +262,12 @@ export default function Settings() {
                 </div>
 
                 {/* Save */}
-                <div className="mt-10 pt-8 border-t border-outline-variant/10 flex justify-end gap-4">
-                  <button className="px-6 py-2 text-sm font-bold text-slate-400 hover:text-white transition-colors">Discard Changes</button>
-                  <button className="px-8 py-2 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-lg shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-all">
-                    Save Configurations
+                <div className="mt-16 pt-10 border-t border-white/5 flex justify-end items-center gap-8">
+                  <button className="text-xs font-black text-slate-600 hover:text-white uppercase tracking-[0.2em] transition-all">Reset Config</button>
+                  <button 
+                    onClick={handleSave}
+                    className="px-10 py-4 bg-primary text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl shadow-2xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 active:translate-y-0 transition-all">
+                    Sync to Node
                   </button>
                 </div>
               </div>
@@ -256,17 +276,17 @@ export default function Settings() {
         </div>
       </div>
 
-      {/* Floating Toast */}
+      {/* Floating Toast Notification */}
       {toast && (
-        <div className="fixed bottom-8 right-8 glass-panel border border-primary/20 p-4 rounded-xl shadow-2xl flex items-center gap-4 z-50 animate-fade-in">
-          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-            <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>security</span>
+        <div className="fixed bottom-12 right-12 bg-primary/90 backdrop-blur-xl border border-white/20 p-5 rounded-[24px] shadow-[0_20px_50px_rgba(var(--primary-rgb),0.3)] flex items-center gap-5 z-50 animate-in fade-in zoom-in slide-in-from-right-10 duration-500">
+          <div className="w-12 h-12 rounded-[18px] bg-white/10 flex items-center justify-center">
+            <span className="material-symbols-outlined text-white text-2xl animate-pulse">cloud_done</span>
           </div>
           <div>
-            <p className="text-sm font-bold text-on-surface">Auto-Save Enabled</p>
-            <p className="text-xs text-on-surface-variant">All key changes are synced to vault</p>
+            <p className="text-sm font-black text-white uppercase tracking-widest">Synchronization Complete</p>
+            <p className="text-[10px] text-white/70 font-bold uppercase tracking-tight">Configuration node updated successfully</p>
           </div>
-          <button onClick={() => setToast(false)} className="text-slate-500 hover:text-white ml-4 transition-colors">
+          <button onClick={() => setToast(false)} className="ml-4 w-8 h-8 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center text-white/50 hover:text-white">
             <span className="material-symbols-outlined text-sm">close</span>
           </button>
         </div>

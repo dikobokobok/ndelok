@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import socket from '../lib/socket'
 import Terminal from '../components/Terminal'
+import { AuthContext } from '../App'
 
 const levelConfig = {
   ERROR:   { badge: 'bg-error/10 text-error',       dot: 'bg-error' },
@@ -13,6 +14,7 @@ const levelConfig = {
 const levels   = ['All', 'ERROR', 'WARN', 'INFO', 'SUCCESS']
 
 export default function Logs() {
+  const { user } = useContext(AuthContext)
   const [searchParams] = useSearchParams()
   const initProject = searchParams.get('project') || ''
 
@@ -95,8 +97,8 @@ export default function Logs() {
             className="px-4 py-2 bg-surface-container-highest text-xs font-bold rounded-xl hover:text-primary transition-colors">
             {streaming ? 'Pause Stream' : 'Resume Stream'}
           </button>
-          <button onClick={handleExport} disabled={filtered.length === 0}
-            className="flex items-center gap-2 px-4 py-2 bg-surface-container-highest text-xs font-bold rounded-xl hover:text-primary transition-colors disabled:opacity-50 disabled:hover:text-current">
+          <button onClick={handleExport} disabled={filtered.length === 0 || user?.role === 'viewer'}
+            className="flex items-center gap-2 px-4 py-2 bg-surface-container-highest text-xs font-bold rounded-xl hover:text-primary transition-colors disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed">
             <span className="material-symbols-outlined text-[16px]">download</span>
             Export
           </button>

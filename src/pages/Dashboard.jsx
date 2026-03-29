@@ -1,7 +1,8 @@
 import StatCard from '../components/StatCard'
 import StatusBadge from '../components/StatusBadge'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import socket from '../lib/socket'
+import { AuthContext } from '../App'
 
 const cpuPoints = [180, 160, 190, 140, 170, 120, 150, 80, 110, 60, 90, 40]
 const W = 1000
@@ -73,6 +74,7 @@ const colorMap = {
 const loadColor = { healthy: 'bg-emerald-500', latency: 'bg-tertiary', lost: 'bg-error' }
 
 export default function Dashboard() {
+  const { user } = useContext(AuthContext)
   const [osStats, setOsStats] = useState(null)
   const [logs, setLogs] = useState([])
   const [summary, setSummary] = useState({ total: 0, running: 0, stopped: 0, warnings: 0, health: 99.9 })
@@ -131,8 +133,16 @@ export default function Dashboard() {
 
   const criticalLogs = logs.filter(l => l.level === 'ERROR' || l.level === 'WARN').slice(0, 3)
 
+  const firstName = user?.name?.split(' ')[0] || 'User'
+
   return (
-    <div className="p-8 max-w-[1600px] mx-auto space-y-8 animate-in">
+    <div className="p-8 max-w-[1600px] mx-auto space-y-8 animate-in transition-all">
+      {/* Personalized Greeting */}
+      <div className="mb-2">
+        <h1 className="text-2xl font-black text-white">Selamat Datang kembali, {firstName}! 🚀</h1>
+        <p className="text-slate-500 text-sm mt-1">Infrastructure node is active. All systems reporting nominal.</p>
+      </div>
+
       {/* Stat Cards Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Big health card */}

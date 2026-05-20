@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Workspaces (deployed projects data)
+workspaces/
+
+# Database files (runtime data)
+src/database/system-logs.json
+src/database/users.json
+src/database/projects.json
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs.txt
+hashes.txt
+
+# Misc
+hash_passwords.js
+download_assets.ps1
+design_system.md
+code/

@@ -32,6 +32,10 @@ const USERS_PATH = path.join(process.cwd(), 'src', 'database', 'users.json')
 let systemLogs = []
 let users = []
 
+// Network speed tracking
+let prevNetBytes = { rx: 0, tx: 0, time: Date.now() }
+let netSpeed = { download: 0, upload: 0 } // bytes per second
+
 if (fs.existsSync(USERS_PATH)) {
   try { users = JSON.parse(fs.readFileSync(USERS_PATH, 'utf-8')) } catch (e) {}
 }
@@ -146,17 +150,18 @@ setInterval(async () => {
   lastCpuInfo = currentInfo
   if (totalDifference > 0) currentCpuUsage = 100 - Math.floor(100 * idleDifference / totalDifference)
 
-  if (currentCpuUsage > 85) pushLog('ERROR', 'CPU Monitor', `Critical CPU load detected: ${currentCpuUsage}%`, 'System', 'System')
-  else if (currentCpuUsage > 60) pushLog('WARN', 'CPU Monitor', `Elevated CPU usage: ${currentCpuUsage}%`, 'System', 'System')
-
-  if (Math.random() > 0.8) pushLog('INFO', 'Network', `Handling inbound connection from ${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.X.X`, 'System', 'Traffic')
+  // Only log CPU warnings once per minute to avoid spam
+  if (!global._lastCpuLogTime) global._lastCpuLogTime = 0
+  const now = Date.now()
+  if (now - global._lastCpuLogTime > 60000) {
+    if (currentCpuUsage > 85) { pushLog('ERROR', 'CPU Monitor', `Critical CPU load detected: ${currentCpuUsage}%`, 'System', 'System'); global._lastCpuLogTime = now }
+    else if (currentCpuUsage > 75) { pushLog('WARN', 'CPU Monitor', `Elevated CPU usage: ${currentCpuUsage}%`, 'System', 'System'); global._lastCpuLogTime = now }
+  }
 
   activeProjects.forEach(p => {
     if (p.status === 'Running' || p.status === 'Production') {
       p.cpu = Math.max(1, Math.min(100, (p.cpu || 0) + (Math.random() - 0.5) * 8))
       p.mem = Math.max(0.1, (p.mem || 0.1) + (Math.random() - 0.5) * 0.1)
-      if (Math.random() > 0.8) pushLog('INFO', p.name, `Handled ${Math.floor(Math.random()*40)+5} connections in ${Math.floor(Math.random()*15)+1}ms`, 'System', 'Traffic')
-      if (Math.random() > 0.95) pushLog('WARN', p.name, `Memory spike detected, performing GC collection`, 'System', 'System')
       
       if (!p.startedAt) p.startedAt = Date.now()
       const diffSecs = Math.floor((Date.now() - p.startedAt) / 1000)
@@ -177,6 +182,25 @@ setInterval(async () => {
   // Emit Real-time Global Stats
   if (ioInstance) {
     try {
+      // Calculate network speed from OS network interfaces
+      const nets = os.networkInterfaces()
+      let totalRx = 0, totalTx = 0
+      // Use /proc/net/dev on Linux, or networkInterfaces counters
+      // For cross-platform, we track via systeminformation if available
+      try {
+        const si = await import('systeminformation')
+        const netStats = await si.networkStats()
+        if (netStats && netStats.length > 0) {
+          for (const iface of netStats) {
+            totalRx += iface.rx_sec || 0
+            totalTx += iface.tx_sec || 0
+          }
+          netSpeed = { download: totalRx, upload: totalTx }
+        }
+      } catch (e) {
+        // Fallback: no speed data
+      }
+
       const disk = await fs.promises.statfs(os.platform() === 'win32' ? 'C:\\' : '/')
       const totalDisk = disk.blocks * disk.bsize
       const freeDisk = disk.bfree * disk.bsize
@@ -190,7 +214,8 @@ setInterval(async () => {
           memTotal, memUsed: memTotal - memFree,
           cpuUsage: currentCpuUsage, cpuModel: os.cpus()[0].model,
           diskTotal: totalDisk, diskUsed: totalDisk - freeDisk,
-          cores: os.cpus().length, netInterfaces: os.networkInterfaces()
+          cores: os.cpus().length, netInterfaces: os.networkInterfaces(),
+          netSpeed: netSpeed
         },
         projects: {
           total: activeProjects.length,
@@ -374,14 +399,21 @@ export default defineConfig({
             const initiator = req.user?.username || 'Anonymous'
             const endpoint = req.url.split('?')[0]
             
+            // Skip noisy/internal endpoints
+            if (endpoint.includes('verify-password') || endpoint.includes('files/list') || endpoint.includes('files/read') || endpoint.includes('deploy-logs')) {
+              next(); return
+            }
+            
             // Capture specific actions for better logging
             let action = 'State Change'
             if (endpoint.includes('login')) action = 'Login'
             else if (endpoint.includes('project-deploy')) action = 'Deployment'
             else if (endpoint.includes('project-action')) action = 'Project Control'
             else if (endpoint.includes('users')) action = 'User Management'
+            else if (endpoint.includes('files/')) action = 'FileManager'
+            else if (endpoint.includes('system/power')) action = 'System'
             
-            pushLog('INFO', 'Audit', `${req.method} request to ${endpoint} initiated`, initiator, action)
+            pushLog('INFO', 'Audit', `${req.method} ${endpoint}`, initiator, action)
           }
           next()
         }

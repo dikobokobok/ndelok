@@ -73,6 +73,13 @@ const colorMap = {
 
 const loadColor = { healthy: 'bg-emerald-500', latency: 'bg-tertiary', lost: 'bg-error' }
 
+const formatSpeed = (bytesPerSec) => {
+  if (!bytesPerSec || bytesPerSec === 0) return '0 B/s'
+  if (bytesPerSec < 1024) return `${bytesPerSec.toFixed(0)} B/s`
+  if (bytesPerSec < 1048576) return `${(bytesPerSec / 1024).toFixed(1)} KB/s`
+  return `${(bytesPerSec / 1048576).toFixed(2)} MB/s`
+}
+
 export default function Dashboard() {
   const { user, authenticatedFetch } = useContext(AuthContext)
   const [osStats, setOsStats] = useState(null)
@@ -154,7 +161,62 @@ export default function Dashboard() {
         <p className="text-slate-500 text-sm mt-1">Infrastructure node is active. All systems reporting nominal.</p>
       </div>
 
-      {/* Stat Cards Row */}
+      {/* Telemetry Row (Resource) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { 
+            icon: 'storage', title: 'Storage Pool', 
+            val: osStats ? `${(osStats.diskUsed / 1e9).toFixed(1)} GB / ${(osStats.diskTotal / 1e9).toFixed(1)} GB` : '...', 
+            pct: osStats ? Math.round((osStats.diskUsed / osStats.diskTotal) * 100) : 0,  
+            color: 'bg-primary', 
+            label: osStats ? `${osStats.platform.toUpperCase()}_DRIVE` : '...', 
+            sub: osStats ? `${Math.round((osStats.diskUsed / osStats.diskTotal) * 100)}% USED` : '...' 
+          },
+          { 
+            icon: 'memory', title: 'Total Memory', 
+            val: osStats ? `${(osStats.memUsed / 1e9).toFixed(1)} GB / ${(osStats.memTotal / 1e9).toFixed(1)} GB` : '...', 
+            pct: osStats ? Math.round((osStats.memUsed / osStats.memTotal) * 100) : 0, 
+            color: 'bg-primary-container', 
+            label: osStats ? osStats.hostname.toUpperCase() : '...', 
+            sub: osStats ? `${Math.round((osStats.memUsed / osStats.memTotal) * 100)}% USED` : '...' 
+          },
+          { 
+            icon: 'speed', title: 'CPU Utilization', 
+            val: osStats ? `${osStats.cpuUsage}% Load` : '...', 
+            pct: osStats ? osStats.cpuUsage : 0,  
+            color: 'bg-tertiary', 
+            label: osStats ? osStats.cpuModel.slice(0, 22) + (osStats.cpuModel.length > 22 ? '...' : '') : '...', 
+            sub: osStats ? `${osStats.cores} CORES` : '...' 
+          },
+          { 
+            icon: 'wifi', title: 'Network Speed', 
+            val: osStats?.netSpeed ? `↓ ${formatSpeed(osStats.netSpeed.download)} / ↑ ${formatSpeed(osStats.netSpeed.upload)}` : '...', 
+            pct: osStats?.netSpeed ? Math.min(100, Math.round((osStats.netSpeed.download / (12.5 * 1024 * 1024)) * 100)) : 0,  
+            color: 'bg-cyan-500', 
+            label: osStats?.netSpeed ? `DL: ${formatSpeed(osStats.netSpeed.download)}` : '...', 
+            sub: osStats?.netSpeed ? `UL: ${formatSpeed(osStats.netSpeed.upload)}` : '...' 
+          },
+        ].map(t => (
+          <div key={t.title} className="bg-surface-container-low p-6 rounded-xl">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary text-sm">{t.icon}</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">{t.title}</span>
+              </div>
+              <span className="text-xs font-telemetry text-on-surface">{t.val}</span>
+            </div>
+            <div className="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+              <div className={`h-full ${t.color} rounded-full`} style={{ width: `${t.pct}%` }} />
+            </div>
+            <div className="mt-4 flex justify-between text-[10px] text-slate-500 font-bold">
+              <span>{t.label}</span>
+              <span>{t.sub}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Stat Cards Row (Info) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Big health card */}
         <div className="lg:col-span-1 bg-surface-container-low p-7 rounded-xl flex flex-col justify-between relative overflow-hidden group border border-white/5">
@@ -257,53 +319,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-
-      {/* Telemetry Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {[
-          { 
-            icon: 'storage', title: 'Storage Pool', 
-            val: osStats ? `${(osStats.diskUsed / 1e9).toFixed(1)} GB / ${(osStats.diskTotal / 1e9).toFixed(1)} GB` : '...', 
-            pct: osStats ? Math.round((osStats.diskUsed / osStats.diskTotal) * 100) : 0,  
-            color: 'bg-primary', 
-            label: osStats ? `${osStats.platform.toUpperCase()}_DRIVE` : '...', 
-            sub: osStats ? `${Math.round((osStats.diskUsed / osStats.diskTotal) * 100)}% USED` : '...' 
-          },
-          { 
-            icon: 'memory', title: 'Total Memory', 
-            val: osStats ? `${(osStats.memUsed / 1e9).toFixed(1)} GB / ${(osStats.memTotal / 1e9).toFixed(1)} GB` : '...', 
-            pct: osStats ? Math.round((osStats.memUsed / osStats.memTotal) * 100) : 0, 
-            color: 'bg-primary-container', 
-            label: osStats ? osStats.hostname.toUpperCase() : '...', 
-            sub: osStats ? `${Math.round((osStats.memUsed / osStats.memTotal) * 100)}% USED` : '...' 
-          },
-          { 
-            icon: 'speed', title: 'CPU Utilization', 
-            val: osStats ? `${osStats.cpuUsage}% Load` : '...', 
-            pct: osStats ? osStats.cpuUsage : 0,  
-            color: 'bg-tertiary', 
-            label: osStats ? osStats.cpuModel.slice(0, 22) + (osStats.cpuModel.length > 22 ? '...' : '') : '...', 
-            sub: osStats ? `${osStats.cores} CORES` : '...' 
-          },
-        ].map(t => (
-          <div key={t.title} className="bg-surface-container-low p-6 rounded-xl">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary text-sm">{t.icon}</span>
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">{t.title}</span>
-              </div>
-              <span className="text-xs font-telemetry text-on-surface">{t.val}</span>
-            </div>
-            <div className="h-2 w-full bg-surface-container rounded-full overflow-hidden">
-              <div className={`h-full ${t.color} rounded-full`} style={{ width: `${t.pct}%` }} />
-            </div>
-            <div className="mt-4 flex justify-between text-[10px] text-slate-500 font-bold">
-              <span>{t.label}</span>
-              <span>{t.sub}</span>
-            </div>
-          </div>
-        ))}
-      </div>
 
       {/* Infrastructure Table */}
       <div className="bg-surface-container rounded-xl overflow-hidden">

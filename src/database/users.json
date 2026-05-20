@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "name": "ibnu nur ramadani",
+    "username": "ibnu",
+    "password": "$2b$10$u5Lhs/bs/FN7m7kS6Ry45ecCHosHyiOf19ZgcFLJbm/otw7a4IBFq",
+    "email": "ibnunurramadani175@gmail.com",
+    "role": "owner",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=ibnu"
+  },
+  {
+    "id": "1774805255027",
+    "name": "admin",
+    "username": "admin",
+    "password": "$2b$10$u5Lhs/bs/FN7m7kS6Ry45ecCHosHyiOf19ZgcFLJbm/otw7a4IBFq",
+    "email": "admin@m.m",
+    "role": "admin",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=admin"
+  }
+]

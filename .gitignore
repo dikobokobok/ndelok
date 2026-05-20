@@ -13,9 +13,9 @@ dist/
 workspaces/
 
 # Database files (runtime data)
-src/database/system-logs.json
-src/database/users.json
-src/database/projects.json
+# src/database/system-logs.json
+# src/database/users.json
+# src/database/projects.json
 
 # OS generated files
 .DS_Store

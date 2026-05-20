@@ -1,4 +1,4 @@
-# Ndelok.me - Dashboard Infrastruktur Terintegrasi (v1.4)
+# Ndelok.me - Dashboard Infrastruktur Terintegrasi (v1.4.1)
 
 **Ndelok.me** adalah dashboard manajemen infrastruktur real-time dengan performa tinggi yang dirancang untuk pengembangan lokal dan lingkungan produksi skala kecil. Platform ini menyediakan antarmuka terpadu untuk memantau kesehatan sistem, mengelola penyebaran proyek (deployment), dan menganalisis log server secara real-time dengan penyimpanan persisten.
 
@@ -108,6 +108,23 @@ Lisensi MIT.
 ---
 
 ## 📋 Changelog
+
+### v1.4.1 — 21 Mei 2026
+
+#### ✨ Fitur Baru
+
+- **System Power Control** — Tombol Shutdown & Reboot di sidebar (owner only) dengan verifikasi password, support Windows & Linux
+- **Network Speed Monitor** — Card real-time di dashboard menampilkan download/upload speed (menggunakan systeminformation)
+- **Dashboard Layout** — Resource cards (Storage, Memory, CPU, Network) dipindahkan ke atas, info cards (Health, Servers, Warnings, Offline) di bawah
+
+#### 🔧 Perbaikan
+
+- **Log sistem dibersihkan** — Hapus semua log fake/random (network connections, memory spike, traffic handling)
+- **CPU warning di-throttle** — Hanya dicatat 1x per menit (sebelumnya setiap 2 detik), threshold WARN dinaikkan ke 75%
+- **Audit log difilter** — Skip endpoint internal (verify-password, files/list, files/read, deploy-logs) agar tidak spam
+- **Port diubah** ke 1234
+
+---
 
 ### v1.4.0 — 20 Mei 2026
 

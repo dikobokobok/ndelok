@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { AuthContext } from '../App'
 
@@ -15,9 +15,37 @@ const footerNavItems = [
 ]
 
 export default function Sidebar({ onClose }) {
-  const { user, logout } = useContext(AuthContext)
+  const { user, logout, authenticatedFetch } = useContext(AuthContext)
+  const [powerModal, setPowerModal] = useState(null) // 'shutdown' | 'reboot'
+  const [powerPassword, setPowerPassword] = useState('')
+  const [powerLoading, setPowerLoading] = useState(false)
+  const [powerError, setPowerError] = useState('')
 
   const filteredNav = navItems.filter(item => !item.roles || item.roles.includes(user?.role))
+
+  const handlePower = async (e) => {
+    e.preventDefault()
+    if (!powerPassword.trim()) { setPowerError('Password wajib diisi.'); return }
+    setPowerLoading(true)
+    setPowerError('')
+    try {
+      const res = await authenticatedFetch('/api/system/power', {
+        method: 'POST',
+        body: JSON.stringify({ action: powerModal, password: powerPassword })
+      })
+      if (!res?.ok) {
+        const data = await res.json()
+        setPowerError(data.error || 'Gagal')
+        setPowerLoading(false)
+        return
+      }
+      // Success — system will shutdown/reboot
+      setPowerError('')
+    } catch (e) {
+      setPowerError(e.message)
+      setPowerLoading(false)
+    }
+  }
 
   return (
     <aside className="h-screen w-64 flex flex-col bg-[#0f1425] shadow-2xl sidebar-gradient border-r border-white/5 relative z-50">
@@ -100,6 +128,22 @@ export default function Sidebar({ onClose }) {
             <span className="material-symbols-outlined text-sm">logout</span>
             Sign Out
           </button>
+
+          {/* Power Buttons - Owner only */}
+          {user?.role === 'owner' && (
+            <div className="flex gap-2 mt-2">
+              <button onClick={() => { setPowerModal('reboot'); setPowerPassword(''); setPowerError('') }}
+                className="flex-1 py-2 flex items-center justify-center gap-1.5 text-amber-400 hover:bg-amber-500/10 transition-colors text-[9px] font-bold uppercase tracking-widest bg-white/5 rounded-lg border border-transparent hover:border-amber-500/20">
+                <span className="material-symbols-outlined text-[14px]">restart_alt</span>
+                Reboot
+              </button>
+              <button onClick={() => { setPowerModal('shutdown'); setPowerPassword(''); setPowerError('') }}
+                className="flex-1 py-2 flex items-center justify-center gap-1.5 text-rose-400 hover:bg-rose-500/10 transition-colors text-[9px] font-bold uppercase tracking-widest bg-white/5 rounded-lg border border-transparent hover:border-rose-500/20">
+                <span className="material-symbols-outlined text-[14px]">power_settings_new</span>
+                Shutdown
+              </button>
+            </div>
+          )}
         </div>
 
         {footerNavItems.map(({ to, icon, label }) => (
@@ -118,6 +162,71 @@ export default function Sidebar({ onClose }) {
           </NavLink>
         ))}
       </div>
+
+      {/* Power Confirmation Modal */}
+      {powerModal && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4" onClick={() => !powerLoading && setPowerModal(null)}>
+          <div className="bg-[#0f1425] border border-white/10 rounded-2xl w-full max-w-sm shadow-2xl p-6" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center gap-3 mb-4">
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${powerModal === 'shutdown' ? 'bg-rose-500/10 border border-rose-500/20' : 'bg-amber-500/10 border border-amber-500/20'}`}>
+                <span className={`material-symbols-outlined ${powerModal === 'shutdown' ? 'text-rose-400' : 'text-amber-400'}`}>
+                  {powerModal === 'shutdown' ? 'power_settings_new' : 'restart_alt'}
+                </span>
+              </div>
+              <div>
+                <h3 className="text-base font-black text-white">{powerModal === 'shutdown' ? 'Shutdown System' : 'Reboot System'}</h3>
+                <p className="text-[10px] text-slate-400">Verifikasi password untuk melanjutkan.</p>
+              </div>
+            </div>
+
+            <div className={`rounded-xl p-3 mb-4 ${powerModal === 'shutdown' ? 'bg-rose-500/5 border border-rose-500/20' : 'bg-amber-500/5 border border-amber-500/20'}`}>
+              <p className={`text-[11px] leading-relaxed ${powerModal === 'shutdown' ? 'text-rose-300' : 'text-amber-300'}`}>
+                {powerModal === 'shutdown'
+                  ? 'Sistem akan dimatikan. Semua layanan akan berhenti dan server tidak dapat diakses sampai dinyalakan kembali secara manual.'
+                  : 'Sistem akan restart. Semua layanan akan berhenti sementara dan akan kembali online setelah reboot selesai.'}
+              </p>
+            </div>
+
+            <form onSubmit={handlePower}>
+              <div className="space-y-1.5 mb-4">
+                <label className="text-[10px] font-bold text-slate-300 uppercase tracking-widest flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[12px] text-amber-400">lock</span>
+                  Password Verifikasi
+                </label>
+                <input
+                  autoFocus type="password" value={powerPassword}
+                  onChange={e => { setPowerPassword(e.target.value); setPowerError('') }}
+                  placeholder="Masukkan password akun"
+                  disabled={powerLoading}
+                  className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl text-white p-2.5 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-slate-600 disabled:opacity-50"
+                />
+                {powerError && (
+                  <p className="text-[11px] text-rose-400 flex items-center gap-1">
+                    <span className="material-symbols-outlined text-[13px]">error</span>{powerError}
+                  </p>
+                )}
+              </div>
+
+              {powerLoading && (
+                <div className="mb-4 flex items-center gap-2 text-[11px] text-slate-300">
+                  <span className={`material-symbols-outlined text-[16px] animate-spin ${powerModal === 'shutdown' ? 'text-rose-400' : 'text-amber-400'}`}>progress_activity</span>
+                  {powerModal === 'shutdown' ? 'Mematikan sistem...' : 'Merestart sistem...'}
+                </div>
+              )}
+
+              <div className="flex justify-end gap-2">
+                <button type="button" onClick={() => setPowerModal(null)} disabled={powerLoading}
+                  className="px-4 py-2 text-xs font-bold text-slate-400 hover:text-white transition-colors disabled:opacity-40">Batal</button>
+                <button type="submit" disabled={powerLoading || !powerPassword.trim()}
+                  className={`px-4 py-2 rounded-xl text-xs font-black text-white transition-all disabled:opacity-40 flex items-center gap-1.5 ${powerModal === 'shutdown' ? 'bg-rose-500 hover:bg-rose-600' : 'bg-amber-500 hover:bg-amber-600'}`}>
+                  <span className="material-symbols-outlined text-[14px]">{powerModal === 'shutdown' ? 'power_settings_new' : 'restart_alt'}</span>
+                  {powerModal === 'shutdown' ? 'Shutdown' : 'Reboot'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </aside>
   )
 }

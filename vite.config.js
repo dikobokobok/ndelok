@@ -242,6 +242,7 @@ const spawnProject = (proj) => {
 export default defineConfig({
   server: {
     host: true,
+    port: 1234,
     watch: {
       ignored: ['**/projects.json', '**/workspaces/**']
     }
@@ -1025,6 +1026,54 @@ export default defineConfig({
               }
               res.setHeader('Content-Type', 'application/json')
               res.end(JSON.stringify({ success: true }))
+            } catch (e) {
+              res.statusCode = 400; res.end(JSON.stringify({ error: e.message }))
+            }
+          })
+        })
+
+        // POST /api/system/power — shutdown or reboot the system
+        server.middlewares.use('/api/system/power', (req, res) => {
+          if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return }
+          let body = ''
+          req.on('data', chunk => body += chunk.toString())
+          req.on('end', async () => {
+            try {
+              const { action, password } = JSON.parse(body)
+              
+              // Only owner can shutdown/reboot
+              if (req.user?.role !== 'owner') {
+                res.statusCode = 403; res.end(JSON.stringify({ error: 'Only owners can perform system power actions' })); return
+              }
+
+              // Verify password
+              const username = req.user?.username
+              const foundUser = users.find(u => u.username === username)
+              if (!foundUser) { res.statusCode = 401; res.end(JSON.stringify({ error: 'User not found' })); return }
+              const valid = await bcrypt.compare(password, foundUser.password)
+              if (!valid) { res.statusCode = 401; res.end(JSON.stringify({ error: 'Invalid password' })); return }
+
+              // Determine OS and command
+              const isWindows = process.platform === 'win32'
+              let cmd
+              if (action === 'shutdown') {
+                cmd = isWindows ? 'shutdown /s /t 5 /f' : 'shutdown -h now'
+              } else if (action === 'reboot') {
+                cmd = isWindows ? 'shutdown /r /t 5 /f' : 'shutdown -r now'
+              } else {
+                res.statusCode = 400; res.end(JSON.stringify({ error: 'Invalid action. Use "shutdown" or "reboot".' })); return
+              }
+
+              pushLog('WARN', 'System', `System ${action} initiated by ${username}`, username, 'System')
+
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify({ success: true, message: `System will ${action} shortly.` }))
+
+              // Execute after response is sent
+              setTimeout(() => {
+                exec(cmd, (err) => { if (err) console.error('Power command error:', err) })
+              }, 1000)
+
             } catch (e) {
               res.statusCode = 400; res.end(JSON.stringify({ error: e.message }))
             }

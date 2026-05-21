@@ -47,6 +47,14 @@ export default function Settings() {
   const [editData, setEditData] = useState({ name: '', username: '', password: '', email: '', role: '' })
   const [editError, setEditError] = useState('')
 
+  // ZeroTier State
+  const [ztEnabled, setZtEnabled] = useState(true)
+  const [ztNetworkId, setZtNetworkId] = useState('')
+  const [ztJoined, setZtJoined] = useState(false)
+  const [ztLoading, setZtLoading] = useState(false)
+  const [ztStatus, setZtStatus] = useState('')
+  const [ztError, setZtError] = useState('')
+
   const fetchUsers = () => {
     authenticatedFetch('/api/users')
       .then(res => res?.json())
@@ -55,7 +63,63 @@ export default function Settings() {
 
   useEffect(() => {
     fetchUsers()
+    // Check ZeroTier status on load
+    fetchZtStatus()
   }, [])
+
+  const fetchZtStatus = async () => {
+    try {
+      const res = await authenticatedFetch('/api/zerotier/status')
+      if (res?.ok) {
+        const data = await res.json()
+        setZtEnabled(data.active)
+        setZtJoined(data.joined)
+        setZtNetworkId(data.networkId || '')
+        setZtStatus(data.status || '')
+      }
+    } catch (e) {}
+  }
+
+  const handleZtToggle = async () => {
+    setZtLoading(true)
+    setZtError('')
+    const action = ztEnabled ? 'stop' : 'start'
+    try {
+      const res = await authenticatedFetch('/api/zerotier/toggle', {
+        method: 'POST',
+        body: JSON.stringify({ action })
+      })
+      if (!res?.ok) { const d = await res.json(); throw new Error(d.error || 'Failed') }
+      setZtEnabled(!ztEnabled)
+      setZtStatus(action === 'start' ? 'active' : 'inactive')
+      setToast({ type: 'success', title: 'ZeroTier', msg: `Service ${action === 'start' ? 'started' : 'stopped'} successfully.` })
+    } catch (e) {
+      setZtError(e.message)
+    } finally {
+      setZtLoading(false)
+    }
+  }
+
+  const handleZtJoin = async (e) => {
+    e.preventDefault()
+    if (!ztNetworkId.trim()) { setZtError('Network ID wajib diisi.'); return }
+    setZtLoading(true)
+    setZtError('')
+    try {
+      const res = await authenticatedFetch('/api/zerotier/join', {
+        method: 'POST',
+        body: JSON.stringify({ networkId: ztNetworkId.trim() })
+      })
+      if (!res?.ok) { const d = await res.json(); throw new Error(d.error || 'Failed to join') }
+      setZtJoined(true)
+      setZtEnabled(true)
+      setToast({ type: 'success', title: 'ZeroTier', msg: `Joined network ${ztNetworkId} successfully.` })
+    } catch (e) {
+      setZtError(e.message)
+    } finally {
+      setZtLoading(false)
+    }
+  }
 
   const handleSave = () => {
     setToast({ type: 'success', title: 'Synchronization Complete', msg: 'Configuration node updated successfully' })
@@ -283,6 +347,100 @@ export default function Settings() {
                       </button>
                     </div>
                   </div>
+                </div>
+
+                {/* ZeroTier VPN */}
+                <div className="space-y-6 pt-6 border-t border-white/5">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">ZeroTier Virtual Network</h4>
+                    {ztJoined && (
+                      <span className={`px-2 py-1 text-[8px] font-black rounded-md border tracking-widest ${ztEnabled ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-slate-500/10 text-slate-400 border-white/10'}`}>
+                        {ztEnabled ? 'ACTIVE' : 'INACTIVE'}
+                      </span>
+                    )}
+                  </div>
+
+                  {!ztJoined ? (
+                    /* First time: Join Network */
+                    <div className="p-6 rounded-[24px] bg-gradient-to-br from-amber-500/5 to-transparent border border-amber-500/20 relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 blur-3xl rounded-full" />
+                      <div className="relative z-10">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
+                            <span className="material-symbols-outlined text-amber-400 text-xl">vpn_lock</span>
+                          </div>
+                          <div>
+                            <p className="text-sm font-black text-white">Join ZeroTier Network</p>
+                            <p className="text-[10px] text-slate-500">Masukkan Network ID untuk bergabung ke jaringan virtual.</p>
+                          </div>
+                        </div>
+                        <form onSubmit={handleZtJoin} className="space-y-3">
+                          <input
+                            type="text"
+                            value={ztNetworkId}
+                            onChange={e => { setZtNetworkId(e.target.value); setZtError('') }}
+                            placeholder="Contoh: 8056c2e21c000001"
+                            disabled={ztLoading}
+                            className="w-full bg-[#0a0c10] border border-white/10 rounded-xl text-xs text-white py-3 px-4 focus:ring-1 focus:ring-amber-500 focus:border-amber-500 outline-none font-telemetry placeholder:text-slate-700 disabled:opacity-50"
+                          />
+                          {ztError && (
+                            <p className="text-[10px] text-rose-400 flex items-center gap-1">
+                              <span className="material-symbols-outlined text-[12px]">error</span>{ztError}
+                            </p>
+                          )}
+                          <button type="submit" disabled={ztLoading || !ztNetworkId.trim()}
+                            className="w-full py-3 bg-amber-500 text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-xl hover:bg-amber-400 transition-all active:scale-95 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center gap-2">
+                            {ztLoading ? (
+                              <><span className="material-symbols-outlined text-[14px] animate-spin">progress_activity</span> Joining...</>
+                            ) : (
+                              <><span className="material-symbols-outlined text-[14px]">link</span> Join Network</>
+                            )}
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  ) : (
+                    /* Already joined: Toggle on/off */
+                    <div className="p-6 rounded-[24px] bg-gradient-to-br from-surface-container-highest/30 to-transparent border border-white/5">
+                      <div className="flex items-center justify-between mb-5">
+                        <div className="flex items-center gap-4">
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${ztEnabled ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-slate-500/10 border-white/10'}`}>
+                            <span className={`material-symbols-outlined text-xl ${ztEnabled ? 'text-emerald-400' : 'text-slate-500'}`}>vpn_lock</span>
+                          </div>
+                          <div>
+                            <p className="text-sm font-black text-white">ZeroTier Service</p>
+                            <p className="text-[10px] text-slate-500 font-telemetry">Network: {ztNetworkId}</p>
+                          </div>
+                        </div>
+                        <Toggle checked={ztEnabled} onChange={handleZtToggle} disabled={ztLoading} />
+                      </div>
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="p-3 rounded-xl bg-white/5 text-center">
+                          <p className="text-[9px] text-slate-600 font-black uppercase tracking-widest mb-1">Status</p>
+                          <p className={`text-xs font-black ${ztEnabled ? 'text-emerald-400' : 'text-slate-500'}`}>{ztEnabled ? 'Online' : 'Offline'}</p>
+                        </div>
+                        <div className="p-3 rounded-xl bg-white/5 text-center">
+                          <p className="text-[9px] text-slate-600 font-black uppercase tracking-widest mb-1">Network</p>
+                          <p className="text-xs font-telemetry text-slate-300 truncate">{ztNetworkId.slice(0, 8)}...</p>
+                        </div>
+                        <div className="p-3 rounded-xl bg-white/5 text-center">
+                          <p className="text-[9px] text-slate-600 font-black uppercase tracking-widest mb-1">Protocol</p>
+                          <p className="text-xs font-black text-primary">P2P/UDP</p>
+                        </div>
+                      </div>
+                      {ztError && (
+                        <p className="text-[10px] text-rose-400 flex items-center gap-1 mt-3">
+                          <span className="material-symbols-outlined text-[12px]">error</span>{ztError}
+                        </p>
+                      )}
+                      {ztLoading && (
+                        <div className="flex items-center gap-2 mt-3 text-[10px] text-slate-400">
+                          <span className="material-symbols-outlined text-[14px] animate-spin">progress_activity</span>
+                          {ztEnabled ? 'Stopping...' : 'Starting...'}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </section>

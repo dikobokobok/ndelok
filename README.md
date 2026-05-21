@@ -114,6 +114,11 @@ Lisensi MIT.
 #### ✨ Fitur Baru
 
 - **Real Terminal (xterm.js + node-pty)** — Terminal yang identik dengan terminal OS asli (PowerShell di Windows, Bash di Linux). Support warna 256-color, cursor, interactive apps (vim, nano, top), tab completion, Ctrl+C, dan semua shortcut terminal.
+- **ZeroTier VPN Control** — Kelola ZeroTier langsung dari dashboard (Settings → SSH & API Keys):
+  - Join network dengan Network ID
+  - Toggle on/off service via `systemctl` (Linux) atau `net start/stop` (Windows)
+  - Status real-time (Online/Offline)
+  - Config persisten di `zerotier.json`
 - **System Power Control** — Tombol Shutdown & Reboot di sidebar (owner only) dengan verifikasi password, support Windows & Linux
 - **Network Speed Monitor** — Card real-time di dashboard menampilkan download/upload speed (menggunakan systeminformation)
 - **Dashboard Layout** — Resource cards (Storage, Memory, CPU, Network) dipindahkan ke atas, info cards (Health, Servers, Warnings, Offline) di bawah

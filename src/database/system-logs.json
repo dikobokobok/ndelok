@@ -1,0 +1,322 @@
+[
+  {
+    "time": "09:36:17.760",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST /zerotier/join",
+    "initiator": "ibnu",
+    "category": "State Change"
+  },
+  {
+    "time": "09:34:13.183",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "09:32:12.764",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "09:29:01.244",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 96%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "09:28:00.704",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 78%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "08:24:08.357",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "08:23:08.079",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 77%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "08:17:14.875",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "08:04:42.224",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 88%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "08:03:41.983",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 77%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "08:00:05.721",
+    "level": "INFO",
+    "service": "Auth",
+    "msg": "User ibnu session initialized",
+    "initiator": "ibnu",
+    "category": "Security"
+  },
+  {
+    "time": "08:00:05.562",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST /login",
+    "initiator": "Anonymous",
+    "category": "Login"
+  },
+  {
+    "time": "00:53:07.532",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 82%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:51:55.625",
+    "level": "WARN",
+    "service": "bot",
+    "msg": "Process exited with code 1",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:51:54.945",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "Action [delete] initiated for project [bot]",
+    "initiator": "ibnu",
+    "category": "Project"
+  },
+  {
+    "time": "00:51:54.942",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST /project-action",
+    "initiator": "ibnu",
+    "category": "Project Control"
+  },
+  {
+    "time": "00:50:05.127",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:47:50.943",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:46:16.790",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 87%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:46:02.438",
+    "level": "INFO",
+    "service": "Auth",
+    "msg": "User admin session initialized",
+    "initiator": "admin",
+    "category": "Security"
+  },
+  {
+    "time": "00:46:02.231",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST /login",
+    "initiator": "Anonymous",
+    "category": "Login"
+  },
+  {
+    "time": "00:45:16.717",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 79%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:44:59.398",
+    "level": "INFO",
+    "service": "bot",
+    "msg": "GET /1234 404 in 1482ms",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:59.001",
+    "level": "INFO",
+    "service": "bot",
+    "msg": "✓ Compiled /_not-found/page in 852ms",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:58.436",
+    "level": "INFO",
+    "service": "bot",
+    "msg": "○ Compiling /_not-found/page ...",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:52.204",
+    "level": "INFO",
+    "service": "bot",
+    "msg": "GET /login 200 in 13212ms",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:50.994",
+    "level": "INFO",
+    "service": "bot",
+    "msg": "✓ Compiled /login in 12s",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:39.515",
+    "level": "INFO",
+    "service": "bot",
+    "msg": "○ Compiling /login ...",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:25.683",
+    "level": "INFO",
+    "service": "bot",
+    "msg": "✓ Ready in 7s",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:23.987",
+    "level": "INFO",
+    "service": "bot",
+    "msg": "✓ Compiled middleware in 905ms",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:23.588",
+    "level": "INFO",
+    "service": "bot",
+    "msg": "○ Compiling middleware ...",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:22.968",
+    "level": "INFO",
+    "service": "bot",
+    "msg": "✓ Compiled instrumentation Node.js in 151ms\n ✓ Compiled instrumentation Edge in 105ms",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:19.162",
+    "level": "INFO",
+    "service": "bot",
+    "msg": "▲ Next.js 15.5.18 (Turbopack)\n   - Local:        http://localhost:3000\n   - Network:      http://0.0.0.0:3000\n\n ✓ Starting...",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:17.157",
+    "level": "ERROR",
+    "service": "bot",
+    "msg": "⚠ Warning: Next.js inferred your workspace root, but it may not be correct.\n We detected multiple lockfiles and selected the directory of C:\\Users\\INU\\Documents\\ndelok\\package-lock.json as the root directory.\n To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.\n   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.\n Detected additional lockfiles: \n   * C:\\Users\\INU\\Documents\\ndelok\\workspaces\\bot\\package-lock.json",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:15.936",
+    "level": "INFO",
+    "service": "bot",
+    "msg": "> wadash@2.4.3 dev\n> next dev -H 0.0.0.0 --turbopack",
+    "initiator": "System",
+    "category": "Process"
+  },
+  {
+    "time": "00:44:10.653",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 93%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:43:10.619",
+    "level": "ERROR",
+    "service": "CPU Monitor",
+    "msg": "Critical CPU load detected: 100%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:42:10.435",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 84%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
+    "time": "00:42:00.556",
+    "level": "INFO",
+    "service": "Deploy",
+    "msg": "File upload deployment for bot (6594 files)",
+    "initiator": "ibnu",
+    "category": "Deployment"
+  },
+  {
+    "time": "00:41:57.692",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST /project-deploy-upload",
+    "initiator": "ibnu",
+    "category": "Deployment"
+  }
+]

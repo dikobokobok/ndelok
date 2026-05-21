@@ -1063,6 +1063,99 @@ export default defineConfig({
           req.pipe(bb)
         })
 
+        // ── ZEROTIER ENDPOINTS ───────────────────────────────────────────────
+        
+        // ZeroTier config file
+        const ZT_CONFIG_PATH = path.join(process.cwd(), 'src', 'database', 'zerotier.json')
+        const loadZtConfig = () => {
+          try { return JSON.parse(fs.readFileSync(ZT_CONFIG_PATH, 'utf-8')) } catch (e) { return { networkId: '', joined: false, active: true } }
+        }
+        const saveZtConfig = (cfg) => { fs.writeFileSync(ZT_CONFIG_PATH, JSON.stringify(cfg, null, 2)) }
+
+        // GET /api/zerotier/status
+        server.middlewares.use('/api/zerotier/status', (req, res) => {
+          if (req.method !== 'GET') { res.statusCode = 405; res.end('Method not allowed'); return }
+          const cfg = loadZtConfig()
+          res.setHeader('Content-Type', 'application/json')
+          res.end(JSON.stringify({ active: cfg.active, joined: cfg.joined, networkId: cfg.networkId, status: cfg.active ? 'active' : 'inactive' }))
+        })
+
+        // POST /api/zerotier/join — join a network
+        server.middlewares.use('/api/zerotier/join', (req, res) => {
+          if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return }
+          let body = ''
+          req.on('data', chunk => body += chunk.toString())
+          req.on('end', () => {
+            try {
+              const { networkId } = JSON.parse(body)
+              if (!networkId || networkId.length < 10) throw new Error('Invalid Network ID')
+
+              const isWin = process.platform === 'win32'
+              const joinCmd = isWin
+                ? `zerotier-cli join ${networkId}`
+                : `sudo zerotier-cli join ${networkId}`
+
+              exec(joinCmd, (err, stdout, stderr) => {
+                if (err) {
+                  res.statusCode = 500
+                  res.setHeader('Content-Type', 'application/json')
+                  res.end(JSON.stringify({ error: stderr || err.message }))
+                  return
+                }
+                const cfg = { networkId, joined: true, active: true }
+                saveZtConfig(cfg)
+                pushLog('INFO', 'ZeroTier', `Joined network ${networkId}`, req.user?.username || 'System', 'System')
+                res.setHeader('Content-Type', 'application/json')
+                res.end(JSON.stringify({ success: true, output: stdout.trim() }))
+              })
+            } catch (e) {
+              res.statusCode = 400; res.end(JSON.stringify({ error: e.message }))
+            }
+          })
+        })
+
+        // POST /api/zerotier/toggle — start or stop zerotier service
+        server.middlewares.use('/api/zerotier/toggle', (req, res) => {
+          if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return }
+          let body = ''
+          req.on('data', chunk => body += chunk.toString())
+          req.on('end', () => {
+            try {
+              const { action } = JSON.parse(body) // 'start' or 'stop'
+              if (action !== 'start' && action !== 'stop') throw new Error('Invalid action')
+
+              const isWin = process.platform === 'win32'
+              let cmd
+              if (isWin) {
+                cmd = action === 'start'
+                  ? 'net start ZeroTierOneService'
+                  : 'net stop ZeroTierOneService'
+              } else {
+                cmd = action === 'start'
+                  ? 'sudo systemctl start zerotier-one'
+                  : 'sudo systemctl stop zerotier-one'
+              }
+
+              exec(cmd, (err, stdout, stderr) => {
+                if (err) {
+                  res.statusCode = 500
+                  res.setHeader('Content-Type', 'application/json')
+                  res.end(JSON.stringify({ error: stderr || err.message }))
+                  return
+                }
+                const cfg = loadZtConfig()
+                cfg.active = action === 'start'
+                saveZtConfig(cfg)
+                pushLog('INFO', 'ZeroTier', `Service ${action}ed`, req.user?.username || 'System', 'System')
+                res.setHeader('Content-Type', 'application/json')
+                res.end(JSON.stringify({ success: true }))
+              })
+            } catch (e) {
+              res.statusCode = 400; res.end(JSON.stringify({ error: e.message }))
+            }
+          })
+        })
+
         // POST /api/verify-password — verify current user's password
         server.middlewares.use('/api/verify-password', (req, res) => {
           if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return }

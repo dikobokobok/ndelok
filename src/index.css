@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Global Resets ────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: #0b1326;
+  color: #dae2fd;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Material Symbols ─────────────────────────────── */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+  line-height: 1;
+  user-select: none;
+}
+
+/* ── Scrollbar ────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1326;
+}
+::-webkit-scrollbar-thumb {
+  background: #2d3449;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #424754;
+}
+
+/* ── Design System Utilities ──────────────────────── */
+
+/* Glow Line Effect for charts */
+.glow-line {
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+/* Tonal layering gradient overlay */
+.tonal-layering {
+  background-image: linear-gradient(135deg, rgba(173, 198, 255, 0.03) 0%, rgba(77, 142, 255, 0) 100%);
+}
+
+/* Sidebar tonal gradient */
+.sidebar-gradient {
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 100%);
+}
+
+/* Glass effect for floating elements */
+.glass-panel {
+  background: rgba(45, 52, 73, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Ghost border (15% opacity outline) */
+.ghost-border {
+  border: 1px solid rgba(66, 71, 84, 0.15);
+}
+
+/* Ambient shadow — tinted deep */
+.shadow-ambient {
+  box-shadow: 0 20px 40px rgba(6, 14, 32, 0.4);
+}
+
+/* Chart gradient area fill */
+.chart-area-fill {
+  fill: url(#areaGradient);
+  opacity: 0.15;
+}
+
+/* Pulse animation for live indicators */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px currentColor; }
+  50%       { opacity: 0.5; box-shadow: 0 0 12px currentColor; }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Number mono — monospace for telemetry */
+.font-telemetry {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(77, 142, 255, 0.3);
+  color: #dae2fd;
+}
+
+/* Toggle switch base */
+.toggle-track {
+  @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 cursor-pointer;
+}
+.toggle-thumb {
+  @apply absolute left-[2px] top-[2px] h-5 w-5 rounded-full bg-slate-400 transition-all duration-200;
+}
+input:checked + .toggle-track {
+  @apply bg-primary;
+}
+input:checked + .toggle-track .toggle-thumb {
+  @apply translate-x-full bg-on-primary;
+}
+/* ── Entry Animations ─────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-stagger-1 { animation-delay: 100ms; }
+.animate-stagger-2 { animation-delay: 200ms; }
+.animate-stagger-3 { animation-delay: 300ms; }
+
+/* ── Mobile / Touch Responsive ────────────────────── */
+
+/* Improve tap targets on mobile */
+@media (max-width: 640px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent horizontal overflow */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Smooth scrolling for all devices */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Better touch scrolling */
+.custom-scrollbar {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile-friendly select elements */
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2rem;
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+
+/* ── Uiverse Toggle (njesenberger) ─────────────────── */
+.zt-toggle-wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 0.5em;
+  padding: 0.125em;
+  background-image: linear-gradient(to bottom, #2a3147, #3a4361);
+  box-shadow: 0 1px 1px rgb(255 255 255 / .08);
+  font-size: 0.875em;
+}
+.zt-toggle-checkbox {
+  appearance: none;
+  position: absolute;
+  z-index: 1;
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  font: inherit;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+}
+.zt-toggle-checkbox:disabled {
+  cursor: not-allowed;
+}
+.zt-toggle-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 0.375em;
+  width: 3em;
+  height: 1.5em;
+  background-color: #1a2138;
+  box-shadow:
+    inset 0 0 0.0625em 0.125em rgb(255 255 255 / .06),
+    inset 0 0.0625em 0.125em rgb(0 0 0 / .55);
+  transition: background-color 0.4s linear;
+}
+.zt-toggle-checkbox:checked + .zt-toggle-container {
+  background-color: #f3b519;
+}
+.zt-toggle-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0.0625em;
+  border-radius: 0.3125em;
+  width: 1.375em;
+  height: 1.375em;
+  background-color: #e8e8e8;
+  box-shadow:
+    inset 0 -0.0625em 0.0625em 0.125em rgb(0 0 0 / .1),
+    inset 0 -0.125em 0.0625em rgb(0 0 0 / .2),
+    inset 0 0.1875em 0.0625em rgb(255 255 255 / .3),
+    0 0.125em 0.125em rgb(0 0 0 / .5);
+  transition: left 0.4s;
+}
+.zt-toggle-checkbox:checked + .zt-toggle-container > .zt-toggle-button {
+  left: 1.5625em;
+}
+.zt-toggle-button-circles-container {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  gap: 0.125em;
+  position: absolute;
+  margin: 0 auto;
+}
+.zt-toggle-button-circle {
+  border-radius: 50%;
+  width: 0.125em;
+  height: 0.125em;
+  background-image: radial-gradient(circle at 50% 0, #f5f5f5, #c4c4c4);
+}
+.zt-toggle-checkbox:disabled + .zt-toggle-container {
+  opacity: 0.5;
+}

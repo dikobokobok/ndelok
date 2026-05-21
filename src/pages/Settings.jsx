@@ -121,6 +121,27 @@ export default function Settings() {
     }
   }
 
+  const handleZtLeave = async () => {
+    if (!confirm('Yakin ingin meninggalkan network ZeroTier ini?')) return
+    setZtLoading(true)
+    setZtError('')
+    try {
+      const res = await authenticatedFetch('/api/zerotier/leave', {
+        method: 'POST',
+        body: JSON.stringify({})
+      })
+      if (!res?.ok) { const d = await res.json(); throw new Error(d.error || 'Failed to leave') }
+      setZtJoined(false)
+      setZtEnabled(false)
+      setZtNetworkId('')
+      setToast({ type: 'success', title: 'ZeroTier', msg: 'Berhasil meninggalkan network.' })
+    } catch (e) {
+      setZtError(e.message)
+    } finally {
+      setZtLoading(false)
+    }
+  }
+
   const handleSave = () => {
     setToast({ type: 'success', title: 'Synchronization Complete', msg: 'Configuration node updated successfully' })
     setTimeout(() => setToast(false), 3000)
@@ -439,6 +460,17 @@ export default function Settings() {
                           {ztEnabled ? 'Stopping...' : 'Starting...'}
                         </div>
                       )}
+                      <button
+                        onClick={handleZtLeave}
+                        disabled={ztLoading}
+                        className="w-full mt-4 py-2.5 bg-rose-500/10 text-rose-400 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl border border-rose-500/20 hover:bg-rose-500/20 transition-all active:scale-95 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center gap-2"
+                      >
+                        {ztLoading ? (
+                          <><span className="material-symbols-outlined text-[14px] animate-spin">progress_activity</span> Leaving...</>
+                        ) : (
+                          <><span className="material-symbols-outlined text-[14px]">link_off</span> Leave Network</>
+                        )}
+                      </button>
                     </div>
                   )}
                 </div>

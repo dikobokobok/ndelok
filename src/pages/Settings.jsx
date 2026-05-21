@@ -54,6 +54,9 @@ export default function Settings() {
   const [ztLoading, setZtLoading] = useState(false)
   const [ztStatus, setZtStatus] = useState('')
   const [ztError, setZtError] = useState('')
+  const [ztLeaveModal, setZtLeaveModal] = useState(false)
+  const [ztLeavePass, setZtLeavePass] = useState('')
+  const [ztLeaveError, setZtLeaveError] = useState('')
 
   const fetchUsers = () => {
     authenticatedFetch('/api/users')
@@ -122,10 +125,31 @@ export default function Settings() {
   }
 
   const handleZtLeave = async () => {
-    if (!confirm('Yakin ingin meninggalkan network ZeroTier ini?')) return
+    if (ztEnabled) {
+      setZtError('Service harus dimatikan terlebih dahulu sebelum leave network.')
+      return
+    }
+    setZtLeavePass('')
+    setZtLeaveError('')
+    setZtLeaveModal(true)
+  }
+
+  const handleZtLeaveConfirm = async (e) => {
+    e.preventDefault()
+    if (!ztLeavePass.trim()) { setZtLeaveError('Password wajib diisi.'); return }
     setZtLoading(true)
-    setZtError('')
+    setZtLeaveError('')
     try {
+      // Verify password first
+      const verifyRes = await authenticatedFetch('/api/verify-password', {
+        method: 'POST',
+        body: JSON.stringify({ password: ztLeavePass })
+      })
+      if (!verifyRes?.ok) {
+        const d = await verifyRes.json()
+        throw new Error(d.error || 'Password salah')
+      }
+      // Then leave network
       const res = await authenticatedFetch('/api/zerotier/leave', {
         method: 'POST',
         body: JSON.stringify({})
@@ -134,9 +158,10 @@ export default function Settings() {
       setZtJoined(false)
       setZtEnabled(false)
       setZtNetworkId('')
+      setZtLeaveModal(false)
       setToast({ type: 'success', title: 'ZeroTier', msg: 'Berhasil meninggalkan network.' })
     } catch (e) {
-      setZtError(e.message)
+      setZtLeaveError(e.message)
     } finally {
       setZtLoading(false)
     }
@@ -463,14 +488,13 @@ export default function Settings() {
                       <button
                         onClick={handleZtLeave}
                         disabled={ztLoading}
-                        className="w-full mt-4 py-2.5 bg-rose-500/10 text-rose-400 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl border border-rose-500/20 hover:bg-rose-500/20 transition-all active:scale-95 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center gap-2"
+                        className={`w-full mt-4 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl border transition-all active:scale-95 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center gap-2 ${ztEnabled ? 'bg-slate-500/10 text-slate-500 border-white/10 cursor-not-allowed' : 'bg-rose-500/10 text-rose-400 border-rose-500/20 hover:bg-rose-500/20'}`}
                       >
-                        {ztLoading ? (
-                          <><span className="material-symbols-outlined text-[14px] animate-spin">progress_activity</span> Leaving...</>
-                        ) : (
-                          <><span className="material-symbols-outlined text-[14px]">link_off</span> Leave Network</>
-                        )}
+                        <span className="material-symbols-outlined text-[14px]">link_off</span> Leave Network
                       </button>
+                      {ztEnabled && (
+                        <p className="text-[9px] text-slate-600 text-center mt-2">Matikan service terlebih dahulu untuk leave network</p>
+                      )}
                     </div>
                   )}
                 </div>
@@ -600,6 +624,65 @@ export default function Settings() {
                   </button>
                 </form>
              </div>
+          </div>
+        </div>
+      )}
+
+      {/* ZeroTier Leave Modal */}
+      {ztLeaveModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 sm:p-0">
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300" onClick={() => { setZtLeaveModal(false); setZtLeaveError('') }} />
+          <div className="w-full max-w-sm bg-[#161b2c] border border-white/10 rounded-[32px] shadow-2xl relative z-10 overflow-hidden animate-in zoom-in slide-in-from-bottom-8 duration-500">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-rose-500 via-rose-400 to-rose-500" />
+            <div className="p-8">
+              <div className="flex justify-between items-center mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-rose-500/10 flex items-center justify-center border border-rose-500/20">
+                    <span className="material-symbols-outlined text-rose-400 text-xl">shield</span>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-black text-white">Verifikasi Password</h4>
+                    <p className="text-[10px] text-slate-500">Konfirmasi untuk leave network</p>
+                  </div>
+                </div>
+                <button onClick={() => { setZtLeaveModal(false); setZtLeaveError('') }} className="w-8 h-8 rounded-full hover:bg-white/5 transition-colors flex items-center justify-center text-slate-500 hover:text-white">
+                  <span className="material-symbols-outlined text-lg">close</span>
+                </button>
+              </div>
+              <form onSubmit={handleZtLeaveConfirm} className="space-y-4">
+                <div>
+                  <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2 block">Password</label>
+                  <input
+                    type="password"
+                    value={ztLeavePass}
+                    onChange={e => { setZtLeavePass(e.target.value); setZtLeaveError('') }}
+                    placeholder="Masukkan password anda"
+                    autoFocus
+                    disabled={ztLoading}
+                    className="w-full bg-[#0a0c10] border border-white/10 rounded-xl text-xs text-white py-3 px-4 focus:ring-1 focus:ring-rose-500 focus:border-rose-500 outline-none placeholder:text-slate-700 disabled:opacity-50"
+                  />
+                </div>
+                {ztLeaveError && (
+                  <p className="text-[10px] text-rose-400 flex items-center gap-1">
+                    <span className="material-symbols-outlined text-[12px]">error</span>{ztLeaveError}
+                  </p>
+                )}
+                <div className="flex gap-3">
+                  <button type="button" onClick={() => { setZtLeaveModal(false); setZtLeaveError('') }} disabled={ztLoading}
+                    className="flex-1 py-3 bg-white/5 text-slate-400 text-[10px] font-black uppercase tracking-[0.15em] rounded-xl border border-white/10 hover:bg-white/10 transition-all disabled:opacity-40">
+                    Batal
+                  </button>
+                  <button type="submit" disabled={ztLoading || !ztLeavePass.trim()}
+                    className="flex-1 py-3 bg-rose-500 text-white text-[10px] font-black uppercase tracking-[0.15em] rounded-xl hover:bg-rose-400 transition-all active:scale-95 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center gap-2">
+                    {ztLoading ? (
+                      <><span className="material-symbols-outlined text-[14px] animate-spin">progress_activity</span> Verifying...</>
+                    ) : (
+                      <><span className="material-symbols-outlined text-[14px]">link_off</span> Leave</>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       )}

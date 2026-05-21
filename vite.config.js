@@ -1156,6 +1156,41 @@ export default defineConfig({
           })
         })
 
+        // POST /api/zerotier/leave — leave a network
+        server.middlewares.use('/api/zerotier/leave', (req, res) => {
+          if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return }
+          let body = ''
+          req.on('data', chunk => body += chunk.toString())
+          req.on('end', () => {
+            try {
+              const cfg = loadZtConfig()
+              const networkId = cfg.networkId
+              if (!networkId) throw new Error('No network joined')
+
+              const isWin = process.platform === 'win32'
+              const leaveCmd = isWin
+                ? `zerotier-cli leave ${networkId}`
+                : `sudo zerotier-cli leave ${networkId}`
+
+              exec(leaveCmd, (err, stdout, stderr) => {
+                if (err) {
+                  res.statusCode = 500
+                  res.setHeader('Content-Type', 'application/json')
+                  res.end(JSON.stringify({ error: stderr || err.message }))
+                  return
+                }
+                const newCfg = { networkId: '', joined: false, active: false }
+                saveZtConfig(newCfg)
+                pushLog('INFO', 'ZeroTier', `Left network ${networkId}`, req.user?.username || 'System', 'System')
+                res.setHeader('Content-Type', 'application/json')
+                res.end(JSON.stringify({ success: true, output: stdout.trim() }))
+              })
+            } catch (e) {
+              res.statusCode = 400; res.end(JSON.stringify({ error: e.message }))
+            }
+          })
+        })
+
         // POST /api/verify-password — verify current user's password
         server.middlewares.use('/api/verify-password', (req, res) => {
           if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return }

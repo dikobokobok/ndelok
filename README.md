@@ -1,4 +1,4 @@
-# Ndelok.me - Dashboard Infrastruktur Terintegrasi (v1.4.1)
+# Ndelok.me - Dashboard Infrastruktur Terintegrasi (v1.5.0)
 
 **Ndelok.me** adalah dashboard manajemen infrastruktur real-time dengan performa tinggi yang dirancang untuk pengembangan lokal dan lingkungan produksi skala kecil. Platform ini menyediakan antarmuka terpadu untuk memantau kesehatan sistem, mengelola penyebaran proyek (deployment), dan menganalisis log server secara real-time dengan penyimpanan persisten.
 
@@ -108,6 +108,33 @@ Lisensi MIT.
 ---
 
 ## 📋 Changelog
+
+### v1.5.0 — 21 Mei 2026
+
+#### ✨ Fitur Baru
+
+- **ZeroTier Leave Network** — Tombol untuk meninggalkan network ZeroTier dengan syarat:
+  - Service wajib dalam kondisi OFF sebelum leave
+  - Verifikasi password wajib sebelum eksekusi
+  - Menjalankan `sudo zerotier-cli leave` dan reset config
+- **Auto-Restart Project on Reboot** — Project yang statusnya "Running" sebelum server reboot akan otomatis jalan kembali. Project yang di-stop manual tetap mati.
+- **Live Process Output (Project Logs)** — Halaman baru `/projects/:name/logs` menampilkan output stdout/stderr real-time dari proses project menggunakan xterm.js:
+  - Output terminal asli dengan warna ANSI
+  - Mode read-only (view only)
+  - History buffer (500 entry terakhir)
+  - Streaming real-time via Socket.io
+  - Project di-spawn menggunakan PTY (node-pty) agar output identik dengan terminal asli
+- **Port/Domain Access Type** — Saat deploy atau edit project, bisa memilih antara:
+  - **Port** — Akses via `host:port` (mengikuti hostname yang digunakan user saat buka dashboard)
+  - **Domain** — Akses via custom domain (misal `api.example.com`)
+- **Smart Port Link** — Link port di project card sekarang menggunakan hostname yang sama dengan yang dipakai user membuka dashboard (localhost/IP lokal/IP publik)
+
+#### 🔧 Perbaikan
+
+- Project spawn menggunakan PTY (node-pty) menggantikan child_process.spawn — output lebih reliable dan mendukung warna ANSI
+- Kill process diperbarui untuk kompatibel dengan PTY process
+
+---
 
 ### v1.4.1 — 21 Mei 2026
 

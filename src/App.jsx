@@ -11,6 +11,7 @@ const Settings = lazy(() => import('./pages/Settings'))
 const Documentation = lazy(() => import('./pages/Documentation'))
 const DeployProject = lazy(() => import('./pages/DeployProject'))
 const FileManager = lazy(() => import('./pages/FileManager'))
+const ProjectLogs = lazy(() => import('./pages/ProjectLogs'))
 const Login = lazy(() => import('./pages/Login'))
 
 export const AuthContext = createContext(null)
@@ -106,6 +107,11 @@ export default function App() {
               <Route path="projects/:project/files" element={
                 <ProtectedRoute roles={['owner', 'admin']}>
                    <FileManager />
+                </ProtectedRoute>
+              } />
+              <Route path="projects/:project/logs" element={
+                <ProtectedRoute>
+                   <ProjectLogs />
                 </ProtectedRoute>
               } />
             </Route>

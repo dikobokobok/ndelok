@@ -161,7 +161,7 @@ export default function Projects() {
 
   const openEdit = (p) => {
     setEditProject(p)
-    setEditData({ installCmd: p.installCmd || '', runCmd: p.runCmd || '', port: p.port || '' })
+    setEditData({ installCmd: p.installCmd || '', runCmd: p.runCmd || '', port: p.port || '', domain: p.domain || '', accessType: p.accessType || (p.domain ? 'domain' : 'port') })
   }
 
   const handleEditSave = async (e) => {
@@ -243,8 +243,15 @@ export default function Projects() {
                        <span className={`w-1 h-1 rounded-full shrink-0 ${p.dot}`} />
                        {p.status}
                      </span>
-                     {p.port && (
-                       <a href={`http://${host}:${p.port}`} target="_blank" rel="noreferrer" 
+                     {p.domain && (
+                       <a href={`${window.location.protocol}//${p.domain}`} target="_blank" rel="noreferrer" 
+                         onClick={e => e.stopPropagation()}
+                         className="flex items-center gap-1 text-[9px] font-bold text-violet-400 bg-violet-500/10 hover:bg-violet-500/20 transition-colors px-1.5 py-0.5 rounded uppercase tracking-widest leading-none">
+                         <span className="material-symbols-outlined text-[11px]">language</span> {p.domain}
+                       </a>
+                     )}
+                     {p.port && !p.domain && (
+                       <a href={`${window.location.protocol}//${window.location.hostname}:${p.port}`} target="_blank" rel="noreferrer" 
                          onClick={e => e.stopPropagation()}
                          className="flex items-center gap-1 text-[9px] font-bold text-primary bg-primary/10 hover:bg-primary/20 transition-colors px-1.5 py-0.5 rounded uppercase tracking-widest leading-none">
                          <span className="material-symbols-outlined text-[11px]">link</span> {p.port}
@@ -329,7 +336,7 @@ export default function Projects() {
                     <div className="w-[1px] h-3 bg-white/10" />
                   </>
                 )}
-                <Link to={`/logs?project=${encodeURIComponent(p.name)}`} className="text-primary hover:text-primary-container transition-colors font-bold uppercase tracking-widest flex items-center gap-1">
+                <Link to={`/projects/${encodeURIComponent(p.name)}/logs`} className="text-primary hover:text-primary-container transition-colors font-bold uppercase tracking-widest flex items-center gap-1">
                   Logs <span className="material-symbols-outlined text-[13px]">arrow_forward</span>
                 </Link>
                 <div className="w-[1px] h-3 bg-white/10" />
@@ -363,8 +370,22 @@ export default function Projects() {
              
              <form onSubmit={handleEditSave} className="space-y-4">
                 <div className="space-y-1.5">
-                   <label className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">Exposed Port</label>
-                   <input type="number" required value={editData.port} onChange={e => setEditData({...editData, port: e.target.value})} className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl text-on-surface p-2.5 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none" />
+                   <label className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">Access Type</label>
+                   <div className="flex gap-2 mb-2">
+                     <button type="button" onClick={() => setEditData({...editData, accessType: 'port'})}
+                       className={`flex-1 px-3 py-2 rounded-lg border text-[10px] font-bold uppercase tracking-wider transition-all ${editData.accessType === 'port' ? 'bg-cyan-500/20 border-cyan-500 text-cyan-400' : 'bg-[#0a0f1d] border-white/10 text-slate-500 hover:border-white/20'}`}>
+                       Port
+                     </button>
+                     <button type="button" onClick={() => setEditData({...editData, accessType: 'domain'})}
+                       className={`flex-1 px-3 py-2 rounded-lg border text-[10px] font-bold uppercase tracking-wider transition-all ${editData.accessType === 'domain' ? 'bg-violet-500/20 border-violet-500 text-violet-400' : 'bg-[#0a0f1d] border-white/10 text-slate-500 hover:border-white/20'}`}>
+                       Domain
+                     </button>
+                   </div>
+                   {editData.accessType === 'port' ? (
+                     <input type="number" value={editData.port} onChange={e => setEditData({...editData, port: e.target.value})} placeholder="e.g. 3000" className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl text-on-surface p-2.5 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none" />
+                   ) : (
+                     <input type="text" value={editData.domain} onChange={e => setEditData({...editData, domain: e.target.value})} placeholder="e.g. api.example.com" className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl text-on-surface p-2.5 text-xs focus:ring-1 focus:ring-violet-500 focus:border-violet-500 outline-none" />
+                   )}
                 </div>
                 <div className="space-y-1.5">
                    <label className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">Build / Install Execution</label>

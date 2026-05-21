@@ -26,6 +26,7 @@ let currentCpuUsage = 0
 let activeProjects = []
 let runningProcs = {}
 let deployLogs = {}
+let projectLogBuffers = {} // Store raw terminal output per project
 
 const LOGS_PATH = path.join(process.cwd(), 'src', 'database', 'system-logs.json')
 const USERS_PATH = path.join(process.cwd(), 'src', 'database', 'users.json')
@@ -57,10 +58,11 @@ const saveLogs = () => {
 const killProcess = (name) => {
   const child = runningProcs[name]
   if (child) {
+    try { child.kill(); } catch (e) {}
     if (os.platform() === 'win32') {
       exec(`taskkill /pid ${child.pid} /t /f`, () => {})
     } else {
-      try { process.kill(-child.pid, 'SIGKILL') } catch (e) { child.kill('SIGKILL') }
+      try { process.kill(-child.pid, 'SIGKILL') } catch (e) {}
     }
     delete runningProcs[name]
   }
@@ -80,13 +82,32 @@ const killProcess = (name) => {
 if (fs.existsSync(DB_PATH)) {
   try {
     activeProjects = JSON.parse(fs.readFileSync(DB_PATH, 'utf-8'))
-    // Mark everything stopped on boot since we lost process handles during Vite restart
+    // Remember which projects were running before reboot
+    const projectsToRestart = activeProjects.filter(p => p.status === 'Running')
+    // Mark everything stopped first since we lost process handles
     activeProjects.forEach(p => {
       p.status = 'Stopped'
       p.statusColor = 'bg-surface-container-highest text-slate-400'
       p.dot = 'bg-slate-500'
       p.progress = 0
     })
+    // Auto-restart projects that were running before reboot
+    if (projectsToRestart.length > 0) {
+      setTimeout(() => {
+        projectsToRestart.forEach(proj => {
+          const p = activeProjects.find(ap => ap.name === proj.name)
+          if (p) {
+            pushLog('INFO', p.name, 'Auto-restarting project (was running before reboot)', 'System', 'Process')
+            p.status = 'Starting...'
+            p.statusColor = 'bg-tertiary/10 text-tertiary'
+            p.dot = 'bg-tertiary animate-pulse'
+            p.progress = 45
+            saveProjects()
+            setTimeout(() => spawnProject(p), 2000)
+          }
+        })
+      }, 3000)
+    }
   } catch(e) {}
 }
 const saveProjects = () => fs.writeFileSync(DB_PATH, JSON.stringify(activeProjects, null, 2))
@@ -236,22 +257,47 @@ const spawnProject = (proj) => {
   const workspaceDir = path.join(process.cwd(), 'workspaces', proj.name)
   if (!fs.existsSync(workspaceDir)) return // Safe fallback
   
-  const args = proj.runCmd.split(' ')
-  const bin = args.shift()
-  const child = spawn(bin, args, { cwd: workspaceDir, shell: true, detached: os.platform() !== 'win32' })
-  runningProcs[proj.name] = child
+  const isWin = process.platform === 'win32'
+  const shell = isWin ? 'powershell.exe' : (process.env.SHELL || '/bin/bash')
+  const cmdStr = proj.runCmd
+
+  // Use PTY so programs output as if connected to a real terminal
+  const ptyProc = pty.spawn(shell, isWin ? ['-Command', cmdStr] : ['-c', cmdStr], {
+    name: 'xterm-256color',
+    cols: 120,
+    rows: 30,
+    cwd: workspaceDir,
+    env: { ...process.env, FORCE_COLOR: '1', npm_config_color: 'always' }
+  })
   
-  child.stdout.on('data', d => pushLog('INFO', proj.name, d.toString().trim(), 'System', 'Process'))
-  child.stderr.on('data', d => pushLog('ERROR', proj.name, d.toString().trim(), 'System', 'Process'))
+  runningProcs[proj.name] = ptyProc
   
-  child.on('close', code => {
-    pushLog('WARN', proj.name, `Process exited with code ${code}`, 'System', 'Process')
+  // Initialize log buffer for this project
+  if (!projectLogBuffers[proj.name]) projectLogBuffers[proj.name] = []
+  
+  ptyProc.onData((data) => {
+    // Store in buffer (max 500 entries)
+    projectLogBuffers[proj.name].push(data)
+    if (projectLogBuffers[proj.name].length > 500) projectLogBuffers[proj.name].shift()
+    // Emit to subscribers
+    if (ioInstance) ioInstance.to(`project_logs_${proj.name}`).emit('project_log', { project: proj.name, data })
+    // Also push to system logs (strip ANSI for text logs)
+    const clean = data.replace(/\x1b\[[0-9;]*m/g, '').trim()
+    if (clean) pushLog('INFO', proj.name, clean, 'System', 'Process')
+  })
+  
+  ptyProc.onExit(({ exitCode }) => {
+    const exitMsg = `\r\n\x1b[90m[Process exited with code ${exitCode}]\x1b[0m\r\n`
+    projectLogBuffers[proj.name].push(exitMsg)
+    if (ioInstance) ioInstance.to(`project_logs_${proj.name}`).emit('project_log', { project: proj.name, data: exitMsg })
+    pushLog('WARN', proj.name, `Process exited with code ${exitCode}`, 'System', 'Process')
     proj.status = 'Stopped'
     proj.statusColor = 'bg-surface-container-highest text-slate-400'
     proj.dot = 'bg-slate-500'
     proj.progress = 0
     proj.cpu = 0
     proj.mem = 0
+    delete runningProcs[proj.name]
     saveProjects()
   })
   
@@ -320,6 +366,20 @@ export default defineConfig({
 
           socket.on('disconnect', () => {
             if (ptyProcess) { ptyProcess.kill(); ptyProcess = null }
+          })
+
+          // ── Project Log Streaming ───────────────────────────────────────
+          socket.on('subscribe_project_logs', (projectName) => {
+            socket.join(`project_logs_${projectName}`)
+            // Send buffered logs
+            const buffer = projectLogBuffers[projectName] || []
+            if (buffer.length > 0) {
+              socket.emit('project_log_history', { project: projectName, data: buffer.join('') })
+            }
+          })
+
+          socket.on('unsubscribe_project_logs', (projectName) => {
+            socket.leave(`project_logs_${projectName}`)
           })
         })
 
@@ -646,6 +706,8 @@ export default defineConfig({
                   progress: 0, progressColor: 'bg-tertiary', cpu: 0, mem: 0,
                   installCmd: payload.installCmd, runCmd: payload.runCmd,
                   port: payload.port || '',
+                  domain: payload.domain || '',
+                  accessType: payload.accessType || 'port',
                   repo: payload.repo, branch: payload.branch || 'main'
               }
               activeProjects = activeProjects.filter(x => x.name !== name)
@@ -759,6 +821,8 @@ export default defineConfig({
                 progress: 0, progressColor: 'bg-tertiary', cpu: 0, mem: 0,
                 installCmd: fields.installCmd || 'npm install', runCmd: fields.runCmd || 'node index.js',
                 port: fields.port || '',
+                domain: fields.domain || '',
+                accessType: fields.accessType || 'port',
                 repo: 'file-upload', branch: 'local'
               }
               activeProjects = activeProjects.filter(x => x.name !== name)
@@ -1281,6 +1345,8 @@ export default defineConfig({
                 
                 if (action === 'edit' && payload) {
                   proj.port = payload.port
+                  proj.domain = payload.domain || ''
+                  proj.accessType = payload.accessType || 'port'
                   proj.installCmd = payload.installCmd
                   proj.runCmd = payload.runCmd
                   saveProjects()

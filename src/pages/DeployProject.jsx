@@ -5,7 +5,7 @@ import { AuthContext } from '../App'
 
 export default function DeployProject() {
   const { authenticatedFetch } = useContext(AuthContext)
-  const [formData, setFormData] = useState({ name: '', repo: '', installCmd: '', runCmd: '', port: '' })
+  const [formData, setFormData] = useState({ name: '', repo: '', installCmd: '', runCmd: '', port: '', domain: '', accessType: 'port' })
   const [uploadMode, setUploadMode] = useState('github') // 'github' | 'file'
   const [uploadedFiles, setUploadedFiles] = useState([])
   const [isUploading, setIsUploading] = useState(false)
@@ -95,6 +95,8 @@ export default function DeployProject() {
         const fd = new FormData()
         fd.append('name', formData.name)
         fd.append('port', formData.port)
+        fd.append('domain', formData.domain)
+        fd.append('accessType', formData.accessType)
         fd.append('installCmd', formData.installCmd)
         fd.append('runCmd', formData.runCmd)
         // Send paths as JSON so server can reconstruct directory structure
@@ -247,13 +249,32 @@ export default function DeployProject() {
                <div className="space-y-2 text-[13px]">
                   <label className="flex items-center gap-2 text-[10px] font-bold text-slate-300 uppercase tracking-widest">
                      <span className="material-symbols-outlined text-[14px] text-cyan-400">api</span>
-                     Exposed Port
+                     Access Type
                   </label>
-                  <input type="number" value={formData.port} onChange={e => setFormData({ ...formData, port: e.target.value })}
-                    placeholder="e.g. 3000"
-                    min="1" max="65535"
-                    disabled={isDeploying || (logs.length > 0 && !logs.some(l => l.includes('[ERROR]')))}
-                    className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl text-on-surface p-3 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder:text-slate-600 disabled:opacity-50" />
+                  <div className="flex gap-2">
+                    <button type="button" onClick={() => setFormData({ ...formData, accessType: 'port' })}
+                      disabled={isDeploying || (logs.length > 0 && !logs.some(l => l.includes('[ERROR]')))}
+                      className={`flex-1 px-3 py-2 rounded-lg border text-[10px] font-bold uppercase tracking-wider transition-all ${formData.accessType === 'port' ? 'bg-cyan-500/20 border-cyan-500 text-cyan-400' : 'bg-[#0a0f1d] border-white/10 text-slate-500 hover:border-white/20'} disabled:opacity-50`}>
+                      Port
+                    </button>
+                    <button type="button" onClick={() => setFormData({ ...formData, accessType: 'domain' })}
+                      disabled={isDeploying || (logs.length > 0 && !logs.some(l => l.includes('[ERROR]')))}
+                      className={`flex-1 px-3 py-2 rounded-lg border text-[10px] font-bold uppercase tracking-wider transition-all ${formData.accessType === 'domain' ? 'bg-violet-500/20 border-violet-500 text-violet-400' : 'bg-[#0a0f1d] border-white/10 text-slate-500 hover:border-white/20'} disabled:opacity-50`}>
+                      Domain
+                    </button>
+                  </div>
+                  {formData.accessType === 'port' ? (
+                    <input type="number" value={formData.port} onChange={e => setFormData({ ...formData, port: e.target.value })}
+                      placeholder="e.g. 3000"
+                      min="1" max="65535"
+                      disabled={isDeploying || (logs.length > 0 && !logs.some(l => l.includes('[ERROR]')))}
+                      className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl text-on-surface p-3 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder:text-slate-600 disabled:opacity-50" />
+                  ) : (
+                    <input type="text" value={formData.domain} onChange={e => setFormData({ ...formData, domain: e.target.value })}
+                      placeholder="e.g. api.example.com"
+                      disabled={isDeploying || (logs.length > 0 && !logs.some(l => l.includes('[ERROR]')))}
+                      className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl text-on-surface p-3 focus:ring-1 focus:ring-violet-500 focus:border-violet-500 outline-none transition-all placeholder:text-slate-600 disabled:opacity-50" />
+                  )}
                </div>
 
                {/* Upload Mode Toggle */}

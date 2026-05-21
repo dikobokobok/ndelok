@@ -113,6 +113,7 @@ Lisensi MIT.
 
 #### ✨ Fitur Baru
 
+- **Real Terminal (xterm.js + node-pty)** — Terminal yang identik dengan terminal OS asli (PowerShell di Windows, Bash di Linux). Support warna 256-color, cursor, interactive apps (vim, nano, top), tab completion, Ctrl+C, dan semua shortcut terminal.
 - **System Power Control** — Tombol Shutdown & Reboot di sidebar (owner only) dengan verifikasi password, support Windows & Linux
 - **Network Speed Monitor** — Card real-time di dashboard menampilkan download/upload speed (menggunakan systeminformation)
 - **Dashboard Layout** — Resource cards (Storage, Memory, CPU, Network) dipindahkan ke atas, info cards (Health, Servers, Warnings, Offline) di bawah
@@ -123,6 +124,13 @@ Lisensi MIT.
 - **CPU warning di-throttle** — Hanya dicatat 1x per menit (sebelumnya setiap 2 detik), threshold WARN dinaikkan ke 75%
 - **Audit log difilter** — Skip endpoint internal (verify-password, files/list, files/read, deploy-logs) agar tidak spam
 - **Port diubah** ke 1234
+
+#### 📦 Dependensi Baru
+
+- `@xterm/xterm` — Terminal emulator di browser
+- `@xterm/addon-fit` — Auto-resize terminal
+- `@xterm/addon-web-links` — Clickable links di terminal
+- `node-pty` — Pseudo-terminal backend (real shell session)
 
 ---
 

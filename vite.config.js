@@ -12,6 +12,7 @@ import Busboy from 'busboy'
 import { createRequire } from 'module'
 const require = createRequire(import.meta.url)
 const archiver = require('archiver')
+const pty = require('node-pty')
 
 dotenv.config()
 const JWT_SECRET = new TextEncoder().encode(process.env.NDELOK_JWT_SECRET || 'fallback-secret-for-dev-only-12345')
@@ -280,19 +281,45 @@ export default defineConfig({
         ioInstance = new Server(server.httpServer, { cors: { origin: '*' } })
         ioInstance.on('connection', (socket) => {
           socket.emit('init_logs', systemLogs)
-          socket.on('terminal_command', (cmd) => {
-            pushLog('INFO', 'Terminal', `Executing: ${cmd}`, socket.user?.username || 'User', 'Audit')
-            const [executable, ...args] = cmd.split(' ')
-            try {
-              const proc = spawn(executable, args, { shell: true })
-              proc.stdout.on('data', (d) => socket.emit('terminal_output', d.toString()))
-              proc.stderr.on('data', (d) => socket.emit('terminal_output', `\x1b[31m${d.toString()}\x1b[0m`))
-              proc.on('close', (code) => {
-                 socket.emit('terminal_output', `\n\r[Process completed with code ${code}]\r\n`)
-              })
-            } catch (e) {
-              socket.emit('terminal_output', `\x1b[31mError: ${e.message}\x1b[0m\n`)
-            }
+
+          // ── PTY Terminal ─────────────────────────────────────────────────
+          let ptyProcess = null
+
+          socket.on('terminal_start', () => {
+            if (ptyProcess) return // already running
+
+            const isWin = process.platform === 'win32'
+            const shell = isWin ? 'powershell.exe' : (process.env.SHELL || '/bin/bash')
+            const cwd = isWin ? (process.env.USERPROFILE || 'C:\\') : (process.env.HOME || '/')
+
+            ptyProcess = pty.spawn(shell, [], {
+              name: 'xterm-256color',
+              cols: 120,
+              rows: 30,
+              cwd: cwd,
+              env: process.env
+            })
+
+            ptyProcess.onData((data) => {
+              socket.emit('terminal_output', data)
+            })
+
+            ptyProcess.onExit(({ exitCode }) => {
+              socket.emit('terminal_exit', exitCode)
+              ptyProcess = null
+            })
+          })
+
+          socket.on('terminal_input', (data) => {
+            if (ptyProcess) ptyProcess.write(data)
+          })
+
+          socket.on('terminal_resize', ({ cols, rows }) => {
+            if (ptyProcess) ptyProcess.resize(cols, rows)
+          })
+
+          socket.on('disconnect', () => {
+            if (ptyProcess) { ptyProcess.kill(); ptyProcess = null }
           })
         })
 

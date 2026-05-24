@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, createContext, useContext, useState, useEffect } from 'react'
+import React, { Suspense, lazy, createContext, useContext, useState, useEffect, useRef, useCallback } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Layout from './components/Layout'
 import PageLoader from './components/PageLoader'
@@ -15,6 +15,16 @@ const ProjectLogs = lazy(() => import('./pages/ProjectLogs'))
 const Login = lazy(() => import('./pages/Login'))
 
 export const AuthContext = createContext(null)
+
+// Auto-logout configuration
+const INACTIVITY_TIMEOUT_MS = 60 * 60 * 1000 // 1 hour
+
+// Storage keys (sessionStorage so that closing the browser / system reboot
+// automatically clears the session and forces re-login)
+const STORAGE_KEYS = {
+  user: 'ndelok_user',
+  token: 'ndelok_token',
+}
 
 const ProtectedRoute = ({ children, roles = [] }) => {
   const { user, loading } = useContext(AuthContext)
@@ -34,33 +44,94 @@ export default function App() {
   const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
   const [loading, setLoading] = useState(true)
+  const inactivityTimerRef = useRef(null)
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('ndelok_user')
-    const savedToken = localStorage.getItem('ndelok_token')
+    // Migrate any legacy data from localStorage to sessionStorage on first load,
+    // then clear it from localStorage so a system reboot truly logs the user out.
+    const legacyUser = localStorage.getItem(STORAGE_KEYS.user)
+    const legacyToken = localStorage.getItem(STORAGE_KEYS.token)
+    if (legacyUser || legacyToken) {
+      localStorage.removeItem(STORAGE_KEYS.user)
+      localStorage.removeItem(STORAGE_KEYS.token)
+    }
+
+    const savedUser = sessionStorage.getItem(STORAGE_KEYS.user)
+    const savedToken = sessionStorage.getItem(STORAGE_KEYS.token)
     if (savedUser && savedToken) {
-      try { 
+      try {
         setUser(JSON.parse(savedUser))
         setToken(savedToken)
       } catch (e) {
-        localStorage.removeItem('ndelok_user')
-        localStorage.removeItem('ndelok_token')
+        sessionStorage.removeItem(STORAGE_KEYS.user)
+        sessionStorage.removeItem(STORAGE_KEYS.token)
       }
     }
     setLoading(false)
   }, [])
 
-  const logout = () => {
-    localStorage.removeItem('ndelok_user')
-    localStorage.removeItem('ndelok_token')
+  const logout = useCallback(() => {
+    sessionStorage.removeItem(STORAGE_KEYS.user)
+    sessionStorage.removeItem(STORAGE_KEYS.token)
+    // Also clear localStorage just in case any legacy entries exist
+    localStorage.removeItem(STORAGE_KEYS.user)
+    localStorage.removeItem(STORAGE_KEYS.token)
     setUser(null)
     setToken(null)
-  }
+    if (inactivityTimerRef.current) {
+      clearTimeout(inactivityTimerRef.current)
+      inactivityTimerRef.current = null
+    }
+  }, [])
+
+  // Auto logout after INACTIVITY_TIMEOUT_MS of no user interaction
+  useEffect(() => {
+    if (!user) return
+
+    const handleInactivityTimeout = () => {
+      logout()
+      // Redirect to login on auto-logout
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login'
+      }
+    }
+
+    const resetTimer = () => {
+      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current)
+      inactivityTimerRef.current = setTimeout(handleInactivityTimeout, INACTIVITY_TIMEOUT_MS)
+    }
+
+    const activityEvents = [
+      'mousemove',
+      'mousedown',
+      'keydown',
+      'touchstart',
+      'scroll',
+      'click',
+      'wheel',
+      'visibilitychange',
+    ]
+
+    activityEvents.forEach((evt) => {
+      window.addEventListener(evt, resetTimer, { passive: true })
+    })
+
+    // Start timer immediately
+    resetTimer()
+
+    return () => {
+      activityEvents.forEach((evt) => window.removeEventListener(evt, resetTimer))
+      if (inactivityTimerRef.current) {
+        clearTimeout(inactivityTimerRef.current)
+        inactivityTimerRef.current = null
+      }
+    }
+  }, [user, logout])
 
   const authenticatedFetch = async (url, options = {}) => {
     const headers = {
       ...options.headers,
-      'Authorization': `Bearer ${token || localStorage.getItem('ndelok_token')}`,
+      'Authorization': `Bearer ${token || sessionStorage.getItem(STORAGE_KEYS.token)}`,
       'Content-Type': options.body instanceof FormData ? undefined : (options.headers?.['Content-Type'] || 'application/json')
     }
     

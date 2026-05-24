@@ -1,5 +1,29 @@
 [
   {
+    "time": "20:39:21.262",
+    "level": "INFO",
+    "service": "Auth",
+    "msg": "User ibnu logged in from IP: 127.0.0.1 (Localhost)",
+    "initiator": "ibnu",
+    "category": "Security"
+  },
+  {
+    "time": "20:39:20.545",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST /login",
+    "initiator": "Anonymous",
+    "category": "Login"
+  },
+  {
+    "time": "20:20:09.784",
+    "level": "WARN",
+    "service": "RAM Monitor",
+    "msg": "Elevated RAM usage: 91%",
+    "initiator": "System",
+    "category": "System"
+  },
+  {
     "time": "23:38:17.451",
     "level": "WARN",
     "service": "RAM Monitor",

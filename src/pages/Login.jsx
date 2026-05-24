@@ -25,8 +25,9 @@ export default function Login() {
       const data = await res.json()
       
       if (data.success) {
-        localStorage.setItem('ndelok_user', JSON.stringify(data.user))
-        localStorage.setItem('ndelok_token', data.token)
+        // Use sessionStorage so credentials are wiped on browser close / system reboot
+        sessionStorage.setItem('ndelok_user', JSON.stringify(data.user))
+        sessionStorage.setItem('ndelok_token', data.token)
         setUser(data.user)
         setToken(data.token)
         navigate('/dashboard')

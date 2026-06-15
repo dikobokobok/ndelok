@@ -1,0 +1,602 @@
+{
+  "project_meta": {
+    "name": "Ndelok.me",
+    "version": "1.8.0",
+    "license": "MIT",
+    "developer": "dikobokobok",
+    "description": "High-performance, real-time infrastructure and workspace management dashboard designed for local development and lightweight production servers.",
+    "prerequisites": {
+      "node_version": ">=18.0.0",
+      "npm_version": ">=9.0.0",
+      "git": "Required for project provisioning",
+      "os_privileges": "Root/Administrator required for ZeroTier network operations, pseudoterminal creation, and system shutdown/reboot commands"
+    }
+  },
+  "directory_structure": {
+    "/": "Root of the workspace",
+    "/bin/": "Stores downloaded binary executables (e.g. cloudflared.exe or cloudflared)",
+    "/dist/": "Production build output of the frontend assets served by server.js",
+    "/docs/": "Documentation assets, flowcharts, and screenshots",
+    "/node_modules/": "Installed Node dependencies",
+    "/workspaces/": "Isolated directory folders where deployed client projects are cloned and run",
+    "/server.js": "Production Node.js server serving dist/ assets and hosting the native API, Socket.IO, and PTY processes",
+    "/vite.config.js": "Vite development config containing mirroring backend API middleware and Socket.IO integrations for npm run dev",
+    "/package.json": "Defines scripts (dev, build, start) and dependencies",
+    "/src/": "Frontend source files",
+    "/src/components/": "Reusable components (AiChatPopup, Layout, Sidebar, PasswordInput, TmuxPlugin)",
+    "/src/pages/": "App pages (Dashboard, Projects, FileManager, Servers, Logs, Settings, Cloudflare, TmuxSession)",
+    "/src/database/": "JSON file-based database folder storing persistent app configurations"
+  },
+  "database_schemas": {
+    "projects.json": {
+      "description": "Contains registries of provisioned workspace apps.",
+      "fields": {
+        "id": "String (Timestamp unique identifier)",
+        "name": "String (Alphanumeric project name)",
+        "desc": "String (Short description)",
+        "lang": "String (Programming language identifier)",
+        "status": "String (Running, Stopped, Deploying..., Failed)",
+        "statusColor": "String (Tailwind background/text CSS styles)",
+        "dot": "String (Tailwind status dot CSS class with animation)",
+        "servers": "Number (Count of process instances, default 1)",
+        "uptime": "String (Calculated time duration since start)",
+        "lastDeploy": "String (Relative deploy date)",
+        "icon": "String (Material Symbol name)",
+        "iconColor": "String (Tailwind CSS text color)",
+        "progress": "Number (Current loading bar percentage)",
+        "progressColor": "String (Tailwind color for progress bar)",
+        "cpu": "Number (Current simulated CPU percent)",
+        "mem": "Number (Current simulated memory in MB)",
+        "diskStr": "String (Calculated directory size e.g. '12.4MB')",
+        "installCmd": "String (Command to install dependencies on deploy)",
+        "runCmd": "String (Command to execute app)",
+        "port": "String/Number (Local running port)",
+        "domain": "String (Optional custom domain)",
+        "accessType": "String ('port' for host:port or 'domain' for proxying)",
+        "repo": "String (GitHub URL or 'file-upload')",
+        "branch": "String (Target Git branch/tag)",
+        "startedAt": "Number (Epoch timestamp of startup)"
+      }
+    },
+    "users.json": {
+      "description": "Stores user credentials and authority role.",
+      "fields": {
+        "id": "String (Timestamp unique identifier)",
+        "username": "String (Unique alphanumeric login name)",
+        "name": "String (Display name)",
+        "email": "String (Email address)",
+        "password": "String (Bcrypt-hashed password)",
+        "role": "String ('owner' for full root control, 'admin' for project actions)",
+        "avatar": "String (URL to profile image/Dicebear seed)"
+      }
+    },
+    "system-logs.json": {
+      "description": "Stores the persistent audit logs.",
+      "fields": {
+        "time": "String (Formatted timestamp e.g. 'HH:mm:ss.SSS')",
+        "level": "String (INFO, WARN, SUCCESS, ERROR)",
+        "service": "String (Component/Project emitting the log)",
+        "msg": "String (Log message content)",
+        "initiator": "String (Username or 'System')",
+        "category": "String (General, Security, Deployment, Management, Process, System)"
+      }
+    },
+    "zerotier.json": {
+      "description": "Stores current ZeroTier joined networks.",
+      "fields": {
+        "serviceRunning": "Boolean (Whether the ZeroTier daemon is online)",
+        "networks": "Array of Objects containing joined networks",
+        "networks[].id": "String (16-character hex Network ID)",
+        "networks[].joinedAt": "String (ISO date timestamp)",
+        "networks[].joinedBy": "String (Username that joined)"
+      }
+    },
+    "cloudflare.json": {
+      "description": "Stores Cloudflare Tunnel plugin state.",
+      "fields": {
+        "enabled": "Boolean (Whether the tunnel should run)",
+        "token": "String (Custom Cloudflare tunnel token, optional)",
+        "url": "String (Generated trycloudflare.com URL if quick tunnel)",
+        "status": "String (Connected, Connecting, Disconnected, Failed)"
+      }
+    },
+    "ai-chats.json": {
+      "description": "Stores persistent user-to-assistant chat sessions.",
+      "fields": {
+        "id": "String (Unique timestamp identifier)",
+        "title": "String (User-defined session title)",
+        "createdAt": "String (ISO date timestamp)",
+        "messages": "Array of message objects",
+        "messages[].role": "String ('user', 'model', or 'tool')",
+        "messages[].content": "String (Chat message content or stringified tool output)",
+        "messages[].timestamp": "String (ISO date timestamp)",
+        "messages[].name": "String (Function name if role is 'tool')",
+        "messages[].toolCalls": "Array of objects if role is 'model' and tool is executed",
+        "messages[].toolCalls[].name": "String (Invoked function name)",
+        "messages[].toolCalls[].args": "Object (Parameters sent to the tool)"
+      }
+    },
+    "ai-config.json": {
+      "description": "Stores general AI configurations.",
+      "fields": {
+        "apiKey": "String (User configured Gemini API Key)"
+      }
+    }
+  },
+  "api_routes": [
+    {
+      "method": "POST",
+      "path": "/api/login",
+      "auth_required": false,
+      "request_body": { "username": "String", "password": "String" },
+      "response": { "success": "Boolean", "user": "Object (excl password)", "token": "String (JWT)" },
+      "description": "Validates credentials against users.json and returns a JWT token signed with NDELOK_JWT_SECRET."
+    },
+    {
+      "method": "GET",
+      "path": "/api/stats",
+      "auth_required": true,
+      "response": { "hostname": "String", "platform": "String", "type": "String", "release": "String", "uptime": "Number", "memTotal": "Number", "memUsed": "Number", "cpuUsage": "Number", "cpuModel": "String", "diskTotal": "Number", "diskUsed": "Number", "cores": "Number", "netInterfaces": "Object" },
+      "description": "Queries operating system diagnostics using native os and disk stats."
+    },
+    {
+      "method": "GET",
+      "path": "/api/logs",
+      "auth_required": true,
+      "response": "Array of System Log Objects",
+      "description": "Retrieves the persistent system audit logs."
+    },
+    {
+      "method": "GET",
+      "path": "/api/projects",
+      "auth_required": true,
+      "response": { "projects": "Array of Project Objects", "host": "String (Host local IP)" },
+      "description": "Retrieves the list of configured projects."
+    },
+    {
+      "method": "POST",
+      "path": "/api/project-deploy",
+      "auth_required": true,
+      "request_body": { "name": "String", "desc": "String", "lang": "String", "installCmd": "String", "runCmd": "String", "port": "String", "domain": "String", "accessType": "String", "repo": "String", "branch": "String" },
+      "response": { "success": "Boolean" },
+      "description": "Creates workspace folder, clones repo from Git asynchronously, runs installation command, and starts application."
+    },
+    {
+      "method": "POST",
+      "path": "/api/project-deploy-upload",
+      "auth_required": true,
+      "request_body": "Multipart Form Data containing files and workspace configurations",
+      "response": { "success": "Boolean" },
+      "description": "Deploys a project directly from local files upload, writing file trees via Busboy."
+    },
+    {
+      "method": "POST",
+      "path": "/api/project-action",
+      "auth_required": true,
+      "request_body": { "name": "String", "action": "String ('start'|'stop'|'restart'|'delete')", "payload": "Object (Used only for edit configurations)" },
+      "response": { "success": "Boolean" },
+      "description": "Controls active project processes, executing cleanup and process termination recursively."
+    },
+    {
+      "method": "GET",
+      "path": "/api/deploy-logs",
+      "auth_required": true,
+      "query_params": { "name": "String" },
+      "response": "Array of strings",
+      "description": "Retrieves live deploy console output streams for a specific project."
+    },
+    {
+      "method": "GET",
+      "path": "/api/files/list",
+      "auth_required": true,
+      "query_params": { "project": "String", "path": "String" },
+      "response": { "entries": "Array of files/folders ({name, type, size, modified, ext})", "path": "String (Normalized path)" },
+      "description": "Lists files in target project directory. Supports system-wide '__root__' navigation for owner."
+    },
+    {
+      "method": "GET",
+      "path": "/api/files/read",
+      "auth_required": true,
+      "query_params": { "project": "String", "path": "String" },
+      "response": { "content": "String (UTF-8)", "size": "Number", "modified": "String" },
+      "description": "Reads file contents up to 2MB. Supports Monaco Editor integration."
+    },
+    {
+      "method": "POST",
+      "path": "/api/files/write",
+      "auth_required": true,
+      "request_body": { "project": "String", "path": "String", "content": "String" },
+      "response": { "success": "Boolean" },
+      "description": "Overwrites/creates a file in the directory structure."
+    },
+    {
+      "method": "POST",
+      "path": "/api/files/mkdir",
+      "auth_required": true,
+      "request_body": { "project": "String", "path": "String" },
+      "response": { "success": "Boolean" },
+      "description": "Creates a directory in the project workspace recursively."
+    },
+    {
+      "method": "POST",
+      "path": "/api/files/rename",
+      "auth_required": true,
+      "request_body": { "project": "String", "oldPath": "String", "newPath": "String" },
+      "response": { "success": "Boolean" },
+      "description": "Renames a file or folder in the project workspace."
+    },
+    {
+      "method": "POST",
+      "path": "/api/files/delete",
+      "auth_required": true,
+      "request_body": { "project": "String", "path": "String" },
+      "response": { "success": "Boolean" },
+      "description": "Deletes file or directory recursively."
+    },
+    {
+      "method": "GET",
+      "path": "/api/files/download",
+      "auth_required": true,
+      "query_params": { "project": "String", "path": "String" },
+      "response": "File stream",
+      "description": "Downloads an individual file as an octet-stream."
+    },
+    {
+      "method": "GET",
+      "path": "/api/files/download-folder",
+      "auth_required": true,
+      "query_params": { "project": "String", "path": "String" },
+      "response": "Zip file stream",
+      "description": "Downloads a folder recursively as a ZIP archive on-the-fly."
+    },
+    {
+      "method": "POST",
+      "path": "/api/files/upload",
+      "auth_required": true,
+      "request_body": "Multipart Form Data (file and path fields)",
+      "response": { "success": "Boolean", "count": "Number" },
+      "description": "Uploads one or multiple files directly into a specific folder in the workspace."
+    },
+    {
+      "method": "POST",
+      "path": "/api/verify-password",
+      "auth_required": true,
+      "request_body": { "password": "String" },
+      "response": { "success": "Boolean" },
+      "description": "Verifies the current user's password to validate sensitive tasks (such as ZeroTier leave or Power controls)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/power",
+      "auth_required": true,
+      "request_body": { "action": "String ('shutdown'|'reboot')", "password": "String" },
+      "response": { "success": "Boolean", "message": "String" },
+      "description": "Executes operating system shutdown or reboot commands. Owner only."
+    },
+    {
+      "method": "GET",
+      "path": "/api/cloudflare/status",
+      "auth_required": true,
+      "response": { "enabled": "Boolean", "status": "String", "url": "String", "token": "String", "logs": "Array of String logs" },
+      "description": "Gets Cloudflare Tunnel status, generated public URL, and process outputs. Owner only."
+    },
+    {
+      "method": "POST",
+      "path": "/api/cloudflare/toggle",
+      "auth_required": true,
+      "request_body": { "enabled": "Boolean", "token": "String" },
+      "response": { "success": "Boolean", "enabled": "Boolean", "status": "String", "url": "String" },
+      "description": "Starts or stops cloudflared daemon and toggles boot status."
+    },
+    {
+      "method": "GET",
+      "path": "/api/zerotier/status",
+      "auth_required": true,
+      "response": { "networks": "Array", "serviceRunning": "Boolean" },
+      "description": "Retrieves the status of local ZeroTier service and currently registered networks."
+    },
+    {
+      "method": "POST",
+      "path": "/api/zerotier/join",
+      "auth_required": true,
+      "request_body": { "networkId": "String (16 hex chars)" },
+      "response": { "success": "Boolean", "network": "Object", "output": "String" },
+      "description": "Instructs the ZeroTier daemon to join a network and records it in database. Owner only."
+    },
+    {
+      "method": "POST",
+      "path": "/api/zerotier/service",
+      "auth_required": true,
+      "request_body": { "action": "String ('start'|'stop')" },
+      "response": { "success": "Boolean", "serviceRunning": "Boolean", "output": "String" },
+      "description": "Starts or stops the local ZeroTier service daemon. Owner only."
+    },
+    {
+      "method": "POST",
+      "path": "/api/zerotier/leave",
+      "auth_required": true,
+      "request_body": { "networkId": "String", "password": "String" },
+      "response": { "success": "Boolean", "output": "String" },
+      "description": "Leaves a ZeroTier network after password verification. Requires the service to be stopped first. Owner only."
+    },
+    {
+      "method": "GET",
+      "path": "/api/tmux/status",
+      "auth_required": true,
+      "response": { "installed": "Boolean", "version": "String" },
+      "description": "Checks if tmux is installed on the host OS and returns its version."
+    },
+    {
+      "method": "GET",
+      "path": "/api/tmux/sessions",
+      "auth_required": true,
+      "response": { "sessions": "Array of objects ({ name: String, windows: Number })" },
+      "description": "Lists all active tmux sessions running on the server."
+    },
+    {
+      "method": "POST",
+      "path": "/api/tmux/session",
+      "auth_required": true,
+      "request_body": { "name": "String" },
+      "response": { "success": "Boolean", "name": "String" },
+      "description": "Creates a new detached tmux session on the host system."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/tmux/session",
+      "auth_required": true,
+      "query_params": { "name": "String" },
+      "response": { "success": "Boolean" },
+      "description": "Kills an active tmux session on the host system."
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai/chats",
+      "auth_required": true,
+      "response": "Array of chat sessions from ai-chats.json",
+      "description": "Retrieves the user's stored Gemini Copilot conversations."
+    },
+    {
+      "method": "POST",
+      "path": "/api/ai/chats",
+      "auth_required": true,
+      "request_body": { "title": "String" },
+      "response": "Created chat session object",
+      "description": "Creates a new chat session and pre-seeds it with Aira's IT Support opening greeting."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/ai/chats",
+      "auth_required": true,
+      "query_params": { "id": "String" },
+      "response": { "success": "Boolean" },
+      "description": "Deletes a specific chat session."
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai/config",
+      "auth_required": true,
+      "response": { "hasKey": "Boolean" },
+      "description": "Checks whether a Gemini API key is configured (either in environment variables or user settings)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/ai/config",
+      "auth_required": true,
+      "request_body": { "apiKey": "String" },
+      "response": { "success": "Boolean" },
+      "description": "Stores a custom Gemini API key to override the system key. Owner only."
+    },
+    {
+      "method": "POST",
+      "path": "/api/ai/chat",
+      "auth_required": true,
+      "request_body": { "sessionId": "String", "message": "String", "apiKey": "String (optional)" },
+      "response": { "messages": "Array of conversation history" },
+      "description": "Core Gemini Copilot gateway. Triggers handleAiChatAgent loop with tool definitions, resolving tool calls recursively before responding."
+    }
+  ],
+  "socket_io_events": {
+    "outgoing_server_emits": [
+      { "event": "init_logs", "payload": "Array of system logs", "description": "Emitted immediately upon client connection to populate logs history." },
+      { "event": "stats_update", "payload": "Object (Full system status metrics)", "interval": "Every 2 seconds" },
+      { "event": "new_log", "payload": "Object (Single Audit Log Object)", "interval": "On API state change" },
+      { "event": "project_log", "payload": "{ project: String, data: String }", "interval": "Streamed from running node-pty processes" },
+      { "event": "project_log_history", "payload": "{ project: String, data: String }", "description": "Sends historical project logs buffer to newly subscribed sockets." },
+      { "event": "terminal_output", "payload": "String (Streamed stdout from system pty terminal session)", "interval": "On data output from system terminal" },
+      { "event": "terminal_exit", "payload": "Number (Exit code)", "description": "Emitted when the system terminal shell exits." },
+      { "event": "tmux_install_output", "payload": "{ text: String, progress: Number }", "description": "Streams output and progress of the apt tmux installation process." },
+      { "event": "tmux_install_done", "payload": "{ success: Boolean, version: String|null }", "description": "Emitted when the tmux installer shell completes." },
+      { "event": "tmux_output", "payload": "String", "description": "Streams outputs directly from the PTY attached to a tmux session." },
+      { "event": "tmux_exit", "payload": "Number", "description": "Emitted when the tmux PTY session exits." },
+      { "event": "tmux_detached", "payload": "None", "description": "Emitted when detaching from a tmux session." }
+    ],
+    "incoming_client_listens": [
+      { "event": "terminal_start", "payload": "Object (Optional: { tmuxSession: String })", "description": "Spawns a pseudo-terminal session (Powershell or Bash) bound to the client socket. Attaches to a tmux session if specified." },
+      { "event": "terminal_input", "payload": "String (Key inputs/ANSI escapes)", "description": "Writes input keys directly to the running pseudo-terminal process." },
+      { "event": "terminal_resize", "payload": "{ cols: Number, rows: Number }", "description": "Adjusts screen dimensions of pseudo-terminal dynamically." },
+      { "event": "subscribe_project_logs", "payload": "String (Project Name)", "description": "Subscribes client socket to stdout updates of a specific running application." },
+      { "event": "unsubscribe_project_logs", "payload": "String (Project Name)", "description": "Unsubscribes client socket from project logs updates." },
+      { "event": "tmux_install_start", "payload": "None", "description": "Triggers asynchronous shell tmux installer process (apt-get install -y tmux) on the server." },
+      { "event": "tmux_attach", "payload": "{ sessionName: String }", "description": "Attaches the socket connection to a specific tmux session using new-session -t (grouped mirroring)." },
+      { "event": "tmux_input", "payload": "String", "description": "Writes input keys/escape sequences directly into the tmux PTY." },
+      { "event": "tmux_resize", "payload": "{ cols: Number, rows: Number }", "description": "Resizes the tmux session's terminal dimensions." },
+      { "event": "tmux_detach", "payload": "None", "description": "Sends Ctrl+B D to the tmux PTY and detaches safely." }
+    ]
+  },
+  "ai_agent_guidelines": {
+    "model": "gemini-2.5-flash",
+    "api_version": "v1beta",
+    "endpoint": "https://generativelanguage.googleapis.com",
+    "brain_personality": {
+      "role": "Aira",
+      "title": "Lead IT Support Specialist",
+      "instruction": "Act as Aira, a female Lead IT Support Specialist for a major enterprise corporation. You hold absolute administrative privileges (Root/Global Admin access) across all corporate devices, servers, networks, and software applications. Speak Indonesian with a friendly, empathetic, approachable, but highly efficient and concise tone. Structure steps using short, numbered lists or bullet points. Open with: 'Halo! Saya Aira dari IT Support. Ada kendala teknis apa yang bisa saya bantu selesaikan sekarang?'"
+    },
+    "safety_rules": {
+      "path_traversal": "When listing/reading files in normal workspaces, absolute paths must start with workspaces/project_name. Skip this validation check ONLY when the project ID is __root__ and user role is owner.",
+      "privilege_escalation": "Terminal commands are executed directly in the host OS shell. Verify command security before invocation. Refuse commands that could compromise host OS security or modify Ndelok core database files maliciously."
+    },
+    "function_calling_specs": {
+      "execute_terminal_command": {
+        "description": "Executes shell commands on the host OS from the owner home path context.",
+        "params": { "command": "String" }
+      },
+      "list_projects": {
+        "description": "Lists all deployed apps from projects.json to check names, status, and ports."
+      },
+      "control_project": {
+        "description": "Performs actions on registry applications.",
+        "params": { "name": "String", "action": "String ('start'|'stop'|'restart'|'delete')" }
+      },
+      "file_manager": {
+        "description": "Performs filesystem queries and modifications on host system.",
+        "params": { "action": "String ('list'|'read'|'write'|'delete'|'mkdir')", "path": "String", "content": "String (write only)" }
+      },
+      "get_system_status": {
+        "description": "Returns details of host CPU cores, memory stats, platform model, and disk space usage."
+      }
+    }
+  },
+  "setup_and_operating_guide": {
+    "installation_steps": [
+      "Kloning repositori: git clone https://github.com/dikobokobok/ndelok.git && cd ndelok",
+      "Instal dependensi: npm install",
+      "Salin dan konfigurasi file env: cp .env.example .env && sesuaikan NDELOK_JWT_SECRET (min 32 karakter)"
+    ],
+    "development_mode": {
+      "command": "npm run dev",
+      "port": 1234,
+      "address": "http://localhost:1234",
+      "description": "Kode frontend di-serve langsung dengan HMR aktif. Backend API, Socket.IO, PTY Terminal, and Tmux handlers berjalan sebagai Vite dev server middleware dalam proses yang sama."
+    },
+    "production_mode": {
+      "build_command": "npm run build",
+      "run_command": "npm start (atau node server.js)",
+      "port": 1234,
+      "address": "http://0.0.0.0:1234",
+      "description": "Frontend di-build menjadi file statis di direktori dist/ dan dijalankan mandiri oleh server.js."
+    },
+    "pm2_deployment": {
+      "command": "npm run build && pm2 start npm --name \"ndelok\" -- start",
+      "auto_start": "pm2 save && pm2 startup",
+      "description": "Rekomendasi deploy pada VPS Linux."
+    },
+    "nginx_reverse_proxy_template": "server {\n    listen 80;\n    server_name yourdomain.com;\n    location / {\n        proxy_pass http://localhost:1234;\n        proxy_http_version 1.1;\n        proxy_set_header Upgrade $http_upgrade;\n        proxy_set_header Connection \"upgrade\";\n        proxy_set_header Host $host;\n    }\n}",
+    "security_production_tips": [
+      "Gunakan JWT secret yang kuat dan unik di .env.",
+      "Buka port firewall 1234: ufw allow 1234.",
+      "Selalu gunakan SSL/TLS HTTPS di lingkungan produksi."
+    ]
+  },
+  "default_credentials": [
+    { "username": "ibnu", "password": "admin123", "role": "owner", "notes": "Akses root sistem penuh" },
+    { "username": "admin", "password": "admin123", "role": "admin", "notes": "Kontrol project terbatas" }
+  ],
+  "device_and_feature_guide": {
+    "cara_menambahkan_perangkat": {
+      "deskripsi": "Menghubungkan perangkat atau server baru ke dalam jaringan mesh VPN Ndelok agar dapat saling berkomunikasi secara aman.",
+      "langkah": [
+        "Unduh dan pasang aplikasi client ZeroTier One pada perangkat atau server baru yang ingin ditambahkan.",
+        "Salin Network ID dari Ndelok dashboard (pada menu Servers & Plugins) atau dari dashboard admin my.zerotier.com.",
+        "Jalankan perintah 'zerotier-cli join <NETWORK_ID>' di terminal perangkat baru tersebut (atau masukkan ID melalui aplikasi GUI ZeroTier).",
+        "Masuk ke dashboard my.zerotier.com Anda, lalu beri tanda centang (Authorize) pada perangkat baru tersebut agar mendapatkan alokasi IP Address privat.",
+        "Sekarang perangkat baru tersebut dapat mengakses dashboard Ndelok host menggunakan IP privat ZeroTier (tercantum sebagai IPv4 Address di menu Servers & Plugins)."
+      ]
+    },
+    "cara_menggunakan_plugin_zerotier": {
+      "deskripsi": "Mengelola konfigurasi overlay jaringan privat VPN ZeroTier dari sub-menu Plugins di halaman Servers & Plugins.",
+      "fitur_dan_cara_pakai": {
+        "join_network": "Klik tombol 'Join Network', ketikkan 16-karakter Network ID berupa kode hexadecimal, lalu konfirmasi. Lakukan otorisasi perangkat di panel my.zerotier.com setelah status terhubung.",
+        "toggle_service": "Tekan tombol toggle neo-skeuomorphic untuk menyalakan (Start) atau mematikan (Stop) daemon service lokal ZeroTier One. Operasi ini mengeksekusi systemctl start/stop (Linux) atau net start/stop (Windows) di mesin host.",
+        "leave_network": "Untuk memutuskan sambungan dari jaringan, nonaktifkan service ZeroTier terlebih dahulu (posisi OFF), lalu klik tombol 'Leave' dan verifikasi tindakan dengan memasukkan password akun Anda untuk keamanan."
+      }
+    },
+    "cara_menggunakan_fitur_di_perangkat_ini": {
+      "system_power_control": "Melakukan Shutdown atau Reboot server host (Owner only) dengan verifikasi password akun melalui tombol kontrol daya di sidebar.",
+      "real_terminal": "Membuka terminal OS interaktif (Powershell/Bash) langsung di browser via xterm.js dan node-pty. Mendukung hotkey shell asli dan editor berbasis CLI (vim, nano, top).",
+      "tmux_sessions": "Membuat sesi terminal yang tetap hidup di background server meskipun browser ditutup. Mendukung pembuatan sesi baru, attach terminal, dan menghentikan sesi (kill) langsung dari halaman.",
+      "cloudflare_tunnel": "Mengekspos port dashboard Ndelok ke internet luar secara aman (public link) menggunakan Cloudflare Tunnel (baik quick tunnel trycloudflare.com maupun token custom).",
+      "file_manager": "Manajemen berkas workspace secara penuh meliputi CRUD file/folder, Monaco Code Editor dengan shortcut Ctrl+S, upload file/folder, dan download direktori sebagai ZIP secara on-the-fly."
+    }
+  },
+  "changelog_history": [
+    {
+      "version": "1.8.0",
+      "date": "15 Juni 2026",
+      "features": [
+        "Penyetelan systemInstruction Aira (IT Support Specialist) sebagai otak AI Copilot.",
+        "Pre-seeding pembukaan percakapan dengan statement selamat datang dari Aira secara otomatis.",
+        "Sinkronisasi penuh dev server (vite.config.js) untuk mendukung endpoints REST API Tmux dan handler Socket.IO tmux session multiplexing.",
+        "Otomatisasi start Cloudflare Tunnel saat boot di dev mode.",
+        "Akses system file manager __root__ untuk owner di dev mode."
+      ]
+    },
+    {
+      "version": "1.7.0",
+      "date": "27 Mei 2026",
+      "features": [
+        "Pemisahan backend dari Vite plugin ke production server mandiri (server.js).",
+        "Asset caching static files di production.",
+        "SPA fallback route handler pada server.js.",
+        "Pembaruan install.sh untuk mendukung npm start dan PM2."
+      ]
+    },
+    {
+      "version": "1.6.0",
+      "date": "22 Mei 2026",
+      "features": [
+        "Penyatuan halaman Servers & Plugins.",
+        "Integrasi ZeroTier VPN: join network (16 hex) via CLI, leave network (verifikasi password + matikan service), toggle service systemctl/net start.",
+        "Pencatatan state ZeroTier lokal di database zerotier.json.",
+        "Komponen PasswordInput reusable dengan visibility toggle (ikon mata)."
+      ],
+      "fixes": [
+        "Deteksi root privilege otomatis (skip sudo jika sudah root).",
+        "Resolving path CLI Windows untuk ZeroTier One.",
+        "Idempotent service control."
+      ]
+    },
+    {
+      "version": "1.5.0",
+      "date": "21 Mei 2026",
+      "features": [
+        "ZeroTier Leave Network dengan pengamanan password.",
+        "Auto-Restart project pada reboot sistem jika status sebelumnya Running.",
+        "Live process output terminal real-time via node-pty (PTY) dan Socket.io.",
+        "Pilihan Access Type Port vs Custom Domain saat provision/edit project.",
+        "Smart Port Link otomatis mengikuti hostname pembuka dashboard."
+      ]
+    },
+    {
+      "version": "1.4.1",
+      "date": "21 Mei 2026",
+      "features": [
+        "Real Terminal (xterm.js + node-pty) interaktif (vim, nano, top).",
+        "ZeroTier VPN Control dasar.",
+        "System Power Control (Shutdown & Reboot) via dashboard (Owner only).",
+        "Network Speed Monitor real-time."
+      ],
+      "fixes": [
+        "Throttling CPU warning log (1x per menit).",
+        "Audit log filtering untuk request internal."
+      ]
+    },
+    {
+      "version": "1.4.0",
+      "date": "20 Mei 2026",
+      "features": [
+        "Dual Upload Mode: GitHub clone vs Upload folder lokal.",
+        "File Manager Terintegrasi: CRUD file, Monaco Editor (Ctrl+S), ZIP folder download streaming.",
+        "Path traversal protection."
+      ]
+    },
+    {
+      "version": "1.3.0",
+      "date": "Awal rilis",
+      "features": [
+        "Dashboard, project management, deployment via GitHub, audit logging, telemetry monitoring."
+      ]
+    }
+  ]
+}

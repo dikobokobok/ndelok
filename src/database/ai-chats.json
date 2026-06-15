@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1781494653636",
+    "title": "Chat - 10.37",
+    "messages": [
+      {
+        "role": "model",
+        "content": "Halo! Saya Aira dari IT Support. Ada kendala teknis apa yang bisa saya bantu selesaikan sekarang?",
+        "timestamp": "2026-06-15T03:37:33.636Z"
+      },
+      {
+        "role": "user",
+        "content": "berapa penyimpannan total dari perangkat ini",
+        "timestamp": "2026-06-15T03:37:33.652Z"
+      },
+      {
+        "role": "model",
+        "content": "### ⚠️ Limit Kuota AI Terlampaui\n\nHalo! Maaf sekali, kuota API Gemini gratis saya saat ini sedang habis (limit terlampaui).\n\nNamun, Anda tetap dapat memantau dan mengontrol resource sistem secara langsung:\n1. **CPU, RAM, dan Storage** saat ini dapat dipantau secara visual di menu **Dashboard** atau **Servers** di panel sebelah kiri.\n2. Di halaman **Servers**, terdapat tombol **Optimize CPU**, **Free Memory**, dan **Clean Storage** untuk mengontrol dan membersihkan resource sistem Anda secara manual tanpa memerlukan bantuan AI.",
+        "timestamp": "2026-06-15T03:37:35.629Z"
+      },
+      {
+        "role": "user",
+        "content": "halo",
+        "timestamp": "2026-06-15T03:38:06.682Z"
+      },
+      {
+        "role": "model",
+        "content": "### ⚠️ Limit Kuota AI Terlampaui\n\nHalo! Maaf sekali, kuota API Gemini gratis saya saat ini sedang habis (limit terlampaui).\n\nNamun, Anda tetap dapat memantau dan mengontrol resource sistem secara langsung:\n1. **CPU, RAM, dan Storage** saat ini dapat dipantau secara visual di menu **Dashboard** atau **Servers** di panel sebelah kiri.\n2. Di halaman **Servers**, terdapat tombol **Optimize CPU**, **Free Memory**, dan **Clean Storage** untuk mengontrol dan membersihkan resource sistem Anda secara manual tanpa memerlukan bantuan AI.",
+        "timestamp": "2026-06-15T03:38:07.637Z"
+      }
+    ],
+    "createdAt": "2026-06-15T03:37:33.636Z"
+  }
+]

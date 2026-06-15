@@ -1,6 +1,6 @@
 [
   {
-    "time": "10:38:06.681",
+    "time": "14:44:48.211",
     "level": "INFO",
     "service": "Audit",
     "msg": "POST /ai/chat",
@@ -8,7 +8,7 @@
     "category": "State Change"
   },
   {
-    "time": "10:37:33.650",
+    "time": "14:44:18.093",
     "level": "INFO",
     "service": "Audit",
     "msg": "POST /ai/chat",
@@ -16,7 +16,63 @@
     "category": "State Change"
   },
   {
-    "time": "10:37:33.635",
+    "time": "14:44:11.220",
+    "level": "INFO",
+    "service": "Auth",
+    "msg": "User ibnu logged in from IP: 127.0.0.1 (Localhost)",
+    "initiator": "ibnu",
+    "category": "Security"
+  },
+  {
+    "time": "14:44:11.109",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST /login",
+    "initiator": "Anonymous",
+    "category": "Login"
+  },
+  {
+    "time": "13:54:02.454",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST /ai/chat",
+    "initiator": "ibnu",
+    "category": "State Change"
+  },
+  {
+    "time": "13:53:42.059",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST /ai/chat",
+    "initiator": "ibnu",
+    "category": "State Change"
+  },
+  {
+    "time": "13:53:00.636",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST /ai/chat",
+    "initiator": "ibnu",
+    "category": "State Change"
+  },
+  {
+    "time": "13:52:35.822",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST /ai/chat",
+    "initiator": "ibnu",
+    "category": "State Change"
+  },
+  {
+    "time": "13:51:22.701",
+    "level": "INFO",
+    "service": "Audit",
+    "msg": "POST /ai/chat",
+    "initiator": "ibnu",
+    "category": "State Change"
+  },
+  {
+    "time": "13:51:19.716",
     "level": "INFO",
     "service": "Audit",
     "msg": "POST /ai/chats",
@@ -24,52 +80,44 @@
     "category": "State Change"
   },
   {
-    "time": "10:36:55.403",
+    "time": "13:51:13.574",
     "level": "INFO",
-    "service": "Audit",
-    "msg": "DELETE /ai/chats",
+    "service": "Auth",
+    "msg": "User ibnu logged in from IP: 127.0.0.1 (Localhost)",
     "initiator": "ibnu",
-    "category": "State Change"
+    "category": "Security"
   },
   {
-    "time": "10:34:58.366",
+    "time": "13:51:13.404",
     "level": "INFO",
     "service": "Audit",
-    "msg": "POST /ai/chat",
-    "initiator": "ibnu",
-    "category": "State Change"
+    "msg": "POST /login",
+    "initiator": "Anonymous",
+    "category": "Login"
   },
   {
-    "time": "10:32:32.462",
-    "level": "INFO",
-    "service": "Audit",
-    "msg": "POST /ai/chat",
-    "initiator": "ibnu",
-    "category": "State Change"
+    "time": "13:29:25.504",
+    "level": "WARN",
+    "service": "CPU Monitor",
+    "msg": "Elevated CPU usage: 99%",
+    "initiator": "System",
+    "category": "System"
   },
   {
-    "time": "10:32:32.451",
-    "level": "INFO",
-    "service": "Audit",
-    "msg": "POST /ai/chats",
-    "initiator": "ibnu",
-    "category": "State Change"
+    "time": "10:55:39.249",
+    "level": "WARN",
+    "service": "RAM Monitor",
+    "msg": "Elevated RAM usage: 91%",
+    "initiator": "System",
+    "category": "System"
   },
   {
-    "time": "10:32:29.585",
-    "level": "INFO",
-    "service": "Audit",
-    "msg": "DELETE /ai/chats",
-    "initiator": "ibnu",
-    "category": "State Change"
-  },
-  {
-    "time": "10:31:35.069",
-    "level": "INFO",
-    "service": "Audit",
-    "msg": "POST /ai/chat",
-    "initiator": "ibnu",
-    "category": "State Change"
+    "time": "10:30:06.943",
+    "level": "WARN",
+    "service": "RAM Monitor",
+    "msg": "Elevated RAM usage: 91%",
+    "initiator": "System",
+    "category": "System"
   },
   {
     "time": "10:21:59.068",

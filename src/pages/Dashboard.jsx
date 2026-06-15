@@ -1,68 +1,67 @@
 import StatCard from '../components/StatCard'
 import StatusBadge from '../components/StatusBadge'
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef, useMemo } from 'react'
 import socket from '../lib/socket'
 import { AuthContext } from '../App'
 
-const cpuPoints = [180, 160, 190, 140, 170, 120, 150, 80, 110, 60, 90, 40]
-const W = 1000
-const H = 220
-
-function CpuChart({ currentUsage }) {
-  const [points, setPoints] = useState(cpuPoints)
-  const usageRef = React.useRef(currentUsage)
-
-  useEffect(() => {
-    usageRef.current = currentUsage
-  }, [currentUsage])
+const AnimatedGauge = React.memo(function AnimatedGauge({ value, max, label, unit, icon, color, sub }) {
+  const [animVal, setAnimVal] = useState(0)
+  const r = 72
+  const circumference = 2 * Math.PI * r
+  const pct = Math.min(value / max, 1)
+  const offset = circumference * (1 - pct)
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setPoints(prev => {
-        let newVal;
-        const usage = usageRef.current
-        if (usage !== null && usage !== undefined) {
-          // currentUsage is 0-100. Y axis is 0 at top, 220 at bottom.
-          // 100% usage -> y = 20. 0% usage -> y = 200.
-          newVal = 200 - (usage * 1.8)
-        } else {
-          newVal = Math.max(20, Math.min(200, prev[prev.length - 1] + (Math.random() - 0.5) * 30))
-        }
-        return [...prev.slice(1), newVal]
-      })
-    }, 2000)
-    return () => clearInterval(id)
-  }, [])
+    const id = requestAnimationFrame(() => setAnimVal(pct))
+    return () => cancelAnimationFrame(id)
+  }, [pct])
 
-  const step = W / (points.length - 1)
-  const d = points.map((y, i) => `${i === 0 ? 'M' : 'L'}${i * step},${y}`).join(' ')
-  const areaD = `${d} L${W},${H} L0,${H} Z`
+  const val = Math.round(value)
 
   return (
-    <div className="h-56 relative">
-      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="w-full h-full overflow-visible">
-        <defs>
-          <linearGradient id="cpuGradient" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stopColor="#adc6ff" />
-            <stop offset="100%" stopColor="#4d8eff" />
-          </linearGradient>
-          <linearGradient id="areaGrad" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="#adc6ff" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="#adc6ff" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        {/* grid lines */}
-        {[0, 55, 110, 165].map(y2 => (
-          <line key={y2} x1="0" y1={y2} x2={W} y2={y2} stroke="rgba(148,163,184,0.08)" strokeWidth="1" />
-        ))}
-        <path d={areaD} fill="url(#areaGrad)" />
-        <path d={d} fill="none" stroke="url(#cpuGradient)" strokeWidth="3" className="glow-line text-primary" style={{ filter: 'drop-shadow(0 0 6px #adc6ff)' }} />
-      </svg>
+    <div className="bg-surface-container-low p-4 sm:p-6 rounded-xl flex flex-col items-center border border-white/5">
+      <div className="relative w-[120px] h-[120px] sm:w-[140px] sm:h-[140px]">
+        <svg className="w-full h-full -rotate-90" viewBox="0 0 180 180">
+          <circle cx="90" cy="90" r={r} fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="12" />
+          <circle cx="90" cy="90" r={r} fill="none" stroke={color} strokeWidth="12" strokeLinecap="round"
+            strokeDasharray={circumference} strokeDashoffset={circumference * (1 - animVal)}
+            style={{ filter: `drop-shadow(0 0 6px ${color})`, transition: 'stroke-dashoffset 0.5s ease-out' }}
+          />
+        </svg>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span className="text-2xl sm:text-3xl font-black text-white">{val}{unit}</span>
+          <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">{label}</span>
+        </div>
+      </div>
+      <div className="flex items-center gap-1.5 mt-3">
+        <span className="material-symbols-outlined text-[14px]" style={{ color }}>{icon}</span>
+        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">{sub}</span>
+      </div>
     </div>
   )
+})
+
+const CpuCoreBar = React.memo(function CpuCoreBar({ core, usage }) {
+  const color = usage > 80 ? '#ef4444' : usage > 60 ? '#f59e0b' : '#4d8eff'
+  return (
+    <div className="flex items-center gap-2 sm:gap-3 group">
+      <span className="text-[9px] font-bold text-slate-500 w-6 sm:w-8 font-telemetry">CPU{core}</span>
+      <div className="flex-1 h-5 sm:h-6 bg-[#0a0f1d] rounded-md overflow-hidden border border-white/5 relative">
+        <div className="h-full rounded-md transition-all duration-500 ease-out relative"
+          style={{ width: `${usage}%`, backgroundColor: color, boxShadow: `0 0 8px ${color}40` }}
+        />
+      </div>
+      <span className="text-[10px] font-bold font-telemetry w-8 text-right" style={{ color }}>{usage}%</span>
+    </div>
+  )
+})
+
+const formatSpeed = (bytesPerSec) => {
+  if (!bytesPerSec || bytesPerSec === 0) return '0 B/s'
+  if (bytesPerSec < 1024) return `${bytesPerSec.toFixed(0)} B/s`
+  if (bytesPerSec < 1048576) return `${(bytesPerSec / 1024).toFixed(1)} KB/s`
+  return `${(bytesPerSec / 1048576).toFixed(2)} MB/s`
 }
-
-
 
 const colorMap = {
   error:   { bg: 'bg-error/10',    text: 'text-error' },
@@ -70,14 +69,11 @@ const colorMap = {
   emerald: { bg: 'bg-emerald-500/10', text: 'text-emerald-400' },
 }
 
-
 const loadColor = { healthy: 'bg-emerald-500', latency: 'bg-tertiary', lost: 'bg-error' }
-
-const formatSpeed = (bytesPerSec) => {
-  if (!bytesPerSec || bytesPerSec === 0) return '0 B/s'
-  if (bytesPerSec < 1024) return `${bytesPerSec.toFixed(0)} B/s`
-  if (bytesPerSec < 1048576) return `${(bytesPerSec / 1024).toFixed(1)} KB/s`
-  return `${(bytesPerSec / 1048576).toFixed(2)} MB/s`
+const categoryIcon = {
+  Security:   'shield_lock', Deployment: 'rocket_launch', System: 'settings_suggest',
+  Traffic:    'router',      Management: 'person_add',    Process: 'memory',
+  Audit:      'history_edu', General:    'notes',
 }
 
 export default function Dashboard() {
@@ -87,332 +83,298 @@ export default function Dashboard() {
   const [summary, setSummary] = useState({ total: 0, running: 0, stopped: 0, warnings: 0, health: 99.9 })
 
   useEffect(() => {
-    authenticatedFetch('/api/logs').then(r => r?.json()).then(data => data && setLogs(data)).catch(console.error)
+    authenticatedFetch('/api/logs').then(r => r?.json()).then(data => data && setLogs(data)).catch(() => {})
+
+    const fetchStats = () => {
+      authenticatedFetch('/api/stats').then(r => r?.json()).then(data => {
+        if (data?.os) setOsStats(data.os)
+        if (data?.projects) setSummary({
+          total: data.projects.total, running: data.projects.running,
+          stopped: data.projects.stopped, warnings: data.projects.warnings,
+          health: data.health
+        })
+      }).catch(() => {})
+    }
+    fetchStats()
+    const pollId = setInterval(fetchStats, 10000)
 
     socket.on('init_logs', (data) => setLogs(data))
     socket.on('new_log', (log) => setLogs(prev => [log, ...prev].slice(0, 5000)))
-    
     socket.on('stats_update', (data) => {
-      setOsStats(data.os)
-      setSummary({
-        total: data.projects.total,
-        running: data.projects.running,
-        stopped: data.projects.stopped,
-        warnings: data.projects.warnings,
+      if (data?.os) setOsStats(data.os)
+      if (data?.projects) setSummary({
+        total: data.projects.total, running: data.projects.running,
+        stopped: data.projects.stopped, warnings: data.projects.warnings,
         health: data.health
       })
     })
-
     return () => {
-      socket.off('init_logs')
-      socket.off('new_log')
-      socket.off('stats_update')
+      clearInterval(pollId)
+      socket.off('init_logs'); socket.off('new_log'); socket.off('stats_update')
     }
   }, [])
 
-  let displayInfra = []
-  if (osStats) {
-      let ip = '127.0.0.1'
-      if (osStats.netInterfaces) {
-        for (const nets of Object.values(osStats.netInterfaces)) {
-          for (const net of nets) {
-            if ((net.family === 'IPv4' || net.family === 4) && !net.internal) {
-              ip = net.address
-              break
-            }
-          }
-        }
-      }
-      
-      const upDays = Math.floor(osStats.uptime / 86400)
-      const upHours = Math.floor((osStats.uptime % 86400) / 3600)
-      const upMins = Math.floor((osStats.uptime % 3600) / 60)
-
-      displayInfra = [{
-        name: osStats.hostname.toLowerCase().slice(0, 15) + (osStats.hostname.length > 15 ? '...' : ''),
-        ip: ip,
-        location: 'Local Network',
-        status: osStats.cpuUsage > 85 ? 'latency' : 'healthy',
-        uptime: `${upDays}d ${upHours}h ${upMins}m`,
-        load: Math.round(osStats.cpuUsage)
-      }]
-  }
+  const firstName = user?.name?.split(' ')[0] || 'User'
+  const memPct = osStats ? Math.round((osStats.memUsed / osStats.memTotal) * 100) : 0
+  const diskPct = osStats ? Math.round((osStats.diskUsed / osStats.diskTotal) * 100) : 0
+  const upDays = osStats ? Math.floor(osStats.uptime / 86400) : 0
+  const upHours = osStats ? Math.floor((osStats.uptime % 86400) / 3600) : 0
+  const upMins = osStats ? Math.floor((osStats.uptime % 3600) / 60) : 0
+  const cpuCores = osStats?.cpuCores || []
 
   const recentActivity = logs.slice(0, 4)
 
-  const firstName = user?.name?.split(' ')[0] || 'User'
-
-  const categoryIcon = {
-    Security:   'shield_lock',
-    Deployment: 'rocket_launch',
-    System:     'settings_suggest',
-    Traffic:    'router',
-    Management: 'person_add',
-    Process:    'memory',
-    Audit:      'history_edu',
-    General:    'notes',
+  let displayInfra = []
+  if (osStats) {
+    let ip = '127.0.0.1'
+    if (osStats.netInterfaces) {
+      for (const nets of Object.values(osStats.netInterfaces)) {
+        for (const net of nets) {
+          if ((net.family === 'IPv4' || net.family === 4) && !net.internal) { ip = net.address; break }
+        }
+      }
+    }
+    displayInfra = [{
+      name: osStats.hostname.toLowerCase().slice(0, 15) + (osStats.hostname.length > 15 ? '...' : ''),
+      ip, location: 'Local Network', status: osStats.cpuUsage > 85 ? 'latency' : 'healthy',
+      uptime: `${upDays}d ${upHours}h ${upMins}m`, load: Math.round(osStats.cpuUsage)
+    }]
   }
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-[1600px] mx-auto space-y-6 sm:space-y-8 animate-in transition-all text-on-surface">
-      {/* Personalized Greeting */}
-      <div className="mb-2">
-        <h1 className="text-xl sm:text-2xl font-black text-white">Welcome back, {firstName}! 🚀</h1>
-        <p className="text-slate-500 text-xs sm:text-sm mt-1">Infrastructure node is active. All systems reporting nominal.</p>
-      </div>
-
-      {/* Telemetry Row (Resource) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
-        {[
-          { 
-            icon: 'storage', title: 'Storage Pool', 
-            val: osStats ? `${(osStats.diskUsed / 1e9).toFixed(1)} GB / ${(osStats.diskTotal / 1e9).toFixed(1)} GB` : '...', 
-            pct: osStats ? Math.round((osStats.diskUsed / osStats.diskTotal) * 100) : 0,  
-            color: 'bg-primary', 
-            label: osStats ? `${osStats.platform.toUpperCase()}_DRIVE` : '...', 
-            sub: osStats ? `${Math.round((osStats.diskUsed / osStats.diskTotal) * 100)}% USED` : '...' 
-          },
-          { 
-            icon: 'memory', title: 'Total Memory', 
-            val: osStats ? `${(osStats.memUsed / 1e9).toFixed(1)} GB / ${(osStats.memTotal / 1e9).toFixed(1)} GB` : '...', 
-            pct: osStats ? Math.round((osStats.memUsed / osStats.memTotal) * 100) : 0, 
-            color: 'bg-primary-container', 
-            label: osStats ? osStats.hostname.toUpperCase() : '...', 
-            sub: osStats ? `${Math.round((osStats.memUsed / osStats.memTotal) * 100)}% USED` : '...' 
-          },
-          { 
-            icon: 'speed', title: 'CPU Utilization', 
-            val: osStats ? `${osStats.cpuUsage}% Load` : '...', 
-            pct: osStats ? osStats.cpuUsage : 0,  
-            color: 'bg-tertiary', 
-            label: osStats ? osStats.cpuModel.slice(0, 22) + (osStats.cpuModel.length > 22 ? '...' : '') : '...', 
-            sub: osStats ? `${osStats.cores} CORES` : '...' 
-          },
-          { 
-            icon: 'wifi', title: 'Network Speed', 
-            val: osStats?.netSpeed ? `↓ ${formatSpeed(osStats.netSpeed.download)} / ↑ ${formatSpeed(osStats.netSpeed.upload)}` : '...', 
-            pct: osStats?.netSpeed ? Math.min(100, Math.round((osStats.netSpeed.download / (12.5 * 1024 * 1024)) * 100)) : 0,  
-            color: 'bg-cyan-500', 
-            label: osStats?.netSpeed ? `DL: ${formatSpeed(osStats.netSpeed.download)}` : '...', 
-            sub: osStats?.netSpeed ? `UL: ${formatSpeed(osStats.netSpeed.upload)}` : '...' 
-          },
-        ].map(t => (
-          <div key={t.title} className="bg-surface-container-low p-4 sm:p-6 rounded-xl">
-            <div className="flex items-center justify-between mb-3 sm:mb-4">
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary text-sm">{t.icon}</span>
-                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">{t.title}</span>
-              </div>
-              <span className="text-[10px] sm:text-xs font-telemetry text-on-surface">{t.val}</span>
-            </div>
-            <div className="h-2 w-full bg-surface-container rounded-full overflow-hidden">
-              <div className={`h-full ${t.color} rounded-full`} style={{ width: `${t.pct}%` }} />
-            </div>
-            <div className="mt-4 flex justify-between text-[10px] text-slate-500 font-bold">
-              <span>{t.label}</span>
-              <span>{t.sub}</span>
-            </div>
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-black text-white">Monitoring Center</h1>
+          <p className="text-slate-500 text-xs sm:text-sm mt-1">Real-time resource telemetry & system observability</p>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-highest border border-white/5">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Live</span>
           </div>
-        ))}
+          <span className="text-[10px] font-telemetry text-slate-500">
+            {osStats ? `${osStats.hostname.toUpperCase()} · ${osStats.platform.toUpperCase()}` : '...'}
+          </span>
+        </div>
       </div>
 
-      {/* Stat Cards Row (Info) */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
-        {/* Big health card */}
-        <div className="col-span-2 lg:col-span-1 bg-surface-container-low p-5 sm:p-7 rounded-xl flex flex-col justify-between relative overflow-hidden group border border-white/5">
-          <div className="relative z-10">
+      {/* Top Row: 3 Gauges + Health Card */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+        <AnimatedGauge value={osStats?.cpuUsage || 0} max={100} label="CPU" unit="%" icon="speed"
+          color={osStats?.cpuUsage > 80 ? '#ef4444' : osStats?.cpuUsage > 60 ? '#f59e0b' : '#4d8eff'}
+          sub={osStats ? `${osStats.cores} Cores` : '...'} />
+        <AnimatedGauge value={memPct} max={100} label="RAM" unit="%" icon="memory"
+          color={memPct > 80 ? '#ef4444' : memPct > 60 ? '#f59e0b' : '#06b6d4'}
+          sub={osStats ? `${(osStats.memUsed / 1e9).toFixed(1)} / ${(osStats.memTotal / 1e9).toFixed(1)} GB` : '...'} />
+        <AnimatedGauge value={diskPct} max={100} label="STORAGE" unit="%" icon="storage"
+          color={diskPct > 85 ? '#ef4444' : diskPct > 70 ? '#f59e0b' : '#8b5cf6'}
+          sub={osStats ? `${(osStats.diskUsed / 1e9).toFixed(1)} / ${(osStats.diskTotal / 1e9).toFixed(1)} GB` : '...'} />
+
+        {/* Health summary card */}
+        <div className="col-span-2 lg:col-span-1 bg-surface-container-low p-5 sm:p-6 rounded-xl flex flex-col justify-between border border-white/5">
+          <div>
             <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-1">Global Health</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-primary">{summary.health.toFixed(1)}%</h2>
-            <p className="text-[10px] sm:text-xs text-slate-400 mt-2">Aggregated health across {summary.total} local projects.</p>
+            <div className="flex gap-3 mt-3 text-[10px] font-bold">
+              <span className="text-emerald-400">{summary.running} running</span>
+              <span className="text-slate-600">|</span>
+              <span className="text-tertiary">{summary.warnings} warnings</span>
+            </div>
           </div>
-          <div className="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity">
-            <span className="material-symbols-outlined text-9xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>public</span>
+          <div className="flex items-center gap-2 mt-4 pt-4 border-t border-white/5">
+            <span className="material-symbols-outlined text-[14px] text-slate-500">schedule</span>
+            <span className="text-[10px] font-telemetry text-slate-400">Uptime: {upDays}d {upHours}h {upMins}m</span>
           </div>
         </div>
-        <StatCard title="Online Servers" value={summary.running.toString()} trend="Currently running" trendIcon="trending_up" icon="dns"           iconBg="bg-emerald-500/10" iconColor="text-emerald-400" />
-        <StatCard title="Warnings"       value={summary.warnings.toString()}  trend="Needs attention" trendIcon="warning"     icon="emergency_home"  iconBg="bg-tertiary/10"    iconColor="text-tertiary" />
-        <StatCard title="Offline"        value={summary.stopped.toString()}   trend="Stopped or failed" trendIcon="cloud_off" icon="dangerous"    iconBg="bg-error/10"       iconColor="text-error" />
       </div>
 
-      {/* Bento Grid: Chart + Alerts */}
+      {/* Middle: Per-Core CPU + Network + Stat Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
-        {/* CPU Chart */}
-        <div className="lg:col-span-2 bg-surface-container p-4 sm:p-6 lg:p-8 rounded-xl border border-white/5">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-2">
-            <div>
-              <h3 className="text-base sm:text-lg font-bold">Global CPU Utilization</h3>
-              <p className="text-[10px] sm:text-xs text-slate-500">Real-time aggregate across all nodes</p>
+        {/* Per-Core CPU */}
+        <div className="lg:col-span-2 bg-surface-container-low p-4 sm:p-6 rounded-xl border border-white/5">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider">Per-Core CPU Utilization</h3>
+            <span className="text-[10px] text-slate-500 font-telemetry">{cpuCores.length} Cores</span>
+          </div>
+          <div className="space-y-2 sm:space-y-2.5">
+            {cpuCores.length > 0 ? cpuCores.map(c => (
+              <CpuCoreBar key={c.core} core={c.core} usage={c.usage} />
+            )) : (
+              <div className="flex items-center justify-center h-32 text-slate-500 text-[11px]">
+                <span className="material-symbols-outlined text-lg mr-2">info</span>
+                Collecting per-core data...
+              </div>
+            )}
+          </div>
+          <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/5">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] text-slate-500">Total Load:</span>
+              <span className="text-sm font-bold text-white">{osStats?.cpuUsage || 0}%</span>
             </div>
-            <div className="flex gap-2">
-              <span className="px-2 py-1 rounded bg-primary/10 text-[10px] font-bold text-primary tracking-tighter uppercase">Live View</span>
-              <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 tracking-tighter uppercase cursor-pointer hover:bg-white/10">24h History</span>
+            <span className="text-[9px] text-slate-600 font-telemetry">{osStats?.cpuModel || ''}</span>
+          </div>
+        </div>
+
+        {/* Right sidebar: Network + Quick stats */}
+        <div className="space-y-4">
+          <div className="bg-surface-container-low p-4 sm:p-6 rounded-xl border border-white/5">
+            <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4">Network I/O</h3>
+            <div className="space-y-4">
+              <div>
+                <div className="flex justify-between text-[10px] text-slate-500 mb-1.5">
+                  <span className="font-bold">Download</span>
+                  <span className="font-telemetry">{formatSpeed(osStats?.netSpeed?.download)}</span>
+                </div>
+                <div className="h-2 bg-[#0a0f1d] rounded-full overflow-hidden">
+                  <div className="h-full rounded-full bg-cyan-500 transition-all duration-700" style={{
+                    width: `${Math.min(100, ((osStats?.netSpeed?.download || 0) / (125 * 1024 * 1024)) * 100)}%`,
+                    boxShadow: '0 0 8px #06b6d440'
+                  }} />
+                </div>
+              </div>
+              <div>
+                <div className="flex justify-between text-[10px] text-slate-500 mb-1.5">
+                  <span className="font-bold">Upload</span>
+                  <span className="font-telemetry">{formatSpeed(osStats?.netSpeed?.upload)}</span>
+                </div>
+                <div className="h-2 bg-[#0a0f1d] rounded-full overflow-hidden">
+                  <div className="h-full rounded-full bg-primary transition-all duration-700" style={{
+                    width: `${Math.min(100, ((osStats?.netSpeed?.upload || 0) / (125 * 1024 * 1024)) * 100)}%`,
+                    boxShadow: '0 0 8px #4d8eff40'
+                  }} />
+                </div>
+              </div>
             </div>
           </div>
-          <CpuChart currentUsage={osStats ? osStats.cpuUsage : null} />
-          <div className="flex flex-col sm:flex-row justify-between mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/5 gap-4">
-            <div className="flex items-center gap-4 sm:gap-6">
-              <div>
-                <p className="text-[10px] uppercase font-bold text-slate-500">Node Status</p>
-                <p className="text-lg sm:text-xl font-bold flex items-center gap-2">
-                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                   NOMINAL
-                </p>
+          <div className="grid grid-cols-2 gap-4">
+            <StatCard title="Projects" value={summary.total.toString()} trend="Total deployed" icon="rocket_launch" iconBg="bg-primary/10" iconColor="text-primary" />
+            <StatCard title="Online" value={summary.running.toString()} trend="Running now" icon="dns" iconBg="bg-emerald-500/10" iconColor="text-emerald-400" />
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <StatCard title="Warnings" value={summary.warnings.toString()} trend="Needs attention" trendIcon="warning" icon="emergency_home" iconBg="bg-tertiary/10" iconColor="text-tertiary" />
+            <StatCard title="Offline" value={summary.stopped.toString()} trend="Stopped or failed" trendIcon="cloud_off" icon="dangerous" iconBg="bg-error/10" iconColor="text-error" />
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom: Storage Breakdown + Recent Activity + Infrastructure */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+        {/* Storage Breakdown */}
+        <div className="bg-surface-container-low p-4 sm:p-6 rounded-xl border border-white/5">
+          <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Storage Breakdown</h3>
+          <div className="space-y-4">
+            <div>
+              <div className="flex justify-between text-[10px] mb-1.5">
+                <span className="font-bold text-slate-400">Used</span>
+                <span className="font-telemetry text-slate-300">{osStats ? `${(osStats.diskUsed / 1e9).toFixed(1)} GB` : '...'}</span>
               </div>
-              <div className="h-8 w-[1px] bg-white/5" />
-              <div>
-                <p className="text-[10px] uppercase font-bold text-slate-500">Uptime</p>
-                <p className="text-lg sm:text-xl font-bold">{osStats ? `${Math.floor(osStats.uptime / 3600)}h ${Math.floor((osStats.uptime % 3600) / 60)}m` : '0h 0m'}</p>
+              <div className="h-3 bg-[#0a0f1d] rounded-full overflow-hidden">
+                <div className="h-full rounded-full bg-violet-500 transition-all duration-700"
+                  style={{ width: `${diskPct}%`, boxShadow: '0 0 8px #8b5cf640' }} />
               </div>
             </div>
-            <div className="flex -space-x-2">
-              {['US', 'EU', 'AS'].map(r => (
-                <div key={r} className="w-8 h-8 rounded-full border-2 border-surface-container bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface hover:scale-110 transition-transform cursor-help">{r}</div>
-              ))}
+            <div>
+              <div className="flex justify-between text-[10px] mb-1.5">
+                <span className="font-bold text-slate-400">Free</span>
+                <span className="font-telemetry text-slate-300">{osStats ? `${((osStats.diskTotal - osStats.diskUsed) / 1e9).toFixed(1)} GB` : '...'}</span>
+              </div>
+              <div className="h-3 bg-[#0a0f1d] rounded-full overflow-hidden">
+                <div className="h-full rounded-full bg-emerald-500 transition-all duration-700"
+                  style={{ width: `${100 - diskPct}%`, boxShadow: '0 0 8px #10b98140' }} />
+              </div>
+            </div>
+            <div className="pt-4 border-t border-white/5 flex justify-between text-[10px]">
+              <span className="text-slate-500 font-bold uppercase tracking-wider">Total Capacity</span>
+              <span className="font-telemetry text-white font-bold">{osStats ? `${(osStats.diskTotal / 1e9).toFixed(1)} GB` : '...'}</span>
             </div>
           </div>
         </div>
 
         {/* Recent Activity */}
-        <div className="bg-surface-container p-4 sm:p-6 lg:p-8 rounded-xl flex flex-col border border-white/5">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-bold">Recent Activity</h3>
-            <span className="material-symbols-outlined text-slate-500 cursor-pointer hover:text-white transition-colors">history</span>
+        <div className="bg-surface-container-low p-4 sm:p-6 rounded-xl border border-white/5 flex flex-col">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider">Recent Activity</h3>
+            <span className="material-symbols-outlined text-slate-500 cursor-pointer hover:text-white text-[18px]">history</span>
           </div>
-          <div className="flex-1 space-y-4">
+          <div className="flex-1 space-y-3">
             {recentActivity.length === 0 ? (
-              <div className="flex flex-col items-center justify-center h-full text-slate-500 py-4">
-                <span className="material-symbols-outlined text-4xl mb-2 opacity-50">event_note</span>
-                <p className="text-xs font-bold">No activity recorded</p>
+              <div className="flex flex-col items-center justify-center h-full text-slate-500 py-8">
+                <span className="material-symbols-outlined text-3xl mb-2 opacity-50">event_note</span>
+                <p className="text-[10px] font-bold">No activity recorded</p>
               </div>
             ) : recentActivity.map((a, i) => {
               const icon = categoryIcon[a.category] || 'notes'
               const levelCol = a.level === 'ERROR' ? 'text-error' : a.level === 'WARN' ? 'text-tertiary' : 'text-primary'
               return (
                 <div key={i} className="flex gap-3 group relative">
-                  <div className={`w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center flex-shrink-0 border border-white/5 ${levelCol}`}>
-                    <span className="material-symbols-outlined text-[18px]">{icon}</span>
+                  <div className={`w-7 h-7 rounded-lg bg-[#0a0f1d] flex items-center justify-center flex-shrink-0 border border-white/5 ${levelCol}`}>
+                    <span className="material-symbols-outlined text-[14px]">{icon}</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex justify-between items-start mb-0.5">
-                      <p className="text-[11px] font-black uppercase tracking-widest text-slate-400 truncate">{a.service}</p>
-                      <span className="text-[9px] font-telemetry text-slate-600 flex-shrink-0">{a.time}</span>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 truncate">{a.service}</p>
+                      <span className="text-[8px] font-telemetry text-slate-600 flex-shrink-0">{a.time}</span>
                     </div>
-                    <p className="text-[12px] text-slate-300 leading-snug line-clamp-1 group-hover:line-clamp-none transition-all">{a.msg}</p>
-                    <div className="flex items-center gap-1.5 mt-1.5">
-                       <span className={`w-1 h-1 rounded-full ${a.level === 'ERROR' ? 'bg-error' : a.level === 'WARN' ? 'bg-tertiary' : 'bg-primary'}`} />
-                       <span className="text-[9px] font-bold text-slate-500 uppercase">{a.category || 'General'}</span>
-                       <span className="text-slate-700 text-[10px]">•</span>
-                       <span className="text-[9px] text-primary/60 font-black italic">@{a.initiator || 'system'}</span>
-                    </div>
+                    <p className="text-[11px] text-slate-300 leading-snug line-clamp-1">{a.msg}</p>
                   </div>
-                  {i < recentActivity.length - 1 && (
-                    <div className="absolute left-4 top-8 bottom-[-16px] w-[1px] bg-white/5 -translate-x-1/2" />
-                  )}
                 </div>
               )
             })}
           </div>
-          <a href="/logs" className="mt-6 w-full py-2.5 text-xs font-bold text-primary hover:bg-primary/5 rounded-lg transition-all border border-primary/10 text-center flex items-center justify-center gap-2 group">
+          <a href="/logs" className="mt-4 w-full py-2 text-[10px] font-bold text-primary hover:bg-primary/5 rounded-lg transition-all border border-primary/10 text-center flex items-center justify-center gap-1.5 group">
             Audit Control Center
-            <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            <span className="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
           </a>
         </div>
-      </div>
 
-
-      {/* Infrastructure Table */}
-      <div className="bg-surface-container rounded-xl overflow-hidden">
-        <div className="p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-white/5 gap-3">
-          <h3 className="text-base sm:text-lg font-bold text-on-surface">Infrastructure Status</h3>
-          <div className="flex gap-2">
-            <button className="px-3 py-1.5 rounded-lg bg-surface-container-highest text-xs font-bold hover:text-primary transition-colors">Export Report</button>
-            <button className="px-3 py-1.5 rounded-lg bg-surface-container-highest text-xs font-bold hover:text-primary transition-colors">Settings</button>
+        {/* Infrastructure Status */}
+        <div className="bg-surface-container-low rounded-xl border border-white/5 overflow-hidden">
+          <div className="p-4 sm:p-6 flex items-center justify-between border-b border-white/5">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider">Infrastructure</h3>
           </div>
-        </div>
-        
-        {/* Mobile card view */}
-        <div className="md:hidden p-4 space-y-3">
-          {displayInfra.map(s => (
-            <div key={s.name} className="p-4 bg-white/[0.02] rounded-xl border border-white/5">
-              <div className="flex items-center gap-3 mb-3">
-                <div className={`w-2.5 h-2.5 rounded-full ${loadColor[s.status]}`} style={{ boxShadow: `0 0 8px currentColor` }} />
-                <div>
-                  <p className="text-sm font-bold text-on-surface">{s.name}</p>
-                  <p className="text-[10px] text-slate-500 font-telemetry">{s.ip}</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-3 gap-3">
-                <div>
-                  <p className="text-[9px] text-slate-600 uppercase font-bold">Status</p>
-                  <StatusBadge status={s.status} />
-                </div>
-                <div>
-                  <p className="text-[9px] text-slate-600 uppercase font-bold">Uptime</p>
-                  <p className="text-xs font-telemetry text-slate-400">{s.uptime}</p>
-                </div>
-                <div>
-                  <p className="text-[9px] text-slate-600 uppercase font-bold">Load</p>
-                  <div className="flex items-center gap-2">
-                    <div className="w-12 h-1 bg-surface-container rounded-full overflow-hidden">
-                      <div className={`h-full ${loadColor[s.status]}`} style={{ width: `${s.load}%` }} />
+          {displayInfra.length > 0 ? (
+            <div className="p-4 space-y-3">
+              {displayInfra.map(s => (
+                <div key={s.name} className="p-4 bg-[#0a0f1d] rounded-xl border border-white/5">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className={`w-2.5 h-2.5 rounded-full ${loadColor[s.status]}`} style={{ boxShadow: '0 0 8px currentColor' }} />
+                    <div>
+                      <p className="text-sm font-bold text-white">{s.name}</p>
+                      <p className="text-[9px] text-slate-500 font-telemetry">{s.ip}</p>
                     </div>
-                    <span className="text-xs font-telemetry text-slate-400">{s.load}%</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-3">
+                    <div>
+                      <p className="text-[8px] text-slate-600 uppercase font-bold mb-1">Status</p>
+                      <StatusBadge status={s.status} />
+                    </div>
+                    <div>
+                      <p className="text-[8px] text-slate-600 uppercase font-bold mb-1">Uptime</p>
+                      <p className="text-[11px] font-telemetry text-slate-400">{s.uptime}</p>
+                    </div>
+                    <div>
+                      <p className="text-[8px] text-slate-600 uppercase font-bold mb-1">Load</p>
+                      <div className="flex items-center gap-2">
+                        <div className="w-12 h-1.5 bg-[#0a0f1d] rounded-full overflow-hidden">
+                          <div className={`h-full ${loadColor[s.status]}`} style={{ width: `${s.load}%` }} />
+                        </div>
+                        <span className="text-[10px] font-telemetry text-slate-400">{s.load}%</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Desktop table view */}
-        <div className="overflow-x-auto hidden md:block">
-          <table className="w-full text-left">
-            <thead className="bg-surface-container-low">
-              <tr>
-                {['Node Name', 'Location', 'Status', 'Uptime', 'Load', 'Actions'].map(h => (
-                  <th key={h} className="px-8 py-4 text-[10px] uppercase tracking-widest text-slate-500 font-black">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
-              {displayInfra.map(s => (
-                <tr key={s.name} className="hover:bg-white/[0.02] transition-colors">
-                  <td className="px-8 py-5">
-                    <div className="flex items-center gap-3">
-                      <div className={`w-2 h-2 rounded-full ${loadColor[s.status]}`} style={{ boxShadow: `0 0 8px currentColor` }} />
-                      <div>
-                        <p className="text-sm font-bold text-on-surface">{s.name}</p>
-                        <p className="text-[10px] text-slate-500 font-telemetry">{s.ip}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-8 py-5 text-sm text-slate-400">{s.location}</td>
-                  <td className="px-8 py-5"><StatusBadge status={s.status} /></td>
-                  <td className="px-8 py-5 text-sm font-telemetry text-slate-400">{s.uptime}</td>
-                  <td className="px-8 py-5">
-                    <div className="flex items-center gap-2">
-                      <div className="w-16 h-1 bg-surface-container rounded-full overflow-hidden">
-                        <div className={`h-full ${loadColor[s.status]}`} style={{ width: `${s.load}%` }} />
-                      </div>
-                      <span className="text-xs font-telemetry text-slate-400">{s.load}%</span>
-                    </div>
-                  </td>
-                  <td className="px-8 py-5">
-                    <button className="material-symbols-outlined text-slate-500 hover:text-white transition-colors">open_in_new</button>
-                  </td>
-                </tr>
               ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="p-5 bg-surface-container-low flex justify-center">
-          <button className="text-xs font-bold text-slate-500 hover:text-primary transition-colors flex items-center gap-2">
-            View Full Infrastructure List
-            <span className="material-symbols-outlined text-sm">arrow_forward</span>
-          </button>
+            </div>
+          ) : (
+            <div className="p-8 text-center text-slate-500">
+              <span className="material-symbols-outlined text-3xl opacity-50">dns</span>
+              <p className="text-[10px] font-bold mt-2">Waiting for data...</p>
+            </div>
+          )}
         </div>
       </div>
-
     </div>
   )
 }

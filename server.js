@@ -50,6 +50,7 @@ let cloudflaredProc = null
 let cloudflareLogs = []
 let aiChats = []
 let netSpeed = { download: 0, upload: 0 }
+let lastNetStatsTime = 0
 
 // ── Load persisted data ────────────────────────────────────────────
 if (fs.existsSync(ZEROTIER_PATH)) {
@@ -215,17 +216,24 @@ setInterval(async () => {
     const bytes = await calculateDirSize(workspaceDir)
     projectDiskSizes[proj.name] = bytes
   }
-}, 30000)
+}, 60000)
 
 // ── OS polling loop ────────────────────────────────────────────────
 setInterval(async () => {
   const currentInfo = os.cpus()
   let idleDiff = 0, totalDiff = 0
+  const cpuCores = []
   for (let i = 0; i < currentInfo.length; i++) {
     const prev = lastCpuInfo[i].times, curr = currentInfo[i].times
     const prevTotal = Object.values(prev).reduce((a, b) => a + b)
     const currTotal = Object.values(curr).reduce((a, b) => a + b)
-    idleDiff += curr.idle - prev.idle; totalDiff += currTotal - prevTotal
+    const idleDelta = curr.idle - prev.idle
+    const totalDelta = currTotal - prevTotal
+    idleDiff += idleDelta; totalDiff += totalDelta
+    cpuCores.push({
+      core: i,
+      usage: totalDelta > 0 ? Math.round(100 - (idleDelta / totalDelta) * 100) : 0
+    })
   }
   lastCpuInfo = currentInfo
   if (totalDiff > 0) currentCpuUsage = 100 - Math.floor(100 * idleDiff / totalDiff)
@@ -245,9 +253,8 @@ setInterval(async () => {
   }
 
   activeProjects.forEach(p => {
+    if (!p.startedAt) p.startedAt = null
     if (p.status === 'Running' || p.status === 'Production') {
-      p.cpu = Math.max(1, Math.min(100, (p.cpu || 0) + (Math.random() - 0.5) * 8))
-      p.mem = Math.max(0.1, (p.mem || 0.1) + (Math.random() - 0.5) * 0.1)
       if (!p.startedAt) p.startedAt = Date.now()
       const diffSecs = Math.floor((Date.now() - p.startedAt) / 1000)
       if (diffSecs < 60) p.uptime = `${diffSecs}s`
@@ -262,15 +269,18 @@ setInterval(async () => {
 
   if (ioInstance) {
     try {
-      try {
-        const si = await import('systeminformation')
-        const netStats = await si.networkStats()
-        if (netStats && netStats.length > 0) {
-          let totalRx = 0, totalTx = 0
-          for (const iface of netStats) { totalRx += iface.rx_sec || 0; totalTx += iface.tx_sec || 0 }
-          netSpeed = { download: totalRx, upload: totalTx }
-        }
-      } catch (e) {}
+      if (now - lastNetStatsTime > 30000) {
+        try {
+          const si = await import('systeminformation')
+          const netStats = await si.networkStats()
+          if (netStats && netStats.length > 0) {
+            let totalRx = 0, totalTx = 0
+            for (const iface of netStats) { totalRx += iface.rx_sec || 0; totalTx += iface.tx_sec || 0 }
+            netSpeed = { download: totalRx, upload: totalTx }
+          }
+        } catch (e) {}
+        lastNetStatsTime = now
+      }
       const disk = await fs.promises.statfs(os.platform() === 'win32' ? 'C:\\' : '/')
       const totalDisk = disk.blocks * disk.bsize, freeDisk = disk.bfree * disk.bsize
       const stats = {
@@ -278,7 +288,7 @@ setInterval(async () => {
           hostname: os.hostname(), platform: os.platform(), type: os.type(),
           release: os.release(), uptime: os.uptime(),
           memTotal, memUsed: memTotal - memFree,
-          cpuUsage: currentCpuUsage, cpuModel: os.cpus()[0].model,
+          cpuUsage: currentCpuUsage, cpuCores, cpuModel: os.cpus()[0].model,
           diskTotal: totalDisk, diskUsed: totalDisk - freeDisk,
           cores: os.cpus().length, netInterfaces: os.networkInterfaces(), netSpeed
         },
@@ -294,7 +304,7 @@ setInterval(async () => {
       ioInstance.emit('stats_update', stats)
     } catch (e) {}
   }
-}, 2000)
+}, 5000)
 
 // ── ZeroTier helpers ───────────────────────────────────────────────
 const isWinZt = process.platform === 'win32'
@@ -890,6 +900,12 @@ const serveStatic = (req, res) => {
 
 // ── Security middleware ────────────────────────────────────────────
 const LOGIN_ATTEMPTS = new Map()
+setInterval(() => {
+  const cutoff = Date.now() - 15 * 60 * 1000
+  for (const [ip, record] of LOGIN_ATTEMPTS) {
+    if (record.last < cutoff) LOGIN_ATTEMPTS.delete(ip)
+  }
+}, 600000)
 
 const securityHeaders = (res) => {
   res.setHeader('X-Frame-Options', 'DENY')
@@ -1730,7 +1746,7 @@ const handleApiRoute = async (req, res, url) => {
 // ── Create HTTP server & attach Socket.IO ──────────────────────────
 const httpServer = http.createServer(handleRequest)
 
-ioInstance = new Server(httpServer, { cors: { origin: '*' } })
+ioInstance = new Server(httpServer, { cors: { origin: '*' }, transports: ['websocket'], pingInterval: 30000, pingTimeout: 10000 })
 
 ioInstance.on('connection', (socket) => {
   socket.emit('init_logs', systemLogs)

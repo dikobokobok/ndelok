@@ -1,4 +1,5 @@
-export default function Toast({ toast, onClose }) {
+import React from 'react';
+const Toast = React.memo(function Toast({ toast, onClose }) {
   if (!toast) return null;
   return (
     <div className={`fixed bottom-8 right-8 px-5 py-3.5 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] border flex items-center gap-3 z-[100] transition-all transform scale-100 opacity-100 ${
@@ -15,4 +16,6 @@ export default function Toast({ toast, onClose }) {
       </button>
     </div>
   )
-}
+})
+
+export default Toast

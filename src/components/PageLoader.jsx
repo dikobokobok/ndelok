@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PageLoader() {
+const PageLoader = React.memo(function PageLoader() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6 animate-in fade-in duration-700">
       <div className="relative">
@@ -15,4 +15,6 @@ export default function PageLoader() {
       </div>
     </div>
   )
-}
+})
+
+export default PageLoader

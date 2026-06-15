@@ -19,6 +19,9 @@ import { createRequire } from 'module'
 const require = createRequire(import.meta.url)
 const archiver = require('archiver')
 const pty = require('node-pty')
+let systemInfoModule = null
+const getSi = async () => { if (!systemInfoModule) systemInfoModule = await import('systeminformation'); return systemInfoModule }
+const si = await getSi()
 
 
 dotenv.config()
@@ -66,23 +69,32 @@ if (fs.existsSync(CHATS_PATH)) {
 }
 
 const saveZerotier = () => {
-  try { fs.writeFileSync(ZEROTIER_PATH, JSON.stringify(zerotierState, null, 2)) } catch (e) {}
+  try { fs.writeFileSync(ZEROTIER_PATH, JSON.stringify(zerotierState)) } catch (e) {}
 }
+let saveCloudflareTimeout = null
 const saveCloudflare = () => {
-  try { fs.writeFileSync(CLOUDFLARE_PATH, JSON.stringify(cloudflareState, null, 2)) } catch (e) {}
+  if (saveCloudflareTimeout) clearTimeout(saveCloudflareTimeout)
+  saveCloudflareTimeout = setTimeout(() => {
+    try { fs.writeFileSync(CLOUDFLARE_PATH, JSON.stringify(cloudflareState)) } catch (e) {}
+  }, 500)
 }
+let saveAiChatsTimeout = null
 const saveAiChats = () => {
-  try { fs.writeFileSync(CHATS_PATH, JSON.stringify(aiChats, null, 2)) } catch (e) {}
+  if (saveAiChatsTimeout) clearTimeout(saveAiChatsTimeout)
+  saveAiChatsTimeout = setTimeout(() => {
+    try { fs.writeFileSync(CHATS_PATH, JSON.stringify(aiChats)) } catch (e) {}
+  }, 500)
 }
 let prevNetBytes = { rx: 0, tx: 0, time: Date.now() }
 let netSpeed = { download: 0, upload: 0 }
+let lastNetStatsTime = 0
 
 let saveLogsTimeout = null
 const saveLogs = () => {
   if (saveLogsTimeout) clearTimeout(saveLogsTimeout)
   saveLogsTimeout = setTimeout(() => {
-    fs.writeFile(LOGS_PATH, JSON.stringify(systemLogs, null, 2), () => {})
-  }, 2000)
+    fs.writeFile(LOGS_PATH, JSON.stringify(systemLogs), () => {})
+  }, 5000)
 }
 
 const killProcess = (name) => {
@@ -134,7 +146,13 @@ if (fs.existsSync(DB_PATH)) {
     }
   } catch(e) {}
 }
-const saveProjects = () => fs.writeFileSync(DB_PATH, JSON.stringify(activeProjects, null, 2))
+let saveProjectsTimeout = null
+const saveProjects = () => {
+  if (saveProjectsTimeout) clearTimeout(saveProjectsTimeout)
+  saveProjectsTimeout = setTimeout(() => {
+    try { fs.writeFileSync(DB_PATH, JSON.stringify(activeProjects)) } catch (e) {}
+  }, 500)
+}
 
 const pushLog = (level, service, msg, initiator = 'System', category = 'General') => {
   const d = new Date()
@@ -170,25 +188,37 @@ const calculateDirSize = async (dir) => {
   return size
 }
 
-setInterval(async () => {
-  for (const proj of activeProjects) {
-    const workspaceDir = path.join(process.cwd(), 'workspaces', proj.name)
-    const bytes = await calculateDirSize(workspaceDir)
-    projectDiskSizes[proj.name] = bytes
-  }
-}, 30000)
+let diskSizeCalcInterval = null
+const scheduleDiskSizeCalc = () => {
+  if (diskSizeCalcInterval) clearInterval(diskSizeCalcInterval)
+  diskSizeCalcInterval = setInterval(async () => {
+    for (const proj of activeProjects) {
+      const workspaceDir = path.join(process.cwd(), 'workspaces', proj.name)
+      const bytes = await calculateDirSize(workspaceDir)
+      projectDiskSizes[proj.name] = bytes
+    }
+  }, 600000)
+}
+scheduleDiskSizeCalc()
 
 setInterval(async () => {
   const currentInfo = os.cpus()
   let idleDifference = 0
   let totalDifference = 0
+  const cpuCores = []
   for (let i = 0; i < currentInfo.length; i++) {
     const prev = lastCpuInfo[i].times
     const curr = currentInfo[i].times
     const prevTotal = Object.values(prev).reduce((a, b) => a + b)
     const currTotal = Object.values(curr).reduce((a, b) => a + b)
-    idleDifference += curr.idle - prev.idle
-    totalDifference += currTotal - prevTotal
+    const idleDiff = curr.idle - prev.idle
+    const totalDiff = currTotal - prevTotal
+    idleDifference += idleDiff
+    totalDifference += totalDiff
+    cpuCores.push({
+      core: i,
+      usage: totalDiff > 0 ? Math.round(100 - (idleDiff / totalDiff) * 100) : 0
+    })
   }
   lastCpuInfo = currentInfo
   if (totalDifference > 0) currentCpuUsage = 100 - Math.floor(100 * idleDifference / totalDifference)
@@ -196,51 +226,39 @@ setInterval(async () => {
   if (!global._lastCpuLogTime) global._lastCpuLogTime = 0
   if (!global._lastRamLogTime) global._lastRamLogTime = 0
   const now = Date.now()
-  if (now - global._lastCpuLogTime > 300000) {
-    if (currentCpuUsage > 90) { pushLog('WARN', 'CPU Monitor', `Elevated CPU usage: ${currentCpuUsage}%`, 'System', 'System'); global._lastCpuLogTime = now }
+  if (now - global._lastCpuLogTime > 300000 && currentCpuUsage > 90) {
+    pushLog('WARN', 'CPU Monitor', `Elevated CPU usage: ${currentCpuUsage}%`, 'System', 'System')
+    global._lastCpuLogTime = now
   }
-  if (now - global._lastRamLogTime > 300000) {
-    const memTotal = os.totalmem(), memFree = os.freemem()
-    const memUsage = Math.floor(((memTotal - memFree) / memTotal) * 100)
-    if (memUsage > 90) { pushLog('WARN', 'RAM Monitor', `Elevated RAM usage: ${memUsage}%`, 'System', 'System'); global._lastRamLogTime = now }
+  const memTotal = os.totalmem(), memFree = os.freemem()
+  const memUsage = Math.floor(((memTotal - memFree) / memTotal) * 100)
+  if (now - global._lastRamLogTime > 300000 && memUsage > 90) {
+    pushLog('WARN', 'RAM Monitor', `Elevated RAM usage: ${memUsage}%`, 'System', 'System')
+    global._lastRamLogTime = now
   }
-
-  activeProjects.forEach(p => {
-    if (p.status === 'Running' || p.status === 'Production') {
-      p.cpu = Math.max(1, Math.min(100, (p.cpu || 0) + (Math.random() - 0.5) * 8))
-      p.mem = Math.max(0.1, (p.mem || 0.1) + (Math.random() - 0.5) * 0.1)
-      if (!p.startedAt) p.startedAt = Date.now()
-      const diffSecs = Math.floor((Date.now() - p.startedAt) / 1000)
-      if (diffSecs < 60) p.uptime = `${diffSecs}s`
-      else if (diffSecs < 3600) p.uptime = `${Math.floor(diffSecs/60)}m ${diffSecs%60}s`
-      else p.uptime = `${Math.floor(diffSecs/3600)}h ${Math.floor((diffSecs%3600)/60)}m`
-    } else {
-      p.uptime = '0s'; p.startedAt = null; p.cpu = 0; p.mem = 0
-    }
-    const bytes = projectDiskSizes[p.name] || 0
-    p.diskStr = bytes > 1024*1024*1024 ? (bytes/(1024*1024*1024)).toFixed(2) + 'GB' : (bytes > 0 ? (bytes/(1024*1024)).toFixed(1) + 'MB' : '0MB')
-  })
 
   if (ioInstance) {
     try {
-      try {
-        const si = await import('systeminformation')
-        const netStats = await si.networkStats()
-        if (netStats && netStats.length > 0) {
-          let totalRx = 0, totalTx = 0
-          for (const iface of netStats) { totalRx += iface.rx_sec || 0; totalTx += iface.tx_sec || 0 }
-          netSpeed = { download: totalRx, upload: totalTx }
-        }
-      } catch (e) {}
+      if (now - lastNetStatsTime > 30000) {
+        try {
+          const si = await getSi()
+          const netStats = await si.networkStats()
+          if (netStats && netStats.length > 0) {
+            let totalRx = 0, totalTx = 0
+            for (const iface of netStats) { totalRx += iface.rx_sec || 0; totalTx += iface.tx_sec || 0 }
+            netSpeed = { download: totalRx, upload: totalTx }
+          }
+        } catch (e) {}
+        lastNetStatsTime = now
+      }
       const disk = await fs.promises.statfs(os.platform() === 'win32' ? 'C:\\' : '/')
       const totalDisk = disk.blocks * disk.bsize, freeDisk = disk.bfree * disk.bsize
-      const memTotal = os.totalmem(), memFree = os.freemem()
       const stats = {
         os: {
           hostname: os.hostname(), platform: os.platform(), type: os.type(),
           release: os.release(), uptime: os.uptime(),
           memTotal, memUsed: memTotal - memFree,
-          cpuUsage: currentCpuUsage, cpuModel: os.cpus()[0].model,
+          cpuUsage: currentCpuUsage, cpuCores, cpuModel: os.cpus()[0].model,
           diskTotal: totalDisk, diskUsed: totalDisk - freeDisk,
           cores: os.cpus().length, netInterfaces: os.networkInterfaces(), netSpeed
         },
@@ -256,7 +274,7 @@ setInterval(async () => {
       ioInstance.emit('stats_update', stats)
     } catch (e) {}
   }
-}, 2000)
+}, 10000)
 
 const spawnProject = (proj) => {
   const workspaceDir = path.join(process.cwd(), 'workspaces', proj.name)
@@ -502,7 +520,7 @@ const aiResolvePath = (relOrAbs) => {
 const OPENCODE_ZEN_ENDPOINT = 'https://opencode.ai/zen/v1/chat/completions'
 const OPENCODE_ZEN_MODEL = 'deepseek-v4-flash-free'
 
-let opencodeSessionCache = {}
+
 
 const AIRA_SYSTEM_INSTRUCTION = `Act as Aira, a female Lead IT Support Specialist for a major enterprise corporation. You hold absolute administrative privileges (Root/Global Admin access) across all corporate devices, servers, networks, and software applications.
 
@@ -852,12 +870,23 @@ export default defineConfig({
       ignored: ['**/projects.json', '**/workspaces/**']
     }
   },
+    build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          monaco: ['@monaco-editor/react'],
+          xterm: ['@xterm/xterm', '@xterm/addon-fit', '@xterm/addon-web-links'],
+          markdown: ['react-markdown', 'remark-gfm'],
+        },
+      },
+    },
+  },
   plugins: [
     react(),
     {
       name: 'os-stats',
       configureServer(server) {
-        ioInstance = new Server(server.httpServer, { cors: { origin: '*' } })
+        ioInstance = new Server(server.httpServer, { cors: { origin: '*' }, transports: ['websocket'], pingInterval: 30000, pingTimeout: 10000 })
         ioInstance.on('connection', (socket) => {
           socket.emit('init_logs', systemLogs)
 
@@ -970,6 +999,12 @@ export default defineConfig({
         })
 
         const LOGIN_ATTEMPTS = new Map()
+        setInterval(() => {
+          const cutoff = Date.now() - 15 * 60 * 1000
+          for (const [ip, record] of LOGIN_ATTEMPTS) {
+            if (record.last < cutoff) LOGIN_ATTEMPTS.delete(ip)
+          }
+        }, 600000)
 
         const securityHeaders = (req, res, next) => {
           res.setHeader('X-Frame-Options', 'DENY')
@@ -1145,12 +1180,32 @@ export default defineConfig({
             const memTotal = os.totalmem(), memFree = os.freemem()
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify({
-              hostname: os.hostname(), platform: os.platform(), type: os.type(),
-              release: os.release(), uptime: os.uptime(),
-              memTotal, memUsed: memTotal - memFree,
-              cpuUsage: currentCpuUsage, cpuModel: os.cpus()[0].model,
-              diskTotal: totalDisk, diskUsed: totalDisk - freeDisk,
-              cores: os.cpus().length, netInterfaces: os.networkInterfaces()
+              os: {
+                hostname: os.hostname(), platform: os.platform(), type: os.type(),
+                release: os.release(), uptime: os.uptime(),
+                memTotal, memUsed: memTotal - memFree,
+                cpuUsage: currentCpuUsage, cpuCores: Array.isArray(lastCpuInfo) ? lastCpuInfo.map((_, i) => {
+                  const curr = os.cpus()[i]
+                  if (!curr) return { core: i, usage: 0 }
+                  const prev = lastCpuInfo[i]
+                  const prevTotal = Object.values(prev.times).reduce((a, b) => a + b)
+                  const currTotal = Object.values(curr.times).reduce((a, b) => a + b)
+                  const idleDiff = curr.times.idle - prev.times.idle
+                  const totalDiff = currTotal - prevTotal
+                  return { core: i, usage: totalDiff > 0 ? Math.round(100 - (idleDiff / totalDiff) * 100) : 0 }
+                }) : [],
+                cpuModel: os.cpus()[0]?.model || '',
+                diskTotal: totalDisk, diskUsed: totalDisk - freeDisk,
+                cores: os.cpus().length, netInterfaces: os.networkInterfaces(), netSpeed
+              },
+              projects: {
+                total: activeProjects.length,
+                running: activeProjects.filter(p => p.status === 'Running' || p.status === 'Production').length,
+                stopped: activeProjects.filter(p => p.status === 'Stopped' || p.status === 'Failed').length,
+                warnings: systemLogs.filter(l => l.level === 'WARN' || l.level === 'ERROR').length,
+                list: activeProjects
+              },
+              health: 100 - (activeProjects.filter(p => p.status === 'Failed').length * 20) - (currentCpuUsage > 90 ? 10 : 0)
             }))
           } catch (e) { res.statusCode = 500; res.end(JSON.stringify({ error: e.toString() })) }
         })
@@ -1222,7 +1277,7 @@ export default defineConfig({
                 if (newUser.role === 'owner') { res.statusCode = 400; return res.end(JSON.stringify({ error: 'Security constraint: Multi-owner delegation is prohibited' })) }
                 if (users.some(u => u.username === newUser.username)) { res.statusCode = 409; return res.end(JSON.stringify({ error: 'Identity collision: Username already exists' })) }
                 const userToSave = { id: Date.now().toString(), ...newUser, password: bcrypt.hashSync(newUser.password, 10), avatar: newUser.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${newUser.username}` }
-                users.push(userToSave); fs.writeFileSync(USERS_PATH, JSON.stringify(users, null, 2))
+                users.push(userToSave); fs.writeFileSync(USERS_PATH, JSON.stringify(users))
                 pushLog('INFO', 'Audit', `Agent identity [${newUser.username}] provisioned by ${req.user.username}`, req.user.username, 'Management')
                 res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ success: true, user: userToSave }))
               } catch (e) { res.statusCode = 400; res.end(JSON.stringify({ error: e.message })) }
@@ -1234,7 +1289,7 @@ export default defineConfig({
             const initialCount = users.length
             users = users.filter(u => u.username !== usernameToDelete)
             if (users.length < initialCount) {
-              fs.writeFileSync(USERS_PATH, JSON.stringify(users, null, 2))
+              fs.writeFileSync(USERS_PATH, JSON.stringify(users))
               pushLog('WARN', 'Audit', `Agent identity [${usernameToDelete}] de-provisioned by ${req.user.username}`, req.user.username, 'Management')
               res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ success: true }))
             } else { res.statusCode = 404; res.end(JSON.stringify({ error: 'Identity resolution failure: User not found' })) }
@@ -1255,7 +1310,7 @@ export default defineConfig({
                   users[userIndex].role = updateData.role
                 }
                 if (updateData.password && updateData.password.trim() !== '') users[userIndex].password = bcrypt.hashSync(updateData.password, 10)
-                fs.writeFileSync(USERS_PATH, JSON.stringify(users, null, 2))
+                fs.writeFileSync(USERS_PATH, JSON.stringify(users))
                 pushLog('INFO', 'Audit', `Agent identity [${updateData.username}] updated by ${req.user.username}`, req.user.username, 'Management')
                 res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ success: true }))
               } catch (e) { res.statusCode = 400; res.end(JSON.stringify({ error: 'Protocol error during identity update' })) }
@@ -1614,7 +1669,7 @@ export default defineConfig({
               
               if (systemLogs.length > 100) {
                 systemLogs = systemLogs.slice(0, 100)
-                fs.writeFileSync(LOGS_PATH, JSON.stringify(systemLogs, null, 2), 'utf-8')
+                fs.writeFileSync(LOGS_PATH, JSON.stringify(systemLogs), 'utf-8')
               }
               
               const diskAfter = await fs.promises.statfs(os.platform() === 'win32' ? 'C:\\' : '/')

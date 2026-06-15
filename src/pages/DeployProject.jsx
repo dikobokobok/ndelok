@@ -147,7 +147,7 @@ export default function DeployProject() {
           setTimeout(() => setUploadComplete(false), 3000)
         }, 300)
       }
-    }, 80)
+    }, 400)
   }
 
   const removeFile = (index) => {
@@ -230,7 +230,7 @@ export default function DeployProject() {
         } catch (err) {
           console.error('Polling error', err)
         }
-      }, 1500)
+      }, 5000)
 
     } catch (err) {
       setToast({ type: 'error', msg: err.message })

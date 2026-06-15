@@ -3,6 +3,45 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { AuthContext } from '../App'
 
+// Helper to render collapsible toolcalls
+const ToolLogs = ({ message, nextToolResponse }) => {
+  const [isExpanded, setIsExpanded] = useState(false)
+  if (!message.toolCalls) return null
+  return (
+    <div className="my-2 border border-white/5 rounded-xl overflow-hidden bg-black/40">
+      <button 
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="w-full px-3 py-2 flex items-center justify-between text-[10px] text-primary hover:bg-white/5 font-black uppercase tracking-wider transition-all"
+      >
+        <span className="flex items-center gap-1.5">
+          <span className="material-symbols-outlined text-[14px]">terminal</span>
+          AI Executed {message.toolCalls.length} tool(s)
+        </span>
+        <span className="material-symbols-outlined text-[14px]">
+          {isExpanded ? 'expand_less' : 'expand_more'}
+        </span>
+      </button>
+      {isExpanded && (
+        <div className="p-3 border-t border-white/5 space-y-3 font-telemetry">
+          {message.toolCalls.map((tc, idx) => {
+            const resp = nextToolResponse && nextToolResponse[idx] ? nextToolResponse[idx].content : 'No output'
+            return (
+              <div key={idx} className="space-y-1.5">
+                <div className="text-[10px] text-emerald-400 font-bold uppercase">
+                  &gt; call_{tc.name}({JSON.stringify(tc.args)})
+                </div>
+                <pre className="p-2 bg-black/80 rounded-lg text-[9px] text-slate-400 whitespace-pre-wrap break-all leading-normal max-h-40 overflow-y-auto">
+                  {resp}
+                </pre>
+              </div>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function AiChatPopup() {
   const { authenticatedFetch } = useContext(AuthContext)
   const [isOpen, setIsOpen] = useState(false)
@@ -29,6 +68,7 @@ export default function AiChatPopup() {
     if (isOpen) {
       loadSessions()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen])
 
   useEffect(() => {
@@ -159,45 +199,6 @@ export default function AiChatPopup() {
       setSending(false)
       abortControllerRef.current = null
     }
-  }
-
-  // Helper to render collapsible toolcalls
-  const ToolLogs = ({ message, nextToolResponse }) => {
-    const [isExpanded, setIsExpanded] = useState(false)
-    if (!message.toolCalls) return null
-    return (
-      <div className="my-2 border border-white/5 rounded-xl overflow-hidden bg-black/40">
-        <button 
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="w-full px-3 py-2 flex items-center justify-between text-[10px] text-primary hover:bg-white/5 font-black uppercase tracking-wider transition-all"
-        >
-          <span className="flex items-center gap-1.5">
-            <span className="material-symbols-outlined text-[14px]">terminal</span>
-            AI Executed {message.toolCalls.length} tool(s)
-          </span>
-          <span className="material-symbols-outlined text-[14px]">
-            {isExpanded ? 'expand_less' : 'expand_more'}
-          </span>
-        </button>
-        {isExpanded && (
-          <div className="p-3 border-t border-white/5 space-y-3 font-telemetry">
-            {message.toolCalls.map((tc, idx) => {
-              const resp = nextToolResponse && nextToolResponse[idx] ? nextToolResponse[idx].content : 'No output'
-              return (
-                <div key={idx} className="space-y-1.5">
-                  <div className="text-[10px] text-emerald-400 font-bold uppercase">
-                    &gt; call_{tc.name}({JSON.stringify(tc.args)})
-                  </div>
-                  <pre className="p-2 bg-black/80 rounded-lg text-[9px] text-slate-400 whitespace-pre-wrap break-all leading-normal max-h-40 overflow-y-auto">
-                    {resp}
-                  </pre>
-                </div>
-              )
-            })}
-          </div>
-        )}
-      </div>
-    )
   }
 
   // Render conversation history

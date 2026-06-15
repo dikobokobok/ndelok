@@ -1,4 +1,4 @@
-import { useState, forwardRef } from 'react'
+import React, { useState, forwardRef } from 'react'
 
 /**
  * Reusable password input with show/hide eye toggle.
@@ -12,7 +12,7 @@ import { useState, forwardRef } from 'react'
  *  - className: classes for the input itself (mirrors native)
  *  - eyeColor: tailwind text-color class for the eye icon (default text-slate-400)
  */
-const PasswordInput = forwardRef(function PasswordInput(
+const PasswordInput = React.memo(forwardRef(function PasswordInput(
   { wrapperClassName = '', className = '', eyeColor = 'text-slate-400', disabled, ...rest },
   ref
 ) {
@@ -42,6 +42,6 @@ const PasswordInput = forwardRef(function PasswordInput(
       </button>
     </div>
   )
-})
+}))
 
 export default PasswordInput

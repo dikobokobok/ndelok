@@ -1,4 +1,5 @@
-export default function StatCard({ title, value, sub, icon, iconBg = 'bg-primary/10', iconColor = 'text-primary', trend, trendIcon }) {
+import React from 'react';
+const StatCard = React.memo(function StatCard({ title, value, sub, icon, iconBg = 'bg-primary/10', iconColor = 'text-primary', trend, trendIcon }) {
   return (
     <div className="bg-surface-container-low p-6 rounded-xl flex items-center justify-between">
       <div>
@@ -25,4 +26,6 @@ export default function StatCard({ title, value, sub, icon, iconBg = 'bg-primary
       )}
     </div>
   )
-}
+})
+
+export default StatCard

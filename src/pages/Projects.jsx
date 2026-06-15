@@ -115,7 +115,6 @@ export default function Projects() {
       })
       
       if (!verifyRes?.ok) {
-        clearInterval(progressInterval)
         setDeleteProgress(0)
         setDeleteLoading(false)
         setDeleteError('Password salah. Verifikasi gagal.')
@@ -129,8 +128,6 @@ export default function Projects() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: deleteModal, action: 'delete' })
       })
-
-      clearInterval(progressInterval)
 
       if (resp?.status === 403) {
         setDeleteProgress(0)
@@ -153,10 +150,11 @@ export default function Projects() {
       }, 600)
 
     } catch (e) {
-      clearInterval(progressInterval)
       setDeleteProgress(0)
       setDeleteLoading(false)
       setDeleteError(`Gagal menghapus: ${e.message}`)
+    } finally {
+      clearInterval(progressInterval)
     }
   }
 

@@ -151,7 +151,7 @@ export default function App() {
 
   return (
     <AuthContext.Provider value={{ user, setUser, token, setToken, loading, logout, authenticatedFetch }}>
-      <BrowserRouter>
+      <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/login" element={<Login />} />

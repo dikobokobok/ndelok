@@ -1,15 +1,19 @@
 import { useState, useContext, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { AuthContext } from '../App'
-import { io } from 'socket.io-client'
+import socket from '../lib/socket'
 
 export default function TopBar({ onMenuClick }) {
   const location = useLocation()
   const { user, authenticatedFetch } = useContext(AuthContext)
   const [showNotifications, setShowNotifications] = useState(false)
+  const showNotificationsRef = useRef(showNotifications)
   const [notifications, setNotifications] = useState([])
   const [unreadCount, setUnreadCount] = useState(0)
   const dropdownRef = useRef(null)
+
+  // Keep ref in sync
+  useEffect(() => { showNotificationsRef.current = showNotifications }, [showNotifications])
 
   const initials = user?.name ? user.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) : 'NE'
 
@@ -20,7 +24,6 @@ export default function TopBar({ onMenuClick }) {
         const res = await authenticatedFetch('/api/logs')
         if (res.ok) {
           const allLogs = await res.json()
-          // Filter for Auth and Audit services to keep security/admin notifications relevant
           const filtered = allLogs.filter(log => log.service === 'Auth' || log.service === 'Audit').slice(0, 15)
           setNotifications(filtered)
         }
@@ -31,18 +34,17 @@ export default function TopBar({ onMenuClick }) {
 
     fetchLogs()
 
-    // Real-time listener
-    const socket = io()
     socket.emit('join-room', 'system-logs')
 
-    socket.on('new_log', (log) => {
+    const handleNewLog = (log) => {
       if (log.service === 'Auth' || log.service === 'Audit') {
         setNotifications(prev => [log, ...prev].slice(0, 15))
-        if (!showNotifications) setUnreadCount(prev => prev + 1)
+        if (!showNotificationsRef.current) setUnreadCount(prev => prev + 1)
       }
-    })
+    }
 
-    // Click outside handler
+    socket.on('new_log', handleNewLog)
+
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setShowNotifications(false)
@@ -51,10 +53,10 @@ export default function TopBar({ onMenuClick }) {
     document.addEventListener('mousedown', handleClickOutside)
 
     return () => {
-      socket.disconnect()
+      socket.off('new_log', handleNewLog)
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [authenticatedFetch, showNotifications])
+  }, [])
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications)

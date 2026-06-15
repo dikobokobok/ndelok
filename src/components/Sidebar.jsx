@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useMemo } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { AuthContext } from '../App'
 import PasswordInput from './PasswordInput'
@@ -24,7 +24,7 @@ export default function Sidebar({ onClose }) {
   const [powerLoading, setPowerLoading] = useState(false)
   const [powerError, setPowerError] = useState('')
 
-  const filteredNav = navItems.filter(item => !item.roles || item.roles.includes(user?.role))
+  const filteredNav = useMemo(() => navItems.filter(item => !item.roles || item.roles.includes(user?.role)), [user?.role])
 
   const handlePower = async (e) => {
     e.preventDefault()

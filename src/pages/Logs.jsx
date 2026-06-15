@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from 'react'
+import { useState, useEffect, useRef, useContext, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import socket from '../lib/socket'
 import Terminal from '../components/Terminal'
@@ -63,17 +63,19 @@ export default function Logs() {
     }
   }, [])
 
-  const filtered = logs.filter(l => {
-    if (selLevel    !== 'All' && l.level    !== selLevel)    return false
-    if (selCategory !== 'All' && l.category !== selCategory) return false
-    if (selService  !== 'All' && l.service  !== selService)  return false
-    
-    if (search) {
-      const q = search.toLowerCase()
-      if (!l.msg.toLowerCase().includes(q) && !l.service.toLowerCase().includes(q) && !(l.initiator || '').toLowerCase().includes(q)) return false
-    }
-    return true
-  })
+  const filtered = useMemo(() => {
+    return logs.filter(l => {
+      if (selLevel    !== 'All' && l.level    !== selLevel)    return false
+      if (selCategory !== 'All' && l.category !== selCategory) return false
+      if (selService  !== 'All' && l.service  !== selService)  return false
+      
+      if (search) {
+        const q = search.toLowerCase()
+        if (!l.msg.toLowerCase().includes(q) && !l.service.toLowerCase().includes(q) && !(l.initiator || '').toLowerCase().includes(q)) return false
+      }
+      return true
+    })
+  }, [logs, selLevel, selCategory, selService, search])
 
   const handleExport = () => {
     if (filtered.length === 0) return

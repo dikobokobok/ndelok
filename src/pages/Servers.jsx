@@ -127,9 +127,21 @@ export default function Servers() {
   }, [authenticatedFetch])
 
   useEffect(() => {
+    const fetchStats = () => {
+      authenticatedFetch('/api/stats').then(r => r?.json()).then(data => {
+        if (data?.os) setOsStats(data.os)
+        if (data?.projects) setSummary({
+          total: data.projects.total, running: data.projects.running,
+          health: data.health
+        })
+      }).catch(() => {})
+    }
+    fetchStats()
+    const pollId = setInterval(fetchStats, 10000)
+
     socket.on('stats_update', (data) => {
-      setOsStats(data.os)
-      setSummary({
+      if (data?.os) setOsStats(data.os)
+      if (data?.projects) setSummary({
          total: data.projects.total,
          running: data.projects.running,
          health: data.health
@@ -137,9 +149,10 @@ export default function Servers() {
     })
 
     return () => {
+      clearInterval(pollId)
       socket.off('stats_update')
     }
-  }, [])
+  }, [authenticatedFetch])
 
   useEffect(() => {
     fetchZtStatus()
@@ -372,7 +385,8 @@ export default function Servers() {
             Showing <span className="text-slate-300 font-bold">1</span> of <span className="text-slate-300 font-bold">1</span> active nodes
           </p>
           <div className="flex items-center gap-2">
-            <button className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-600 hover:text-slate-300 transition-colors">
+            <button onClick={() => setPage(p => Math.max(1, p - 1))}
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-600 hover:text-slate-300 transition-colors">
               <span className="material-symbols-outlined">chevron_left</span>
             </button>
             {[1, 2, 3].map(p => (
@@ -381,7 +395,8 @@ export default function Servers() {
                 {p}
               </button>
             ))}
-            <button className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-600 hover:text-slate-300 transition-colors">
+            <button onClick={() => setPage(p => Math.min(3, p + 1))}
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-600 hover:text-slate-300 transition-colors">
               <span className="material-symbols-outlined">chevron_right</span>
             </button>
           </div>

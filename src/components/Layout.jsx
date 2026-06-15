@@ -29,7 +29,7 @@ export default function Layout() {
         </main>
       </div>
 
-      {/* Gemini AI Copilot Floating Popup */}
+      {/* AI Copilot Floating Popup */}
       <AiChatPopup />
     </div>
   )

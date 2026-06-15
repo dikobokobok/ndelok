@@ -1,4 +1,4 @@
-# Ndelok.me - Dashboard Infrastruktur Terintegrasi (v1.15.1)
+# Ndelok.me - Dashboard Infrastruktur Terintegrasi (v1.15.2)
 
 **Ndelok.me** adalah dashboard manajemen infrastruktur real-time dengan performa tinggi yang dirancang untuk pengembangan lokal dan lingkungan produksi skala kecil. Platform ini menyediakan antarmuka terpadu untuk memantau kesehatan sistem, mengelola penyebaran proyek, menganalisis log server secara real-time, serta mengontrol resource sistem melalui AI Copilot maupun panel kontrol native.
 
@@ -9,7 +9,7 @@
 ## 🚀 Fitur Utama
 
 - **Pemantauan Real-time**: Statistik OS (CPU, RAM, Disk, Network Speed) langsung via Socket.IO
-- **🤖 AI Copilot — Aira**: Asisten IT Support berbasis Gemini AI, mampu mendiagnosis masalah, mengontrol proyek, membaca file, dan mengeksekusi perintah terminal
+- **🤖 AI Copilot — Aira**: Asisten IT Support berbasis OpenCode Zen AI (gratis, tanpa API key), mampu mendiagnosis masalah, mengontrol proyek, membaca file, dan mengeksekusi perintah terminal
 - **⚡ Resource Optimizer**: Panel kontrol native untuk Optimize CPU, Free Memory, dan Clean Storage tanpa perlu AI
 - **Manajemen Proyek**: Start, Stop, Restart, Edit, Hapus layanan dengan sekali klik
 - **Deployment Cerdas**: Kloning Git otomatis atau upload file lokal langsung dari browser
@@ -42,7 +42,7 @@
 - **Komunikasi**: Socket.IO (Telemetri real-time & streaming log)
 - **Backend (Dev)**: `vite.config.js` — API & Socket.IO berjalan dalam proses Vite
 - **Backend (Production)**: `server.js` — Node.js HTTP server native, serve `dist/`
-- **AI**: Google Gemini 2.5 Flash API (function calling untuk tool execution)
+- **AI**: OpenCode Zen API (gratis — model `deepseek-v4-flash-free`, support function calling)
 - **Terminal**: xterm.js + node-pty (PTY real shell)
 - **Database**: File-based persistence (JSON di `src/database/`)
 
@@ -125,12 +125,9 @@ chmod +x install.sh
 
 ## 🤖 AI Copilot — Aira
 
-Aira adalah asisten IT Support berbasis Gemini AI yang terintegrasi dalam aplikasi. Untuk mengaktifkannya:
+Aira adalah asisten IT Support berbasis **OpenCode Zen AI** yang terintegrasi dalam aplikasi. **Gratis, tanpa perlu API key.**
 
-1. Dapatkan **Gemini API Key** (gratis) dari: **https://aistudio.google.com/apikey**
-   > ⚠️ API Key harus dimulai dengan `AIzaSy...` — bukan OAuth Token (`AQ.`)
-2. Masukkan key di halaman **Settings → AI Copilot**
-3. Klik ikon chat di pojok kanan bawah aplikasi
+Cukup klik ikon chat di pojok kanan bawah aplikasi untuk mulai menggunakan.
 
 **Kemampuan Aira:**
 - Mendiagnosis masalah jaringan, software, dan hardware
@@ -139,6 +136,14 @@ Aira adalah asisten IT Support berbasis Gemini AI yang terintegrasi dalam aplika
 - Membaca dan menulis file di workspace
 - Mengeksekusi perintah terminal
 - Merespons dalam Bahasa Indonesia
+
+### Model AI Gratis Tersedia
+- `deepseek-v4-flash-free` (default) — 200K context, support tool calling
+- `north-mini-code-free` — 128K context
+- `nemotron-3-ultra-free` — 128K context
+- `mimo-v2.5-free` — 131K context
+
+> Semua model gratis tanpa biaya (`cost: 0`). Powered by [OpenCode Zen API](https://opencode.ai/zen).
 
 ---
 
@@ -218,6 +223,25 @@ Lisensi MIT.
 ---
 
 ## 📋 Changelog
+
+### v1.15.2 — 15 Juni 2026
+
+#### ✨ Fitur Baru
+
+- **OpenCode Zen AI (Gratis)** — Migrasi dari Google Gemini API ke OpenCode Zen API:
+  - Tidak perlu API Key — gratis untuk semua pengguna
+  - Model default: `deepseek-v4-flash-free` (200K context, support tool calling)
+  - Alternatif model gratis: `north-mini-code-free`, `nemotron-3-ultra-free`, `mimo-v2.5-free`
+  - Format API: OpenAI Chat Completions (kompatibel dengan ecosystem luas)
+
+#### 🔧 Perbaikan
+
+- Hapus panel konfigurasi API Key di Settings dan AI Chat popup
+- Hapus banner peringatan "Gemini API Key Required"
+- Semua referensi "Gemini" diganti menjadi "OpenCode AI"
+- Bersihkan kode yang tidak terpakai terkait konfigurasi API key
+
+---
 
 ### v1.15.1 — 15 Juni 2026
 

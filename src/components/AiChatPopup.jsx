@@ -4,18 +4,15 @@ import remarkGfm from 'remark-gfm'
 import { AuthContext } from '../App'
 
 export default function AiChatPopup() {
-  const { authenticatedFetch, user } = useContext(AuthContext)
+  const { authenticatedFetch } = useContext(AuthContext)
   const [isOpen, setIsOpen] = useState(false)
   const [sessions, setSessions] = useState([])
   const [activeSessionId, setActiveSessionId] = useState(null)
   const [messages, setMessages] = useState([])
   const [inputMsg, setInputMsg] = useState('')
   const [sending, setSending] = useState(false)
-  const [hasApiKey, setHasApiKey] = useState(false)
-  const [showConfig, setShowConfig] = useState(false)
-  const [tempApiKey, setTempApiKey] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
-  
+   
   const chatEndRef = useRef(null)
   const inputRef = useRef(null)
   const abortControllerRef = useRef(null)
@@ -31,7 +28,6 @@ export default function AiChatPopup() {
   useEffect(() => {
     if (isOpen) {
       loadSessions()
-      checkConfig()
     }
   }, [isOpen])
 
@@ -40,18 +36,6 @@ export default function AiChatPopup() {
       chatEndRef.current.scrollIntoView({ behavior: 'smooth' })
     }
   }, [messages, sending])
-
-  const checkConfig = async () => {
-    try {
-      const res = await authenticatedFetch('/api/ai/config')
-      if (res?.ok) {
-        const data = await res.json()
-        setHasApiKey(data.hasKey)
-      }
-    } catch (e) {
-      console.error(e)
-    }
-  }
 
   const loadSessions = async () => {
     try {
@@ -104,25 +88,6 @@ export default function AiChatPopup() {
       }
     } catch (e) {
       console.error(e)
-    }
-  }
-
-  const handleSaveConfig = async (e) => {
-    e.preventDefault()
-    if (!tempApiKey.trim()) return
-    try {
-      const res = await authenticatedFetch('/api/ai/config', {
-        method: 'POST',
-        body: JSON.stringify({ apiKey: tempApiKey })
-      })
-      if (res?.ok) {
-        setHasApiKey(true)
-        setShowConfig(false)
-        setTempApiKey('')
-        setErrorMsg('')
-      }
-    } catch (err) {
-      console.error(err)
     }
   }
 
@@ -304,18 +269,11 @@ export default function AiChatPopup() {
                 <span className="material-symbols-outlined text-white text-[16px]">smart_toy</span>
               </div>
               <div>
-                <h3 className="text-xs font-black text-white uppercase tracking-widest leading-none">Gemini Copilot</h3>
-                <span className="text-[9px] text-emerald-400 font-bold uppercase tracking-wider">PROJECT MANAGER AGENT</span>
+                <h3 className="text-xs font-black text-white uppercase tracking-widest leading-none">AI Copilot</h3>
+                <span className="text-[9px] text-emerald-400 font-bold uppercase tracking-wider">OPENCODE ZEN AGENT</span>
               </div>
             </div>
             <div className="flex items-center gap-1.5">
-              <button 
-                onClick={() => setShowConfig(!showConfig)}
-                title="Config Key" 
-                className={`p-1.5 rounded-lg text-slate-500 hover:text-white transition-colors ${showConfig ? 'text-white bg-white/5' : ''}`}
-              >
-                <span className="material-symbols-outlined text-[18px]">key</span>
-              </button>
               <button 
                 onClick={() => setIsOpen(false)}
                 className="p-1.5 rounded-lg text-slate-500 hover:text-white transition-colors"
@@ -324,31 +282,6 @@ export default function AiChatPopup() {
               </button>
             </div>
           </div>
-
-          {/* Config Key Overlay / Panel */}
-          {showConfig && (
-            <div className="bg-[#141b31] p-5 border-b border-white/10 shrink-0 space-y-3 animate-in slide-in-from-top duration-300">
-              <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest block">Configure Gemini API Key</span>
-              <form onSubmit={handleSaveConfig} className="flex gap-2">
-                <input
-                  type="password"
-                  value={tempApiKey}
-                  onChange={(e) => setTempApiKey(e.target.value)}
-                  placeholder="Paste Gemini API Key..."
-                  className="flex-1 bg-black/40 border border-white/10 rounded-xl text-xs text-white px-3 py-2 outline-none focus:ring-1 focus:ring-primary"
-                />
-                <button 
-                  type="submit"
-                  className="px-4 py-2 bg-primary text-white text-[9px] font-black uppercase tracking-wider rounded-xl transition-all hover:brightness-110 active:scale-95 shrink-0"
-                >
-                  Save
-                </button>
-              </form>
-              <p className="text-[9px] text-slate-500 leading-normal">
-                If configured, this key will overwrite the default process environment key and be stored on the server.
-              </p>
-            </div>
-          )}
 
           {/* Body Split: Left list / Right Chat */}
           <div className="flex-1 flex overflow-hidden">
@@ -389,23 +322,12 @@ export default function AiChatPopup() {
             <div className="flex-1 flex flex-col bg-[#0b0e1a]/30 overflow-hidden">
               <div className="flex-1 p-4 overflow-y-auto custom-scrollbar space-y-4">
                 
-                {/* Prompt setup instructions if no key */}
-                {!hasApiKey && !showConfig && (
-                  <div className="p-4 bg-orange-500/5 border border-orange-500/20 rounded-2xl space-y-2 text-center animate-in zoom-in duration-300">
-                    <span className="material-symbols-outlined text-orange-400 text-2xl">vpn_key</span>
-                    <h4 className="text-xs font-black text-white uppercase tracking-widest">Gemini API Key Required</h4>
-                    <p className="text-[10px] text-slate-500 leading-relaxed">
-                      You must configure a Gemini API key to activate the copilot agent. Open key config above.
-                    </p>
-                  </div>
-                )}
-
-                {/* Empty State */}
+                  {/* Empty State */}
                 {messages.length === 0 && (
                   <div className="h-full flex flex-col items-center justify-center gap-2.5 text-center text-slate-600">
                     <span className="material-symbols-outlined text-3xl opacity-50">smart_toy</span>
                     <div>
-                      <p className="text-xs font-black uppercase tracking-widest text-slate-400">Gemini AI Agent</p>
+                      <p className="text-xs font-black uppercase tracking-widest text-slate-400">OpenCode AI Agent</p>
                       <p className="text-[10px] text-slate-500 max-w-[180px] leading-relaxed mx-auto mt-1">
                         Ask me to run shell commands, list files, view system status or manage your deploy node.
                       </p>
@@ -444,8 +366,8 @@ export default function AiChatPopup() {
                   type="text"
                   value={inputMsg}
                   onChange={(e) => setInputMsg(e.target.value)}
-                  placeholder="Ask Gemini copilot anything..."
-                  disabled={sending || !hasApiKey}
+                  placeholder="Ask AI copilot anything..."
+                  disabled={sending}
                   className="flex-1 bg-black/40 border border-white/5 rounded-xl text-xs text-white px-3.5 py-2.5 outline-none focus:ring-1 focus:ring-primary placeholder:text-slate-600 disabled:opacity-50"
                 />
                 {sending ? (
@@ -460,7 +382,7 @@ export default function AiChatPopup() {
                 ) : (
                   <button
                     type="submit"
-                    disabled={!inputMsg.trim() || !hasApiKey}
+                    disabled={!inputMsg.trim()}
                     className="w-10 h-10 rounded-xl bg-primary hover:bg-primary-container text-white flex items-center justify-center shadow-lg transition-all active:scale-95 disabled:opacity-30 disabled:pointer-events-none shrink-0"
                   >
                     <span className="material-symbols-outlined text-[18px]">send</span>

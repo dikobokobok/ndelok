@@ -40,7 +40,7 @@ const USERS_PATH = path.join(process.cwd(), 'src', 'database', 'users.json')
 const ZEROTIER_PATH = path.join(process.cwd(), 'src', 'database', 'zerotier.json')
 const CLOUDFLARE_PATH = path.join(process.cwd(), 'src', 'database', 'cloudflare.json')
 const CHATS_PATH = path.join(process.cwd(), 'src', 'database', 'ai-chats.json')
-const AI_CONFIG_PATH = path.join(process.cwd(), 'src', 'database', 'ai-config.json')
+
 
 let systemLogs = []
 let users = []
@@ -49,8 +49,6 @@ let cloudflareState = { enabled: true, token: '', url: '', status: 'Disconnected
 let cloudflaredProc = null
 let cloudflareLogs = []
 let aiChats = []
-let aiConfig = { apiKey: '' }
-
 if (fs.existsSync(ZEROTIER_PATH)) {
   try { zerotierState = JSON.parse(fs.readFileSync(ZEROTIER_PATH, 'utf-8')) } catch (e) {}
 }
@@ -66,9 +64,6 @@ if (fs.existsSync(CLOUDFLARE_PATH)) {
 if (fs.existsSync(CHATS_PATH)) {
   try { aiChats = JSON.parse(fs.readFileSync(CHATS_PATH, 'utf-8')) } catch (e) {}
 }
-if (fs.existsSync(AI_CONFIG_PATH)) {
-  try { aiConfig = JSON.parse(fs.readFileSync(AI_CONFIG_PATH, 'utf-8')) } catch (e) {}
-}
 
 const saveZerotier = () => {
   try { fs.writeFileSync(ZEROTIER_PATH, JSON.stringify(zerotierState, null, 2)) } catch (e) {}
@@ -79,10 +74,6 @@ const saveCloudflare = () => {
 const saveAiChats = () => {
   try { fs.writeFileSync(CHATS_PATH, JSON.stringify(aiChats, null, 2)) } catch (e) {}
 }
-const saveAiConfig = () => {
-  try { fs.writeFileSync(AI_CONFIG_PATH, JSON.stringify(aiConfig, null, 2)) } catch (e) {}
-}
-
 let prevNetBytes = { rx: 0, tx: 0, time: Date.now() }
 let netSpeed = { download: 0, upload: 0 }
 
@@ -487,7 +478,7 @@ const stopCloudflareTunnel = () => {
   saveCloudflare()
 }
 
-// ── Gemini AI Agent Helpers ──────────────────────────────────────────
+// ── OpenCode Zen AI Agent Helpers ────────────────────────────────────
 const runCommand = (command) => {
   return new Promise((resolve) => {
     const isWin = process.platform === 'win32'
@@ -508,86 +499,12 @@ const aiResolvePath = (relOrAbs) => {
   return path.resolve(process.cwd(), relOrAbs)
 }
 
-const callGeminiAPI = async (messages, apiKey) => {
-  return new Promise((resolve, reject) => {
-    const geminiContents = messages.map(m => {
-      if (m.role === 'user') {
-        return { role: 'user', parts: [{ text: m.content }] }
-      } else if (m.role === 'model') {
-        const parts = []
-        if (m.content) parts.push({ text: m.content })
-        if (m.toolCalls) {
-          parts.push(...m.toolCalls.map(tc => ({
-            functionCall: {
-              name: tc.name,
-              args: tc.args
-            }
-          })))
-        }
-        return { role: 'model', parts }
-      } else if (m.role === 'tool') {
-        return {
-          role: 'tool',
-          parts: [{
-            functionResponse: {
-              name: m.name,
-              response: { output: m.content }
-            }
-          }]
-        }
-      }
-    }).filter(Boolean)
+const OPENCODE_ZEN_ENDPOINT = 'https://opencode.ai/zen/v1/chat/completions'
+const OPENCODE_ZEN_MODEL = 'deepseek-v4-flash-free'
 
-    const tools = [{
-      functionDeclarations: [
-        {
-          name: 'execute_terminal_command',
-          description: 'Runs a shell command on the server terminal and returns stdout/stderr/error output.',
-          parameters: {
-            type: 'OBJECT',
-            properties: {
-              command: { type: 'STRING', description: 'The command string to execute.' }
-            },
-            required: ['command']
-          }
-        },
-        {
-          name: 'list_projects',
-          description: 'Lists all projects currently running on the server.'
-        },
-        {
-          name: 'control_project',
-          description: 'Starts, stops, restarts, or deletes a project in the workspace.',
-          parameters: {
-            type: 'OBJECT',
-            properties: {
-              name: { type: 'STRING', description: 'The name of the project.' },
-              action: { type: 'STRING', description: 'The action: start, stop, restart, delete.' }
-            },
-            required: ['name', 'action']
-          }
-        },
-        {
-          name: 'file_manager',
-          description: 'Read, write, list, delete, or create directory for files on the server filesystem.',
-          parameters: {
-            type: 'OBJECT',
-            properties: {
-              action: { type: 'STRING', description: 'The file operation: list, read, write, delete, mkdir.' },
-              path: { type: 'STRING', description: 'Absolute or relative file path.' },
-              content: { type: 'STRING', description: 'File contents (only required for write operation).' }
-            },
-            required: ['action', 'path']
-          }
-        },
-        {
-          name: 'get_system_status',
-          description: 'Gets current CPU, RAM, disk utilization and node platform.'
-        }
-      ]
-    }]
+let opencodeSessionCache = {}
 
-    const AIRA_SYSTEM_INSTRUCTION = `Act as Aira, a female Lead IT Support Specialist for a major enterprise corporation. You hold absolute administrative privileges (Root/Global Admin access) across all corporate devices, servers, networks, and software applications.
+const AIRA_SYSTEM_INSTRUCTION = `Act as Aira, a female Lead IT Support Specialist for a major enterprise corporation. You hold absolute administrative privileges (Root/Global Admin access) across all corporate devices, servers, networks, and software applications.
 
 Instructions for your behavior and responses:
 
@@ -619,21 +536,114 @@ Instructions for your behavior and responses:
 6. OPENING STATEMENT:
 Keep your greeting warm, professional, and direct: "Halo! Saya Aira dari IT Support. Ada kendala teknis apa yang bisa saya bantu selesaikan sekarang?"`;
 
-    const postData = JSON.stringify({
-      contents: geminiContents,
-      tools,
-      systemInstruction: {
-        parts: [{ text: AIRA_SYSTEM_INSTRUCTION }]
+const TOOL_DEFINITIONS = [
+  {
+    type: 'function',
+    function: {
+      name: 'execute_terminal_command',
+      description: 'Runs a shell command on the server terminal and returns stdout/stderr/error output.',
+      parameters: {
+        type: 'object',
+        properties: {
+          command: { type: 'string', description: 'The command string to execute.' }
+        },
+        required: ['command']
       }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'list_projects',
+      description: 'Lists all projects currently running on the server.'
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'control_project',
+      description: 'Starts, stops, restarts, or deletes a project in the workspace.',
+      parameters: {
+        type: 'object',
+        properties: {
+          name: { type: 'string', description: 'The name of the project.' },
+          action: { type: 'string', description: 'The action: start, stop, restart, delete.' }
+        },
+        required: ['name', 'action']
+      }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'file_manager',
+      description: 'Read, write, list, delete, or create directory for files on the server filesystem.',
+      parameters: {
+        type: 'object',
+        properties: {
+          action: { type: 'string', description: 'The file operation: list, read, write, delete, mkdir.' },
+          path: { type: 'string', description: 'Absolute or relative file path.' },
+          content: { type: 'string', description: 'File contents (only required for write operation).' }
+        },
+        required: ['action', 'path']
+      }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_system_status',
+      description: 'Gets current CPU, RAM, disk utilization and node platform.'
+    }
+  }
+]
+
+const convertToOpenAI = (messages) => {
+  return messages.map(m => {
+    if (m.role === 'user') {
+      return { role: 'user', content: m.content || '' }
+    } else if (m.role === 'model') {
+      const msg = { role: 'assistant', content: m.content || null }
+      if (m.toolCalls && m.toolCalls.length > 0) {
+        msg.tool_calls = m.toolCalls.map(tc => ({
+          id: tc.id || `call_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+          type: 'function',
+          function: { name: tc.name, arguments: JSON.stringify(tc.args || {}) }
+        }))
+      }
+      return msg
+    } else if (m.role === 'tool') {
+      return {
+        role: 'tool',
+        tool_call_id: m.toolCallId || `tool_${m.name}_${Date.now()}`,
+        content: String(m.content || '')
+      }
+    }
+  }).filter(Boolean)
+}
+
+const callOpencodeAPI = async (messages) => {
+  return new Promise((resolve, reject) => {
+    const oaiMessages = convertToOpenAI(messages)
+
+    const postData = JSON.stringify({
+      model: OPENCODE_ZEN_MODEL,
+      messages: [
+        { role: 'system', content: AIRA_SYSTEM_INSTRUCTION },
+        ...oaiMessages
+      ],
+      tools: TOOL_DEFINITIONS,
+      max_tokens: 64000
     })
 
     const options = {
-      hostname: 'generativelanguage.googleapis.com',
+      hostname: 'opencode.ai',
       port: 443,
-      path: `/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+      path: '/zen/v1/chat/completions',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'api-key': 'public',
         'Content-Length': Buffer.byteLength(postData)
       }
     }
@@ -643,14 +653,21 @@ Keep your greeting warm, professional, and direct: "Halo! Saya Aira dari IT Supp
       res.on('data', (chunk) => data += chunk)
       res.on('end', () => {
         if (res.statusCode !== 200) {
-          reject(new Error(`Gemini API error (Status ${res.statusCode}): ${data}`))
+          let errMsg = `OpenCode Zen API error (Status ${res.statusCode})`
+          try {
+            const parsed = JSON.parse(data)
+            errMsg += `: ${parsed.error?.message || JSON.stringify(parsed)}`
+          } catch (e) {
+            errMsg += `: ${data}`
+          }
+          reject(new Error(errMsg))
           return
         }
         try {
           const parsed = JSON.parse(data)
           resolve(parsed)
         } catch (e) {
-          reject(new Error(`Failed to parse Gemini response: ${data}`))
+          reject(new Error(`Failed to parse OpenCode Zen response: ${data}`))
         }
       })
     })
@@ -661,7 +678,7 @@ Keep your greeting warm, professional, and direct: "Halo! Saya Aira dari IT Supp
   })
 }
 
-const handleAiChatAgent = async (sessionId, userMessage, apiKey, clientSignal) => {
+const handleAiChatAgent = async (sessionId, userMessage, apiKeyIgnored, clientSignal) => {
   const session = aiChats.find(c => c.id === sessionId)
   if (!session) throw new Error('Session not found')
 
@@ -678,35 +695,41 @@ const handleAiChatAgent = async (sessionId, userMessage, apiKey, clientSignal) =
     }
     loopCount++
     try {
-      const response = await callGeminiAPI(session.messages, apiKey)
-      const candidate = response.candidates?.[0]
-      const message = candidate?.content || candidate?.message
-      if (!message) throw new Error('No candidate message returned from Gemini API')
+      const response = await callOpencodeAPI(session.messages)
+      const choice = response.choices?.[0]
+      const message = choice?.message
+      if (!message) throw new Error('No response from OpenCode AI')
 
-      const parts = message.parts || []
-      const textPart = parts.find(p => p.text)?.text || ''
-      const functionCalls = parts.filter(p => p.functionCall).map(p => p.functionCall)
+      const textPart = message.content || ''
+      const toolCalls = message.tool_calls || []
 
-      if (functionCalls.length > 0) {
+      if (toolCalls.length > 0) {
         const modelMsg = {
           role: 'model',
           content: textPart || null,
-          toolCalls: functionCalls.map(fc => ({ name: fc.name, args: fc.args })),
+          toolCalls: toolCalls.map(tc => ({
+            id: tc.id,
+            name: tc.function.name,
+            args: (() => { try { return JSON.parse(tc.function.arguments) } catch (e) { return {} } })()
+          })),
           timestamp: new Date().toISOString()
         }
         session.messages.push(modelMsg)
         saveAiChats()
 
-        for (const fc of functionCalls) {
+        for (const [idx, tc] of toolCalls.entries()) {
+          const fc = toolCalls[idx]
+          const fnName = fc.function.name
+          const fnArgs = (() => { try { return JSON.parse(fc.function.arguments) } catch (e) { return {} } })()
           let output = ''
           try {
-            if (fc.name === 'execute_terminal_command') {
-              const res = await runCommand(fc.args.command)
+            if (fnName === 'execute_terminal_command') {
+              const res = await runCommand(fnArgs.command)
               output = JSON.stringify(res)
-            } else if (fc.name === 'list_projects') {
+            } else if (fnName === 'list_projects') {
               output = JSON.stringify(activeProjects)
-            } else if (fc.name === 'control_project') {
-              const { name, action } = fc.args
+            } else if (fnName === 'control_project') {
+              const { name, action } = fnArgs
               const proj = activeProjects.find(p => p.name === name)
               if (!proj) {
                 output = JSON.stringify({ error: `Project ${name} not found` })
@@ -726,8 +749,8 @@ const handleAiChatAgent = async (sessionId, userMessage, apiKey, clientSignal) =
                 }
                 output = JSON.stringify({ success: true, project: name, action })
               }
-            } else if (fc.name === 'file_manager') {
-              const { action, path: fileRelOrAbs, content } = fc.args
+            } else if (fnName === 'file_manager') {
+              const { action, path: fileRelOrAbs, content } = fnArgs
               const fullPath = aiResolvePath(fileRelOrAbs)
               if (action === 'list') {
                 if (!fs.existsSync(fullPath)) {
@@ -768,7 +791,7 @@ const handleAiChatAgent = async (sessionId, userMessage, apiKey, clientSignal) =
                 fs.mkdirSync(fullPath, { recursive: true })
                 output = JSON.stringify({ success: true, path: fullPath })
               }
-            } else if (fc.name === 'get_system_status') {
+            } else if (fnName === 'get_system_status') {
               const disk = await fs.promises.statfs(os.platform() === 'win32' ? 'C:\\' : '/')
               const totalDisk = disk.blocks * disk.bsize, freeDisk = disk.bfree * disk.bsize
               const memTotal = os.totalmem(), memFree = os.freemem()
@@ -786,7 +809,8 @@ const handleAiChatAgent = async (sessionId, userMessage, apiKey, clientSignal) =
 
           session.messages.push({
             role: 'tool',
-            name: fc.name,
+            name: fnName,
+            toolCallId: fc.id,
             content: output,
             timestamp: new Date().toISOString()
           })
@@ -799,16 +823,16 @@ const handleAiChatAgent = async (sessionId, userMessage, apiKey, clientSignal) =
       }
     } catch (err) {
       const errorStr = err.toString()
-      const isQuotaExceeded = errorStr.includes('429') || errorStr.includes('RESOURCE_EXHAUSTED') || errorStr.includes('quota')
-      const isInvalidKey = errorStr.includes('401') || errorStr.includes('UNAUTHENTICATED') || errorStr.includes('ACCESS_TOKEN_TYPE_UNSUPPORTED') || errorStr.includes('invalid authentication')
+      const isQuotaExceeded = errorStr.includes('429') || errorStr.includes('quota') || errorStr.includes('rate')
+      const isServerError = errorStr.includes('500') || errorStr.includes('502') || errorStr.includes('503')
       
       let friendlyMsg
-      if (isInvalidKey) {
-        friendlyMsg = '### \uD83D\uDD11 API Key Tidak Valid\n\nHalo! Sepertinya API Key Gemini yang dikonfigurasi **tidak valid** atau menggunakan format yang salah.\n\n**Penyebab umum:**\n- Key yang dimasukkan adalah OAuth Access Token (dimulai dengan `AQ.`), bukan Gemini API Key\n- Gemini API Key yang benar **harus dimulai dengan `AIza...`**\n\n**Cara memperbaiki:**\n1. Buka **https://aistudio.google.com/apikey**\n2. Login dengan akun Google Anda\n3. Klik **"Create API key"** dan salin key yang muncul\n4. Masukkan key tersebut di halaman **Settings \u2192 AI Copilot**'
-      } else if (isQuotaExceeded) {
-        friendlyMsg = '### \u26A0\uFE0F Limit Kuota AI Terlampaui\n\nHalo! Maaf sekali, kuota API Gemini gratis saya saat ini sedang habis (limit terlampaui).\n\nNamun, Anda tetap dapat memantau dan mengontrol resource sistem secara langsung:\n1. **CPU, RAM, dan Storage** saat ini dapat dipantau secara visual di menu **Dashboard** atau **Servers** di panel sebelah kiri.\n2. Di halaman **Servers**, terdapat tombol **Optimize CPU**, **Free Memory**, dan **Clean Storage** untuk mengontrol dan membersihkan resource sistem Anda secara manual tanpa memerlukan bantuan AI.'
+      if (isQuotaExceeded) {
+        friendlyMsg = '### \u26A0\uFE0F AI Gratis Sedang Sibuk\n\nHalo! Maaf, layanan AI gratis sedang mengalami permintaan tinggi. Silakan coba lagi dalam beberapa saat.\n\nAtau Anda dapat memantau resource sistem secara langsung melalui menu **Dashboard** atau **Servers** di panel sebelah kiri.'
+      } else if (isServerError) {
+        friendlyMsg = '### \u26A0\uFE0F Layanan AI Mengalami Gangguan\n\nHalo! Layanan AI gratis sedang bermasalah. Tim kami telah diberitahu.\n\nCoba lagi nanti, atau gunakan fitur manual melalui menu **Dashboard** atau **Servers**.'
       } else {
-        friendlyMsg = '[ERROR] Agent failed to execute: ' + err.message
+        friendlyMsg = '[ERROR] Agent gagal: ' + err.message
       }
       session.messages.push({ role: 'model', content: friendlyMsg, timestamp: new Date().toISOString() })
       saveAiChats()
@@ -1012,7 +1036,7 @@ export default defineConfig({
               const { title } = JSON.parse(await readBody(req))
               const newChat = {
                 id: Date.now().toString(),
-                title: title || 'New Chat with Gemini',
+                title: title || 'New Chat with OpenCode AI',
                 messages: [
                   {
                     role: 'model',
@@ -1040,19 +1064,10 @@ export default defineConfig({
         })
 
         // GET /api/ai/config
-        // POST /api/ai/config
         server.middlewares.use('/api/ai/config', async (req, res) => {
           res.setHeader('Content-Type', 'application/json')
           if (req.method === 'GET') {
-            res.end(JSON.stringify({ hasKey: !!(process.env.GEMINI_API_KEY || aiConfig.apiKey) }))
-          } else if (req.method === 'POST') {
-            if (req.user?.role !== 'owner') { res.statusCode = 403; res.end(JSON.stringify({ error: 'Permission denied' })); return }
-            try {
-              const { apiKey } = JSON.parse(await readBody(req))
-              aiConfig.apiKey = (apiKey || '').trim()
-              saveAiConfig()
-              res.end(JSON.stringify({ success: true }))
-            } catch(e) { res.statusCode = 400; res.end(JSON.stringify({ error: e.message })) }
+            res.end(JSON.stringify({ hasKey: true, provider: 'OpenCode Zen', model: OPENCODE_ZEN_MODEL }))
           } else {
             res.statusCode = 405; res.end(JSON.stringify({ error: 'Method not allowed' }))
           }
@@ -1063,20 +1078,14 @@ export default defineConfig({
           res.setHeader('Content-Type', 'application/json')
           if (req.method === 'POST') {
             try {
-              const { sessionId, message, apiKey } = JSON.parse(await readBody(req))
-              const key = (apiKey || process.env.GEMINI_API_KEY || aiConfig.apiKey || '').trim()
-              if (!key) {
-                res.statusCode = 400
-                res.end(JSON.stringify({ error: 'Gemini API Key is not configured. Please set your key.' }))
-                return
-              }
+              const { sessionId, message } = JSON.parse(await readBody(req))
               const clientSignal = { aborted: false }
               req.on('close', () => {
                 if (!res.writableEnded) {
                   clientSignal.aborted = true
                 }
               })
-              const updatedMessages = await handleAiChatAgent(sessionId, message, key, clientSignal)
+              const updatedMessages = await handleAiChatAgent(sessionId, message, null, clientSignal)
               res.end(JSON.stringify({ messages: updatedMessages }))
             } catch(e) {
               res.statusCode = 500
